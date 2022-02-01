@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   muzzleFlash: {fileID: 1518973277216931071}
-  bullet: {fileID: 0}
+  bullet: {fileID: 875480326559648826, guid: 00cacdac5adf91b4398ee3f3c003afaa, type: 3}
 --- !u!1001 &4519912921493569707
 PrefabInstance:
   m_ObjectHideFlags: 0

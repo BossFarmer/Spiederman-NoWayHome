@@ -99,6 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: bfa7dc0ed1c278a4a9e135197d97fd35, type: 2}
+  wClass: 
+  wName: 
+  wDamage: 0
+  wBulletSize: 0
+  wBulletSpeed: 0
+  wMagazineSize: 0
 --- !u!114 &2318825172724692464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   muzzleFlash: {fileID: 6161121498511456035}
-  bullet: {fileID: 0}
+  bullet: {fileID: 875480326559648826, guid: 00cacdac5adf91b4398ee3f3c003afaa, type: 3}
 --- !u!1001 &9091990993930931063
 PrefabInstance:
   m_ObjectHideFlags: 0
