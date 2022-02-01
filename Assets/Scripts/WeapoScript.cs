@@ -2,13 +2,25 @@ using UnityEngine;
 
 public class WeapoScript : MonoBehaviour
 {
+    #region private Variables
     [SerializeField] private Camera cam; 
     [SerializeField] private ParticleSystem muzzleFlash; 
-    [SerializeField] private Transform spawnPoint;
     [SerializeField] private GameObject bullet;
+    private ConnectWeapon cws;
     private float damage = 10f;
     private float range = 100f;
-    // Update is called once per frame
+    private int currenMag = 0;
+    #endregion
+
+    #region public Variables
+    #endregion 
+
+    private void Start()
+    {
+        cws = GetComponent<ConnectWeapon>();
+        cam = Camera.main;
+        currenMag = cws.wMagazineSize;
+    }
     void Update()
     {
         PlayerShooting();
@@ -18,7 +30,6 @@ public class WeapoScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            //ShootRayCast();
             ShootOrigin();
         }
     }
@@ -39,7 +50,16 @@ public class WeapoScript : MonoBehaviour
 
     void ShootOrigin()
     {
-        muzzleFlash.Play();
-        GameObject _bullet = Instantiate(bullet,spawnPoint.position,Quaternion.identity);
+        if (currenMag > 0)
+        {
+            muzzleFlash.Play();
+            GameObject _bullet = Instantiate(bullet,transform.position,Quaternion.identity);
+            currenMag--;
+            Destroy(_bullet, 5f);
+        }
+        else
+        {
+            Debug.Log("Mag is empty!");
+        }
     }
 }

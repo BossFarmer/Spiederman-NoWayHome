@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af9747e3e86959e438cc5de75e02eb19, type: 3}
+  m_Name: M16Semi
+  m_EditorClassIdentifier: 
+  eWeaponClass: 0
+  weaponName: M16Semi
+  weaponDamage: 35
+  weaponMagazineSize: 0
+  bulletSize: 0
+  bulletSpeed: 0
