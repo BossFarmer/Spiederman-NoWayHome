@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2394926533221923118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3939204938266682733}
+  m_Layer: 0
+  m_Name: bulletSP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3939204938266682733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394926533221923118}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: -0.00048, y: -0.0175, z: 0.0022}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4180595269785026308}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &3553240682326304190
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,14 +57,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3553240682326304190}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.248, y: 0.076, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 3787250558169142813}
+  - {fileID: 3939204938266682733}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!33 &985072991953612961
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -119,6 +150,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   muzzleFlash: {fileID: 3787250558169142811}
   bullet: {fileID: 875480326559648826, guid: 00cacdac5adf91b4398ee3f3c003afaa, type: 3}
+  spawnPoint: {fileID: 3939204938266682733}
 --- !u!1001 &2243508045211740751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,19 +208,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1.8421115e-25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 5.45e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.1892035e-26
+      value: 2.3510647e-38
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 5.45e-43
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}

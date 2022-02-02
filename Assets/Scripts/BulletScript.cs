@@ -7,6 +7,7 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     private GameObject temp;
     private ConnectWeapon cws;
+    private WeapoScript ws;
     private float bulletDamage;
     private float bulletSize;
     private float bulletSpeed;
@@ -14,6 +15,7 @@ public class BulletScript : MonoBehaviour
     {
         temp = GameObject.FindGameObjectWithTag("Gun");
         cws = temp.GetComponent<ConnectWeapon>();
+        ws = temp.GetComponent<WeapoScript>();
         rb = GetComponent<Rigidbody>();
     }
     void Start()
@@ -31,7 +33,7 @@ public class BulletScript : MonoBehaviour
 
     private void AccelerateBullet()
     {
-        rb.AddForce(-temp.transform.up * bulletSpeed, ForceMode.Impulse);
+        rb.AddForce(ws.spawnPoint.up * bulletSpeed, ForceMode.Impulse);
     }
     private void GetWeaponData()
     {

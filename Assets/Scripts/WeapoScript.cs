@@ -13,6 +13,7 @@ public class WeapoScript : MonoBehaviour
     #endregion
 
     #region public Variables
+    public Transform spawnPoint;
     #endregion 
 
     private void Start()
@@ -30,6 +31,7 @@ public class WeapoScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log(cws.name + "schießt");
             ShootOrigin();
         }
     }
@@ -50,10 +52,10 @@ public class WeapoScript : MonoBehaviour
 
     void ShootOrigin()
     {
-        if (currenMag > 0)
+        if (true)
         {
             muzzleFlash.Play();
-            GameObject _bullet = Instantiate(bullet,transform.position,Quaternion.identity);
+            GameObject _bullet = Instantiate(bullet,spawnPoint.position,Quaternion.identity);
             currenMag--;
             Destroy(_bullet, 5f);
         }

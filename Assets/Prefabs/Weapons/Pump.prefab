@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &546864492294783931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5326381693115008854}
+  m_Layer: 0
+  m_Name: bulletSP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5326381693115008854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546864492294783931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.02206, y: 0.00018, z: 0.00153}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2646820258920881040}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3454460665068585258
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,14 +57,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3454460665068585258}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.306, y: 0.607, z: 0}
+  m_LocalRotation: {x: -0.50174224, y: 0.49825168, z: -0.49825168, w: 0.50174224}
+  m_LocalPosition: {x: 0.0308, y: 0.0435, z: -0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 6950478982478229944}
+  - {fileID: 5326381693115008854}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.4, y: 90, z: -90}
 --- !u!33 &1374933336690414645
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -120,6 +151,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   muzzleFlash: {fileID: 6950478982478229950}
   bullet: {fileID: 875480326559648826, guid: 00cacdac5adf91b4398ee3f3c003afaa, type: 3}
+  spawnPoint: {fileID: 5326381693115008854}
 --- !u!1001 &5465260191642488298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,19 +209,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 6.95e-43
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 0.000000018662362
       objectReference: {fileID: 0}
     - target: {fileID: 3147328940849621556, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 6.95e-43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ab0e54d5f44644a880e8dc251407df, type: 3}
