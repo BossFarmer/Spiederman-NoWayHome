@@ -8,7 +8,13 @@ public class CharacterMovement : MonoBehaviour
     public Transform GroundCheck;
     public float GroundCheckRadius = 0.4f;
     public LayerMask GroundMask;
+    public GameObject currPowerUp;
 
+    [SerializeField]
+    private float powerupRespawnTimer;
+
+    public int maxDash = 1;
+    public int maxJumps = 1;
     private float characterSpeed = 12f;
     private float gravity = -9.81f * 2;
     private float jumpHight = 3f;
@@ -25,9 +31,14 @@ public class CharacterMovement : MonoBehaviour
 
     private void CharacterJump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded | maxJumps == 2)
         {
             velocity.y = Mathf.Sqrt(jumpHight * -2 * gravity); //physicalformular for jumping
+            maxJumps--;
+            if (maxJumps < 1)
+            {
+                maxJumps = 1;
+            }
         }
     }
 
@@ -51,4 +62,36 @@ public class CharacterMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime; //increasing the gravit by his velocity 
         Controller.Move(velocity * Time.deltaTime); //applying the velocity
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Items")
+        {
+            PowerUpScript PowerUp = other.GetComponent<PowerUpScript>();
+            switch (PowerUp.PowerUpType)
+            {
+                case PowerUpScript.EPowerups.plusJump:
+                    maxJumps++;
+                    maxJumps++;
+                    //currPowerUp = other.gameObject;
+                    //currPowerUp.SetActive(false);
+                    //StartCoroutine("RespawnPowerups");
+
+                    break;
+                case PowerUpScript.EPowerups.plusDash:
+                    maxDash++;
+                    maxDash++;
+                    break;
+                case PowerUpScript.EPowerups.plusAmmo:
+                    //full ammo
+                    break;
+            }
+        }
+    }
+    //IEnumerator RespawnPowerups()
+    //{
+    //    yield return new WaitForSeconds(powerupRespawnTimer);
+    //    currPowerUp.SetActive(true);
+    //}
+
 }
