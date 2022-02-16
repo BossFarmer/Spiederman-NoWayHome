@@ -9,7 +9,12 @@ public class PowerUpScript : MonoBehaviour
 
     public GameObject thisPowerup;
     CharacterMovement characterMovement;
+
+    [SerializeField]
     Collider m_collider;
+
+    [SerializeField]
+    MeshRenderer meshRenderer;
 
     private void Start()
     {
@@ -35,9 +40,11 @@ public class PowerUpScript : MonoBehaviour
 
     IEnumerator RespawnPowerups()
     {
-        thisPowerup.
+        meshRenderer.enabled = false;
+        m_collider.enabled = !m_collider.enabled;
         yield return new WaitForSeconds(2f);
-        thisPowerup.
+        m_collider.enabled = !m_collider.enabled;
+        meshRenderer.enabled = true;
     }
 
 }
