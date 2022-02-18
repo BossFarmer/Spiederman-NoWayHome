@@ -4,36 +4,61 @@ using UnityEngine;
 
 public class EquipmentScript : MonoBehaviour
 {
-    [SerializeField] private Transform playerHands;
-    private bool weaponEquipt = false;
-    private ConnectWeapon cws;
-    private Vector3 weaponRotation;
-    private GameObject gun;
-    void Update()
+    private int currentWeapon = 0;
+    private int nextWeapon;
+    private void Start()
     {
+        ChoseWeapon();
+    }
+    private void Update()
+    {
+        ChangeWeapon();
     }
 
-    private void OnTriggerEnter(Collider collision)
+    void ChoseWeapon()
     {
-        if (collision.gameObject.tag == "Gun" && !weaponEquipt)
+        int index = 0;
+        foreach (Transform weapon in transform)
         {
-            Debug.Log("Die Waffe wird berührt!");
-            gun = collision.gameObject;
-            if (gun.GetComponent<ConnectWeapon>())
+            if (index == currentWeapon)
             {
-                cws = gun.GetComponent<ConnectWeapon>();
+                weapon.gameObject.SetActive(true);
             }
-            PickUpWeapon();
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            index++;
         }
     }
-    void PickUpWeapon()
+    void ChangeWeapon()
     {
-        if (gun != null)
+        nextWeapon = currentWeapon;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            weaponEquipt = true;
-            gun.transform.parent = playerHands.transform;
-            //gun.transform.position = new Vector3(0,0,0);
+            if (currentWeapon >= transform.childCount -1)
+            {
+                currentWeapon = 0;
+            }
+            else
+            {
+                currentWeapon++;
+            }
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            if (currentWeapon <= 0 )
+            {
+                currentWeapon = transform.childCount - 1;
+            }
+            else
+            {
+                currentWeapon--;
+            }
+        }
+        if (nextWeapon!= currentWeapon)
+        {
+            ChoseWeapon();
         }
     }
-
 }

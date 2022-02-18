@@ -10,29 +10,34 @@ public class WeapoScript : MonoBehaviour
     private float damage = 10f;
     private float range = 100f;
     private int currenMag = 0;
+    private bool temp, temp2 = true;
+    private int indxTemp;
+    private float shootDelay;
     #endregion
 
     #region public Variables
     public Transform spawnPoint;
-    #endregion 
+    #endregion
 
     private void Start()
     {
         cws = GetComponent<ConnectWeapon>();
         cam = Camera.main;
-        currenMag = cws.wMagazineSize;
+        indxTemp = cws.WIndex;
     }
     void Update()
     {
+        LoadGun();
         PlayerShooting();
+ 
     }
 
     void PlayerShooting()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Debug.Log(cws.name + "schießt");
-            ShootOrigin();
+            ShootGunSemi();
+            Debug.Log(cws.name + "schießt" + currenMag);
         }
     }
     void ShootRayCast()
@@ -50,18 +55,39 @@ public class WeapoScript : MonoBehaviour
         }
     }
 
-    void ShootOrigin()
+    void ShootGunSemi()
     {
-        if (true)
+        if (currenMag >= 0)
         {
             muzzleFlash.Play();
             GameObject _bullet = Instantiate(bullet,spawnPoint.position,Quaternion.identity);
             currenMag--;
             Destroy(_bullet, 5f);
+            shootDelay = cws.WShootDelay;
         }
         else
         {
             Debug.Log("Mag is empty!");
         }
     }
+
+    void LoadGun()
+    {
+        if (temp)
+        {
+            currenMag = cws.WMagazineSize;
+            Debug.Log(cws.name + " MagazineSize: " + currenMag);
+            temp = false;
+        }
+
+        if (temp2)
+        {
+            shootDelay = cws.WShootDelay;
+            Debug.Log("WeaponScript : Shootdelay = " + shootDelay);
+            temp2 = false;
+        }
+    }
+
+
+  
 }
