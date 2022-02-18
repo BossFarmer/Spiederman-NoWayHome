@@ -39,9 +39,9 @@ public class BulletScript : MonoBehaviour
     {
         if (cws != null)
         {
-            bulletDamage = cws.wDamage;
-            bulletSize = cws.wBulletSize;
-            bulletSpeed = cws.wBulletSpeed;
+            bulletDamage = cws.WDamage;
+            bulletSize = cws.WBulletSize;
+            bulletSpeed = cws.WBulletSpeed;
         }
         else
         {
