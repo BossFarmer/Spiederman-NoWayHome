@@ -10,8 +10,8 @@ public class CharacterMovement : MonoBehaviour
     public LayerMask GroundMask;
     public GameObject currPowerUp;
 
-    [SerializeField]
-    private float powerupRespawnTimer;
+    [SerializeField] private float powerupRespawnTimer;
+    [SerializeField] private float dashForce = 20f;
 
     public int maxDash = 1;
     public int maxJumps = 1;
@@ -27,6 +27,7 @@ public class CharacterMovement : MonoBehaviour
         PlayerMove();
         GroundChecked();
         CharacterJump();
+        PlayerDash();
     }
 
     private void CharacterJump()
@@ -94,4 +95,23 @@ public class CharacterMovement : MonoBehaviour
     //    currPowerUp.SetActive(true);
     //}
 
+    void PlayerDash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetAxis("Horizontal") > 0)
+        {
+            //do dash right
+            //transform.localPosition = Vector3.right * dashForce;
+            Debug.Log("Dash right");
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && Input.GetAxis("Horizontal") < 0)
+        {
+            //do dash left
+            //transform.localPosition = Vector3.left * dashForce;
+            Debug.Log("Dash left");
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("Dash back");
+        }
+    }
 }

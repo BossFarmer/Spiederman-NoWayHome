@@ -9,10 +9,10 @@ public class WeapoScript : MonoBehaviour
     private ConnectWeapon cws;
     private float damage = 10f;
     private float range = 100f;
-    private int currenMag = 0;
-    private bool temp, temp2 = true;
+    private int currenMag;
+    private bool temp = true, temp2 = true;
     private int indxTemp;
-    private float shootDelay;
+    private float shootDelay, nextShoot = 0f;
     #endregion
 
     #region public Variables
@@ -28,15 +28,31 @@ public class WeapoScript : MonoBehaviour
     void Update()
     {
         LoadGun();
-        PlayerShooting();
- 
+        if (cws.WClass == "AssaultRifle")
+        {
+            ShootingAuto();
+        }
+        else
+        {
+            ShootingSemi(); 
+        }
     }
 
-    void PlayerShooting()
+    void ShootingSemi()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > nextShoot)
         {
-            ShootGunSemi();
+            nextShoot = Time.time + shootDelay;
+            ShootGun();
+            Debug.Log(cws.name + "schießt" + currenMag);
+        }
+    }
+    void ShootingAuto()
+    {
+        if (Input.GetButton("Fire1") && Time.time > nextShoot)
+        {
+            nextShoot = Time.time + shootDelay;
+            ShootGun();
             Debug.Log(cws.name + "schießt" + currenMag);
         }
     }
@@ -55,12 +71,12 @@ public class WeapoScript : MonoBehaviour
         }
     }
 
-    void ShootGunSemi()
+    void ShootGun()
     {
-        if (currenMag >= 0)
+        if (true)
         {
             muzzleFlash.Play();
-            GameObject _bullet = Instantiate(bullet,spawnPoint.position,Quaternion.identity);
+            GameObject _bullet = Instantiate(bullet, cam.transform.position + cam.transform.forward ,Quaternion.identity);
             currenMag--;
             Destroy(_bullet, 5f);
             shootDelay = cws.WShootDelay;

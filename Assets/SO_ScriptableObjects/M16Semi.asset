@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9747e3e86959e438cc5de75e02eb19, type: 3}
   m_Name: M16Semi
   m_EditorClassIdentifier: 
-  EWeaponClass: 2
+  EWeaponClass: 3
   WeaponName: M16
   WeaponDamage: 0
   WeaponMagazineSize: 30
   BulletSize: 0.2
   BulletSpeed: 120
   IndexWeapon: 3
-  WeaponShootDelay: 0.15
+  WeaponShootDelay: 0.18

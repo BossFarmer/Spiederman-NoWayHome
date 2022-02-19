@@ -10,7 +10,10 @@ public class WeaponSCO : ScriptableObject
         Pistol,
         Shotgun,
         AssaultRifle,
-        Sniper
+        SemiAssaultRifle,
+        Sniper,
+        Speical,
+        AutoShotgun
     }
 
     public EweaponClass EWeaponClass;
@@ -32,15 +35,15 @@ public class WeaponSCO : ScriptableObject
                         BulletSize = 0.25f;
                         BulletSpeed = 70f;
                         WeaponMagazineSize = 11;
-                        WeaponShootDelay = 0.1f;
+                        WeaponShootDelay = 0.3f;
                     }
                     break;
                 case EweaponClass.Shotgun:
                     {
-                        BulletSize = 0.7f;
+                        BulletSize = 0.5f;
                         BulletSpeed = 50f;
                         WeaponMagazineSize = 5;
-                        WeaponShootDelay = 0.5f;
+                        WeaponShootDelay = 0.8f;
                     }
                     break;
                 case EweaponClass.AssaultRifle:
@@ -48,7 +51,7 @@ public class WeaponSCO : ScriptableObject
                         BulletSize = 0.20f;
                         BulletSpeed = 120f;
                         WeaponMagazineSize = 30;
-                        WeaponShootDelay = 0.15f;
+                        WeaponShootDelay = 0.28f;
 
                     }
                     break;
@@ -58,6 +61,30 @@ public class WeaponSCO : ScriptableObject
                         BulletSpeed = 300f;
                         WeaponMagazineSize = 3;
                         WeaponShootDelay = 1.5f;
+                    }
+                    break;
+                case EweaponClass.Speical:
+                    {
+                        BulletSize = 0.10f;
+                        BulletSpeed = 300f;
+                        WeaponMagazineSize = 1;
+                        WeaponShootDelay = 1.5f;
+                    }
+                    break;
+                case EweaponClass.AutoShotgun:
+                    {
+                        BulletSize = 0.5f;
+                        BulletSpeed = 50f;
+                        WeaponMagazineSize = 5;
+                        WeaponShootDelay = 0.4f;
+                    }
+                    break;
+                case EweaponClass.SemiAssaultRifle:
+                    {
+                        BulletSize = 0.20f;
+                        BulletSpeed = 120f;
+                        WeaponMagazineSize = 30;
+                        WeaponShootDelay = 0.18f;
                     }
                     break;
                 default:
