@@ -97,7 +97,6 @@ public class BarrierScript : MonoBehaviour
                     if (CurrTime <= 0)
                     {
                     Barrier22.SetActive(true);
-
                     }
                 }
                 break;
@@ -110,7 +109,6 @@ public class BarrierScript : MonoBehaviour
                     {
                     Barrier33.SetActive(true);
                     Barrier1.SetActive(true);
-
                     }
                 }
                 break;
