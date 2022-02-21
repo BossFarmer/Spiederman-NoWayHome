@@ -114,4 +114,8 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("Dash back");
         }
     }
+    void HideCharacter()
+    {
+        
+    }
 }
