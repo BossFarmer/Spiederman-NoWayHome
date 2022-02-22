@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class MenuScript : MonoBehaviour
 {
-    public void EnterSettings()
-    {
-
-    }
-
      public void QuitGame()
     {
         Application.Quit();
     }
-
 }
