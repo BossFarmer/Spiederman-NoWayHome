@@ -27,11 +27,13 @@ public class CameraManager : MonoBehaviour
     private void MouseInputY(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         mouseInputY = obj.ReadValue<float>();
+        Debug.Log("mouse input Y: "+mouseInputY);
     }
 
     private void MouseInputX(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         mouseInputX = obj.ReadValue<float>();
+        Debug.Log("mouse input X: "+mouseInputX);
     }
 
     void Update()

@@ -67,7 +67,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""LookingX"",
                     ""type"": ""PassThrough"",
                     ""id"": ""dc44d543-042c-45ce-856d-9d4899095d7d"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -76,7 +76,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""LookingY"",
                     ""type"": ""PassThrough"",
                     ""id"": ""fdbff9ff-5b3a-43c0-9f6b-cdce008ae3e1"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
