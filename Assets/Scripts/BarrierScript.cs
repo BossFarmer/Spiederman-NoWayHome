@@ -16,6 +16,9 @@ public class BarrierScript : MonoBehaviour
     public float CurrTime = 0f;
 
     [SerializeField]
+    public bool PlayerDead;
+
+    [SerializeField]
     public float BarrierSpawnTimer = 3f;
 
     private void Start()
@@ -33,56 +36,141 @@ public class BarrierScript : MonoBehaviour
 
         //CurrTime = BarrierSpawnTimer;
         //CurrTime -= 1 * Time.deltaTime;
-        
+
+        if (PlayerDead)
+        {
+            StartCoroutine(Timer());
+            #region OldSwitch
+
+            //switch (P2DeathCount)
+            //{
+
+            //    case 0:
+            //        if (P2DeathCount == 0)
+            //        {
+            //            StartCoroutine("Timer");
+            //            Barrier1.SetActive(true);
+            //            Barrier11.SetActive(true);
+            //        }
+            //        break;
+            //    case 1:
+            //        if (P2DeathCount == 1)
+            //        {
+            //            Barrier1.SetActive(false);
+            //            StartCoroutine("Timer");
+            //            Barrier2.SetActive(true);
+            //        }
+            //        break;
+            //    case 2:
+            //        if (P2DeathCount == 2)
+            //        {
+            //            Barrier2.SetActive(false);
+            //            StartCoroutine("Timer");
+            //            Barrier3.SetActive(true);
+            //            Barrier1.SetActive(true);
+            //        }
+            //        break;
+            //    case 3:
+            //        if (P2DeathCount == 3)
+            //        {
+            //            Barrier3.SetActive(false);
+            //            StartCoroutine("Timer");
+            //            Barrier2.SetActive(true);
+            //        }
+            //        break;
+            //}
+
+            //switch (P1DeathCount)
+            //{
+            //    case 1:
+            //        if (P1DeathCount == 1)
+            //        {
+            //            Barrier11.SetActive(false);
+            //            //BarrierTimer();
+            //            if (CurrTime <= 0)
+            //            {
+            //                Barrier22.SetActive(true);
+            //            }
+            //        }
+            //        break;
+            //    case 2:
+            //        if (P1DeathCount == 2)
+            //        {
+            //            Barrier22.SetActive(false);
+            //            //BarrierTimer();
+            //            if (CurrTime <= 0)
+            //            {
+            //                Barrier33.SetActive(true);
+            //                Barrier1.SetActive(true);
+            //            }
+            //        }
+            //        break;
+            //    case 3:
+            //        if (P1DeathCount == 3)
+            //        {
+            //            Barrier33.SetActive(false);
+            //        }
+            //        break;
+            //}
+            #endregion
+        }
+
+    }
+    #region OldTimer
+    //void BarrierTimer()
+    //{
+    //    CurrTime -= Time.deltaTime;
+    //    Debug.Log(CurrTime);
+
+    //    if(CurrTime <= 0)
+    //    {
+    //        Debug.Log("Timer zu ende");
+    //        CurrTime = BarrierSpawnTimer;
+    //        return;
+    //    }
+
+    //}
+    #endregion
+
+    IEnumerator Timer()
+    {
+        Debug.Log(CurrTime);
+        yield return new WaitForSeconds(CurrTime);
+
         switch (P2DeathCount)
         {
 
             case 0:
                 if (P2DeathCount == 0)
                 {
-                    BarrierTimer();
-                    if (CurrTime <= 0)
-                    {
+                    //StartCoroutine("Timer");
                     Barrier1.SetActive(true);
                     Barrier11.SetActive(true);
-
-                    }
                 }
                 break;
             case 1:
                 if (P2DeathCount == 1)
                 {
                     Barrier1.SetActive(false);
-                    CurrTime -= Time.deltaTime;
-                    if(CurrTime <= 0)
-                    {
-                        Barrier2.SetActive(true);
-                    }
+                    //StartCoroutine("Timer");
+                    Barrier2.SetActive(true);
                 }
                 break;
             case 2:
                 if (P2DeathCount == 2)
                 {
                     Barrier2.SetActive(false);
-                    BarrierTimer();
-                    if (CurrTime <= 0)
-                    {
+                    //StartCoroutine("Timer");
                     Barrier3.SetActive(true);
                     Barrier1.SetActive(true);
-
-                    }
                 }
                 break;
             case 3:
                 if (P2DeathCount == 3)
                 {
                     Barrier3.SetActive(false);
-                    BarrierTimer();
-                    if (CurrTime <= 0)
-                    {
+                    //StartCoroutine("Timer");
                     Barrier2.SetActive(true);
-
-                    }
                 }
                 break;
         }
@@ -93,10 +181,10 @@ public class BarrierScript : MonoBehaviour
                 if (P1DeathCount == 1)
                 {
                     Barrier11.SetActive(false);
-                    BarrierTimer();
+                    //BarrierTimer();
                     if (CurrTime <= 0)
                     {
-                    Barrier22.SetActive(true);
+                        Barrier22.SetActive(true);
                     }
                 }
                 break;
@@ -104,34 +192,20 @@ public class BarrierScript : MonoBehaviour
                 if (P1DeathCount == 2)
                 {
                     Barrier22.SetActive(false);
-                    BarrierTimer();
-                    if (CurrTime <= 0)
-                    {
+                    //BarrierTimer();
                     Barrier33.SetActive(true);
                     Barrier1.SetActive(true);
-                    }
+
                 }
                 break;
             case 3:
                 if (P1DeathCount == 3)
                 {
                     Barrier33.SetActive(false);
+                    Barrier22.SetActive(true);
                 }
                 break;
         }
     }
 
-    void BarrierTimer()
-    {
-        CurrTime -= Time.deltaTime;
-        Debug.Log(CurrTime);
-
-        if(CurrTime <= -0.25)
-        {
-            Debug.Log("Timer zu ende");
-            CurrTime = BarrierSpawnTimer;
-            return;
-        }
-
-    }
 }
