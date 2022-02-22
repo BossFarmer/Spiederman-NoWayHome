@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -9,23 +10,49 @@ public class CharacterMovement : MonoBehaviour
     public float GroundCheckRadius = 0.4f;
     public LayerMask GroundMask;
     public GameObject currPowerUp;
+    public Vector3 move;
 
     [SerializeField] private float powerupRespawnTimer;
     [SerializeField] private float dashForce = 20f;
+    [SerializeField] private PlayerInput playerInput;
 
     public int maxDash = 1;
     public int maxJumps = 2;
-    public int currentJump; 
+    public int currentJump;
+    private Vector2 inputMovement;
+    private bool inputJump;
     private float characterSpeed = 12f;
     private float gravity = -9.81f * 2;
     private float jumpHight = 3f;
     private bool isGrounded;
     private Vector3 velocity;
-    public Vector3 move;
+
+    private void Awake()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        action.Player.Enable();
+        action.Player.Movement.performed += MovePlayer;
+        action.Player.Jump.performed += JumpInput;
+    }
+
+    private void JumpInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            CharacterJump();
+        }
+        //inputJump = context.ReadValueAsButton();
+        //Debug.Log(inputJump);
+    }
+
+    private void MovePlayer(InputAction.CallbackContext context)
+    {
+        inputMovement = context.ReadValue<Vector2>();
+    }
 
     private void Start()
     {
-        maxJumps = 0;
+        maxJumps = 1;
         currentJump = maxJumps;
     }
     // Update is called once per frame
@@ -33,13 +60,13 @@ public class CharacterMovement : MonoBehaviour
     {
         PlayerMove();
         GroundChecked();
-        CharacterJump();
-        
+        //CharacterJump();
+
     }
 
     private void CharacterJump()
     {
-        if (Input.GetButtonDown("Jump") &&  currentJump >= 0)
+        if (currentJump >= 0)
         {
             velocity.y = Mathf.Sqrt(jumpHight * -2 * gravity); //physicalformular for jumping
             currentJump--;
@@ -57,10 +84,10 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    private void PlayerMove() 
+    public void PlayerMove()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = inputMovement.x; //Input.GetAxis("Horizontal");
+        float z = inputMovement.y; //Input.GetAxis("Vertical");
 
         move = transform.TransformDirection(new Vector3(x, 0f, z)); //local movement by his camera 
         Controller.Move(move * characterSpeed * Time.deltaTime); //moving the player with his characterspeed

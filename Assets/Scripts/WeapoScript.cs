@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class WeapoScript : MonoBehaviour
 {
@@ -10,14 +11,36 @@ public class WeapoScript : MonoBehaviour
     private float damage = 10f;
     private float range = 100f;
     private int currenMag;
-    private bool temp = true, temp2 = true;
+    private bool temp = true, temp2 = true, isShootingSemi, isShootingAuto;
     private int indxTemp;
     private float shootDelay, nextShoot = 0f;
+    private PlayerInputAction action;
     #endregion
 
     #region public Variables
     public Transform spawnPoint;
     #endregion
+
+    private void Awake()
+    {
+        action = new PlayerInputAction();
+        action.Player.Enable();
+        action.Player.Shoot.performed += ShootSemiInput;
+        action.Player.Shoot.performed += ShootingAutoInput;
+    }
+
+    private void ShootingAutoInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        isShootingAuto = obj.ReadValueAsButton();
+    }
+
+    private void ShootSemiInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        var controll = obj.control;
+        var button = controll as ButtonControl;
+        // noch Semi feuer einstellen mit Hilfe
+        Debug.Log("Semi geschossen" + obj);
+    }
 
     private void Start()
     {
@@ -40,7 +63,7 @@ public class WeapoScript : MonoBehaviour
 
     void ShootingSemi()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time > nextShoot)
+        if (isShootingSemi && Time.time > nextShoot)
         {
             nextShoot = Time.time + shootDelay;
             ShootGun();
@@ -49,7 +72,7 @@ public class WeapoScript : MonoBehaviour
     }
     void ShootingAuto()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextShoot)
+        if (isShootingAuto && Time.time > nextShoot)
         {
             nextShoot = Time.time + shootDelay;
             ShootGun();

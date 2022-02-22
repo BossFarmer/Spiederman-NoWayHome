@@ -6,10 +6,34 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] private Transform playerBody;
     [SerializeField] private Transform playerHands;
-    private float sensitivity = 175f;
+    private float sensitivity = 50f;
     private float xDirection;
     private float yDirection;
+    private float mouseInputX;
+    private float mouseInputY;
     private float xRotation = 0f;
+
+    private void Awake()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        action.Player.Enable();
+        action.Player.LookingX.performed += MouseInputX;
+        action.Player.LookingY.performed += MouseInputY;
+    }
+    private void Start()
+    {
+        sensitivity = 50f;
+    }
+    private void MouseInputY(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        mouseInputY = obj.ReadValue<float>();
+    }
+
+    private void MouseInputX(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        mouseInputX = obj.ReadValue<float>();
+    }
+
     void Update()
     {
         GetMouseInput();
@@ -17,8 +41,8 @@ public class CameraManager : MonoBehaviour
     }
     void GetMouseInput()
     {
-        xDirection = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        yDirection = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        xDirection = mouseInputX * sensitivity * Time.deltaTime;
+        yDirection = mouseInputY * sensitivity * Time.deltaTime;
 
         Cursor.lockState = CursorLockMode.Locked;
     }

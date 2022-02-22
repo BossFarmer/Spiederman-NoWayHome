@@ -5,14 +5,29 @@ using UnityEngine;
 public class DashScript : MonoBehaviour
 {
     private Rigidbody rb;
-    [SerializeField]private CharacterMovement moveScript;
+    [SerializeField] private CharacterMovement moveScript;
     [SerializeField] private float dashForce = 500f;
     private bool canDash = true;
-    [SerializeField]private float dashCooldown = 2f;
+    [SerializeField] private float dashCooldown = 2f;
     private float currentDashCooldown = 0f;
     private int totalDashCounter = 2;
     private int currentDashCounter;
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        action.Player.Enable();
+        action.Player.Dash.performed += DashInput;
+    }
+
+    private void DashInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (obj.performed)
+        {
+            MyInput();// Get every Input in the Update
+        }
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,7 +39,6 @@ public class DashScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MyInput();// Get every Input in the Update
         DashCooldown();
     }
 
@@ -41,17 +55,13 @@ public class DashScript : MonoBehaviour
 
     void MyInput()
     {
-   
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (canDash && currentDashCounter >= 0) //checks if player can dash and the dashcounter is above 0 
         {
-            if (canDash && currentDashCounter >= 0) //checks if player can dash and the dashcounter is above 0 
-            {
-                Dash();
-            }
-            else
-            {
-                Debug.Log("Dash noch nicht aufgeladen");
-            }
+            Dash();
+        }
+        else
+        {
+            Debug.Log("Dash noch nicht aufgeladen");
         }
 
     }

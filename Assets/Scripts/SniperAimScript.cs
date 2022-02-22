@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class SniperAimScript : MonoBehaviour
 {
@@ -11,7 +12,23 @@ public class SniperAimScript : MonoBehaviour
     private Camera cam;
     [SerializeField] private float ScopeZoom = 15f;
     private float tempFOV;
+    private bool aimInput;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        action.Player.Enable();
+        action.Player.Aiming.performed += AimingInput;
+    }
+
+    private void AimingInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        var controll = obj.control;
+        var button = controll as ButtonControl;
+        aimInput = button.wasPressedThisFrame;
+        Debug.Log(aimInput);
+    }
+
     void Start()
     {
         GameObject temp = GameObject.FindGameObjectWithTag("PlayerHands");
@@ -29,7 +46,7 @@ public class SniperAimScript : MonoBehaviour
 
     void SniperAiming()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (aimInput)
         {
             isScoped = !isScoped;
             phAnimator.SetBool("IsScoping", isScoped);
