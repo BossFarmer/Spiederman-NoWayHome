@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gun
   - Items
+  - PlayerHands
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - Water
   - UI
   - LevelBuild
-  - 
-  - 
-  - 
+  - Weapons
+  - Player1
+  - Player2
   - 
   - 
   - 

@@ -16,29 +16,32 @@ public class ConnectWeapon : MonoBehaviour
     #region public variables
     public WeaponSCO weapon;
     #endregion
-    #region private Variables
-    public string wClass;
-    public string wName;
-    public float wDamage;
-    public float wBulletSize;
-    public float wBulletSpeed;
-    public int wMagazineSize;
-    #endregion
+   
+    public string WClass;
+    public string WName;
+    public float WDamage;
+    public float WBulletSize;
+    public float WBulletSpeed;
+    public float WShootDelay;
+    public int WMagazineSize;
+    public int WIndex;
 
     void Start()
     {
         weapon.CheckWeaponClass();
         GetWeaponStats();
-        Debug.Log("Klasse : " +wClass +" Name: " + wName + " Damage: " + wDamage + " BulletSize: " + wBulletSize + " BulletSpeed: " + wBulletSpeed + " Magazine: " + wMagazineSize);
+        Debug.Log("Klasse : " +WClass +" Name: " + WName + " Damage: " + WDamage + " BulletSize: " + WBulletSize + " BulletSpeed: " + WBulletSpeed + " Magazine: " + WMagazineSize + " ShootDelay: "+ WShootDelay);
     }
 
     void GetWeaponStats()
     {
-        wClass = weapon.eWeaponClass.ToString();
-        wName = weapon.weaponName;
-        wDamage = weapon.weaponDamage;
-        wMagazineSize = weapon.weaponMagazineSize;
-        wBulletSize = weapon.bulletSize;
-        wBulletSpeed = weapon.bulletSpeed;
+        WClass = weapon.EWeaponClass.ToString();
+        WName = weapon.WeaponName;
+        WDamage = weapon.WeaponDamage;
+        WMagazineSize = weapon.WeaponMagazineSize;
+        WBulletSize = weapon.BulletSize;
+        WBulletSpeed = weapon.BulletSpeed;
+        WIndex = weapon.IndexWeapon;
+        WShootDelay = weapon.WeaponShootDelay;
     }
 }

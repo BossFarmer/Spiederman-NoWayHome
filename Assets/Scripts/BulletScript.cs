@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
+    public float maxSpread = 0.6f;
+
+    private Rigidbody rb;
     private GameObject temp;
     private ConnectWeapon cws;
     private WeapoScript ws;
     private float bulletDamage;
     private float bulletSize;
     private float bulletSpeed;
+    private Camera cam;
     private void Awake()
     {
         temp = GameObject.FindGameObjectWithTag("Gun");
         cws = temp.GetComponent<ConnectWeapon>();
         ws = temp.GetComponent<WeapoScript>();
         rb = GetComponent<Rigidbody>();
+        cam = Camera.main;
     }
     void Start()
     {
         GetWeaponData();
         TransformBulletSize();
-        AccelerateBullet();
+        AccelerateBullet();   
     }
 
     private void TransformBulletSize()
@@ -33,15 +37,15 @@ public class BulletScript : MonoBehaviour
 
     private void AccelerateBullet()
     {
-        rb.AddForce(ws.spawnPoint.up * bulletSpeed, ForceMode.Impulse);
+        rb.AddForce(cam.transform.forward * bulletSpeed , ForceMode.Impulse);   
     }
     private void GetWeaponData()
     {
         if (cws != null)
         {
-            bulletDamage = cws.wDamage;
-            bulletSize = cws.wBulletSize;
-            bulletSpeed = cws.wBulletSpeed;
+            bulletDamage = cws.WDamage;
+            bulletSize = cws.WBulletSize;
+            bulletSpeed = cws.WBulletSpeed;
         }
         else
         {

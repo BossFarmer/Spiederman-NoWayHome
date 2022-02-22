@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9747e3e86959e438cc5de75e02eb19, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
-  eWeaponClass: 2
-  weaponName: AK47
-  weaponDamage: 30
-  weaponMagazineSize: 0
-  bulletSize: 0
-  bulletSpeed: 0
+  EWeaponClass: 2
+  WeaponName: AK47
+  WeaponDamage: 0
+  WeaponMagazineSize: 30
+  BulletSize: 0.2
+  BulletSpeed: 120
+  IndexWeapon: 6
+  WeaponShootDelay: 0.15

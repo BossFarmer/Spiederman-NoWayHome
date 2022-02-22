@@ -10,47 +10,81 @@ public class WeaponSCO : ScriptableObject
         Pistol,
         Shotgun,
         AssaultRifle,
-        Sniper
+        SemiAssaultRifle,
+        Sniper,
+        Speical,
+        AutoShotgun
     }
 
-    public EweaponClass eWeaponClass;
-    public string weaponName;
-    public float weaponDamage;
-    public int weaponMagazineSize;
-    public float bulletSize;
-    public float bulletSpeed;
+    public EweaponClass EWeaponClass;
+    public string WeaponName;
+    public float WeaponDamage;
+    public int WeaponMagazineSize;
+    public float BulletSize;
+    public float BulletSpeed;
+    public int IndexWeapon;
+    public float WeaponShootDelay;
 
     public void CheckWeaponClass()
     {
-        if (eWeaponClass != null) {
-            switch (eWeaponClass)
+        if (EWeaponClass != null) {
+            switch (EWeaponClass)
             {
                 case EweaponClass.Pistol:
                     {
-                        bulletSize = 0.25f;
-                        bulletSpeed = 70f;
-                        weaponMagazineSize = 11;
+                        BulletSize = 0.25f;
+                        BulletSpeed = 70f;
+                        WeaponMagazineSize = 11;
+                        WeaponShootDelay = 0.3f;
                     }
                     break;
                 case EweaponClass.Shotgun:
                     {
-                        bulletSize = 0.7f;
-                        bulletSpeed = 50f;
-                        weaponMagazineSize = 5;
+                        BulletSize = 0.5f;
+                        BulletSpeed = 50f;
+                        WeaponMagazineSize = 5;
+                        WeaponShootDelay = 0.8f;
                     }
                     break;
                 case EweaponClass.AssaultRifle:
                     {
-                        bulletSize = 0.20f;
-                        bulletSpeed = 120f;
-                        weaponMagazineSize = 30;
+                        BulletSize = 0.20f;
+                        BulletSpeed = 120f;
+                        WeaponMagazineSize = 30;
+                        WeaponShootDelay = 0.28f;
+
                     }
                     break;
                 case EweaponClass.Sniper:
                     {
-                        bulletSize = 0.10f;
-                        bulletSpeed = 300f;
-                        weaponMagazineSize = 3;
+                        BulletSize = 0.10f;
+                        BulletSpeed = 300f;
+                        WeaponMagazineSize = 3;
+                        WeaponShootDelay = 1.5f;
+                    }
+                    break;
+                case EweaponClass.Speical:
+                    {
+                        BulletSize = 0.10f;
+                        BulletSpeed = 300f;
+                        WeaponMagazineSize = 1;
+                        WeaponShootDelay = 1.5f;
+                    }
+                    break;
+                case EweaponClass.AutoShotgun:
+                    {
+                        BulletSize = 0.5f;
+                        BulletSpeed = 50f;
+                        WeaponMagazineSize = 5;
+                        WeaponShootDelay = 0.4f;
+                    }
+                    break;
+                case EweaponClass.SemiAssaultRifle:
+                    {
+                        BulletSize = 0.20f;
+                        BulletSpeed = 120f;
+                        WeaponMagazineSize = 30;
+                        WeaponShootDelay = 0.18f;
                     }
                     break;
                 default:

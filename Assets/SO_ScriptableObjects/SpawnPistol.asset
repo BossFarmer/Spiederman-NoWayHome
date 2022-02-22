@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9747e3e86959e438cc5de75e02eb19, type: 3}
   m_Name: SpawnPistol
   m_EditorClassIdentifier: 
-  eWeaponClass: 0
-  weaponName: SpawnPistol
-  weaponDamage: 10
-  weaponMagazineSize: 11
-  bulletSize: 0.25
-  bulletSpeed: 70
+  EWeaponClass: 0
+  WeaponName: Spawnpistol
+  WeaponDamage: 0
+  WeaponMagazineSize: 11
+  BulletSize: 0.25
+  BulletSpeed: 70
+  IndexWeapon: 1
+  WeaponShootDelay: 0.1

@@ -10,35 +10,39 @@ public class CharacterMovement : MonoBehaviour
     public LayerMask GroundMask;
     public GameObject currPowerUp;
 
-    [SerializeField]
-    private float powerupRespawnTimer;
+    [SerializeField] private float powerupRespawnTimer;
+    [SerializeField] private float dashForce = 20f;
 
     public int maxDash = 1;
-    public int maxJumps = 1;
+    public int maxJumps = 2;
+    public int currentJump; 
     private float characterSpeed = 12f;
     private float gravity = -9.81f * 2;
     private float jumpHight = 3f;
     private bool isGrounded;
     private Vector3 velocity;
-    
+    public Vector3 move;
+
+    private void Start()
+    {
+        maxJumps = 0;
+        currentJump = maxJumps;
+    }
     // Update is called once per frame
     void Update()
     {
         PlayerMove();
         GroundChecked();
         CharacterJump();
+        
     }
 
     private void CharacterJump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded | maxJumps == 2)
+        if (Input.GetButtonDown("Jump") &&  currentJump >= 0)
         {
             velocity.y = Mathf.Sqrt(jumpHight * -2 * gravity); //physicalformular for jumping
-            maxJumps--;
-            if (maxJumps < 1)
-            {
-                maxJumps = 1;
-            }
+            currentJump--;
         }
     }
 
@@ -49,6 +53,7 @@ public class CharacterMovement : MonoBehaviour
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
+            currentJump = maxJumps;
         }
     }
 
@@ -57,8 +62,8 @@ public class CharacterMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.TransformDirection(new Vector3(x, 0f, z)); //local movement by his camera 
-        Controller.Move(move * characterSpeed * Time.deltaTime); 
+        move = transform.TransformDirection(new Vector3(x, 0f, z)); //local movement by his camera 
+        Controller.Move(move * characterSpeed * Time.deltaTime); //moving the player with his characterspeed
         velocity.y += gravity * Time.deltaTime; //increasing the gravit by his velocity 
         Controller.Move(velocity * Time.deltaTime); //applying the velocity
     }
@@ -93,5 +98,4 @@ public class CharacterMovement : MonoBehaviour
     //    yield return new WaitForSeconds(powerupRespawnTimer);
     //    currPowerUp.SetActive(true);
     //}
-
 }

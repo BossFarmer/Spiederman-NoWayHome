@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9747e3e86959e438cc5de75e02eb19, type: 3}
   m_Name: BallistaSnip
   m_EditorClassIdentifier: 
-  eWeaponClass: 3
-  weaponName: Ballista
-  weaponDamage: 100
-  weaponMagazineSize: 3
-  bulletSize: 0.1
-  bulletSpeed: 300
+  EWeaponClass: 4
+  WeaponName: Ballista
+  WeaponDamage: 0
+  WeaponMagazineSize: 3
+  BulletSize: 0.1
+  BulletSpeed: 300
+  IndexWeapon: 4
+  WeaponShootDelay: 1.5

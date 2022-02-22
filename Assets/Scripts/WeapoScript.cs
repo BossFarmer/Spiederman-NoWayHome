@@ -9,30 +9,51 @@ public class WeapoScript : MonoBehaviour
     private ConnectWeapon cws;
     private float damage = 10f;
     private float range = 100f;
-    private int currenMag = 0;
+    private int currenMag;
+    private bool temp = true, temp2 = true;
+    private int indxTemp;
+    private float shootDelay, nextShoot = 0f;
     #endregion
 
     #region public Variables
     public Transform spawnPoint;
-    #endregion 
+    #endregion
 
     private void Start()
     {
         cws = GetComponent<ConnectWeapon>();
         cam = Camera.main;
-        currenMag = cws.wMagazineSize;
+        indxTemp = cws.WIndex;
     }
     void Update()
     {
-        PlayerShooting();
+        LoadGun();
+        if (cws.WClass == "AssaultRifle")
+        {
+            ShootingAuto();
+        }
+        else
+        {
+            ShootingSemi(); 
+        }
     }
 
-    void PlayerShooting()
+    void ShootingSemi()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > nextShoot)
         {
-            Debug.Log(cws.name + "schieﬂt");
-            ShootOrigin();
+            nextShoot = Time.time + shootDelay;
+            ShootGun();
+            Debug.Log(cws.name + "schieﬂt" + currenMag);
+        }
+    }
+    void ShootingAuto()
+    {
+        if (Input.GetButton("Fire1") && Time.time > nextShoot)
+        {
+            nextShoot = Time.time + shootDelay;
+            ShootGun();
+            Debug.Log(cws.name + "schieﬂt" + currenMag);
         }
     }
     void ShootRayCast()
@@ -50,18 +71,39 @@ public class WeapoScript : MonoBehaviour
         }
     }
 
-    void ShootOrigin()
+    void ShootGun()
     {
         if (true)
         {
             muzzleFlash.Play();
-            GameObject _bullet = Instantiate(bullet,spawnPoint.position,Quaternion.identity);
+            GameObject _bullet = Instantiate(bullet, cam.transform.position + cam.transform.forward ,Quaternion.identity);
             currenMag--;
             Destroy(_bullet, 5f);
+            shootDelay = cws.WShootDelay;
         }
         else
         {
             Debug.Log("Mag is empty!");
         }
     }
+
+    void LoadGun()
+    {
+        if (temp)
+        {
+            currenMag = cws.WMagazineSize;
+            Debug.Log(cws.name + " MagazineSize: " + currenMag);
+            temp = false;
+        }
+
+        if (temp2)
+        {
+            shootDelay = cws.WShootDelay;
+            Debug.Log("WeaponScript : Shootdelay = " + shootDelay);
+            temp2 = false;
+        }
+    }
+
+
+  
 }
