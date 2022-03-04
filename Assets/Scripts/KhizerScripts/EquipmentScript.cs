@@ -12,12 +12,7 @@ public class EquipmentScript : MonoBehaviour
 
     private void Awake()
     {
-        PlayerInputAction action = new PlayerInputAction();
-        action.Player.Enable();
-        action.Player.ChangeWeaponsMouse.performed += MouseInputScroll;
-        action.Player.ChangeWeaponsControllerRight.performed += ControllerInput;
-        action.Player.ChangeWeaponsControllerLeft.performed += ControllerInputLeft; ;
-
+        CheckPlayer();
     }
 
     private void ControllerInputLeft(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -73,6 +68,25 @@ public class EquipmentScript : MonoBehaviour
             index++;
         }
     }
+    private void CheckPlayer()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        if (transform.parent.tag == "MainCamera")
+        {
+            //Debug.Log("this Player one");
+            action.Player.Enable();
+            action.Player.ChangeWeaponsMouse.performed += MouseInputScroll;
+        }
+
+        if (transform.parent.tag == "SecondCamera")
+        {
+            //Debug.Log("This Player Two");
+            action.Player2.Enable();
+            action.Player2.ChangeWeaponsControllerRight.performed += ControllerInput;
+            action.Player2.ChangeWeaponsControllerLeft.performed += ControllerInputLeft;
+        }
+    }
+
     void ChangeWeapon()
     {
         nextWeapon = currentWeapon;

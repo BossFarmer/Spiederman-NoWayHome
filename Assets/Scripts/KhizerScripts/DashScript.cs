@@ -15,9 +15,7 @@ public class DashScript : MonoBehaviour
 
     private void Awake()
     {
-        PlayerInputAction action = new PlayerInputAction();
-        action.Player.Enable();
-        action.Player.Dash.performed += DashInput;
+        CheckPlayer(); 
     }
 
     private void DashInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -53,6 +51,21 @@ public class DashScript : MonoBehaviour
         }
     }
 
+    private void CheckPlayer()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        if (this.gameObject.tag == "Player")
+        {
+            action.Player.Enable();
+            action.Player.Dash.performed += DashInput;
+        }
+
+        if (this.gameObject.tag == "Player2")
+        {
+            action.Player2.Enable();
+            action.Player2.Dash.performed += DashInput;
+        }
+    }
     void MyInput()
     {
         if (canDash && currentDashCounter >= 0) //checks if player can dash and the dashcounter is above 0 

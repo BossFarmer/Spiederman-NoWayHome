@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public float maxSpread = 0.6f;
-
     private Rigidbody rb;
     private GameObject temp;
     private ConnectWeapon cws;
@@ -26,18 +24,19 @@ public class BulletScript : MonoBehaviour
     {
         GetWeaponData();
         TransformBulletSize();
-        AccelerateBullet();   
+        AccelerateBullet();
     }
 
     private void TransformBulletSize()
     {
-        Vector3 bulletScale = new Vector3(bulletSize,bulletSize,bulletSize);
+        Vector3 bulletScale = new Vector3(bulletSize, bulletSize, bulletSize);
         transform.localScale = bulletScale;
     }
 
-    private void AccelerateBullet()
+    public void AccelerateBullet()
     {
-        rb.AddForce(cam.transform.forward * bulletSpeed , ForceMode.Impulse);   
+        Debug.Log("Acceleration succesfull");
+        rb.AddForce(cam.transform.forward * bulletSpeed, ForceMode.Impulse);
     }
     private void GetWeaponData()
     {

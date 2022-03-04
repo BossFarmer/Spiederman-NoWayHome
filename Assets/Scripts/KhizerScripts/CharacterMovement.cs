@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -35,10 +36,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Awake()
     {
-        PlayerInputAction action = new PlayerInputAction();
-        action.Player.Enable();
-        action.Player.Movement.performed += MovePlayer;
-        action.Player.Jump.performed += JumpInput;
+        CheckPlayer();
     }
 
     private void JumpInput(InputAction.CallbackContext context)
@@ -50,8 +48,6 @@ public class CharacterMovement : MonoBehaviour
             CharacterJump();
             StartCoroutine("JumpTimer");
         }
-        //inputJump = context.ReadValueAsButton();
-        //Debug.Log(inputJump);
     }
 
     private void MovePlayer(InputAction.CallbackContext context)
@@ -69,8 +65,6 @@ public class CharacterMovement : MonoBehaviour
     {
         PlayerMove();
         GroundChecked();
-        //CharacterJump();
-
     }
 
     private void CharacterJump()
@@ -126,6 +120,27 @@ public class CharacterMovement : MonoBehaviour
         Controller.Move(move * characterSpeed * Time.deltaTime); //moving the player with his characterspeed
         velocity.y += gravity * Time.deltaTime; //increasing the gravit by his velocity 
         Controller.Move(velocity * Time.deltaTime); //applying the velocity
+    }
+
+
+    public void CheckPlayer()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        if (this.gameObject.tag == "Player")
+        {
+            action.Player.Enable();
+            action.Player.Movement.performed += MovePlayer;
+            action.Player.Jump.performed += JumpInput;
+            Debug.Log("is Player One Ready: " );
+        }
+
+        if (this.gameObject.tag == "Player2")
+        {
+            action.Player2.Enable();
+            action.Player2.Movement.performed += MovePlayer;
+            action.Player2.Jump.performed += JumpInput;
+            Debug.Log("is Player Two Ready: ");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
