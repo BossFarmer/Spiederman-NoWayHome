@@ -7,6 +7,10 @@ TagManager:
   - Gun
   - Items
   - PlayerHands
+  - Player2
+  - SecondCamera
+  - Bullet
+  - Gun2
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - Weapons
   - Player1
   - Player2
-  - 
+  - Weapons2
   - 
   - 
   - 

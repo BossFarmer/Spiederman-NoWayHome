@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 
 public class AllMenuScript : MonoBehaviour
@@ -8,8 +9,24 @@ public class AllMenuScript : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject PauseMenuUI;
     public bool buttonPressed = false;
+    private bool escapeInput;
 
     // Update is called once per frame
+    private void Awake()
+    {
+        PlayerInputAction action = new PlayerInputAction();
+        action.Enable();
+        action.Player.MenuPopUp.performed += MenuPupupInput;
+
+    }
+
+    private void MenuPupupInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        var controll = obj.control;
+        var button = controll as ButtonControl;
+        escapeInput = obj.action.triggered;
+    }
+
     void Update()
     {
         PauseMenu();
@@ -17,8 +34,9 @@ public class AllMenuScript : MonoBehaviour
 
     void PauseMenu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (escapeInput)
         {
+            Debug.Log("Escape was pressed");
             if (GameIsPaused)
             {
                 Resume();
