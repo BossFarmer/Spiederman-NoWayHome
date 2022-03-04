@@ -17,7 +17,6 @@ using UnityEngine.InputSystem.Utilities;
 
 public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
 {
-
     public InputActionAsset asset { get; }
     public @PlayerInputAction()
     {
@@ -32,7 +31,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""87e22f49-d549-4fb3-a36f-64c44ace0f15"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -113,6 +112,15 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""Aiming"",
                     ""type"": ""PassThrough"",
                     ""id"": ""38725da0-0261-463c-9994-dd96e2fc8924"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuPopUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a682b66-3522-47e2-915c-65a7fb3d2c2f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -394,6 +402,28 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92f40c60-e3a5-41f1-9dd1-ca17948b4539"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""MenuPopUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d1e65ce-adc3-4966-aa1c-897fcadd324b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MenuPopUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -435,6 +465,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_ChangeWeaponsControllerRight = m_Player.FindAction("ChangeWeaponsControllerRight", throwIfNotFound: true);
         m_Player_ChangeWeaponsControllerLeft = m_Player.FindAction("ChangeWeaponsControllerLeft", throwIfNotFound: true);
         m_Player_Aiming = m_Player.FindAction("Aiming", throwIfNotFound: true);
+        m_Player_MenuPopUp = m_Player.FindAction("MenuPopUp", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -504,6 +535,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ChangeWeaponsControllerRight;
     private readonly InputAction m_Player_ChangeWeaponsControllerLeft;
     private readonly InputAction m_Player_Aiming;
+    private readonly InputAction m_Player_MenuPopUp;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -518,6 +550,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         public InputAction @ChangeWeaponsControllerRight => m_Wrapper.m_Player_ChangeWeaponsControllerRight;
         public InputAction @ChangeWeaponsControllerLeft => m_Wrapper.m_Player_ChangeWeaponsControllerLeft;
         public InputAction @Aiming => m_Wrapper.m_Player_Aiming;
+        public InputAction @MenuPopUp => m_Wrapper.m_Player_MenuPopUp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -557,6 +590,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @Aiming.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
                 @Aiming.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
                 @Aiming.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
+                @MenuPopUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuPopUp;
+                @MenuPopUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuPopUp;
+                @MenuPopUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenuPopUp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -591,6 +627,9 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @Aiming.started += instance.OnAiming;
                 @Aiming.performed += instance.OnAiming;
                 @Aiming.canceled += instance.OnAiming;
+                @MenuPopUp.started += instance.OnMenuPopUp;
+                @MenuPopUp.performed += instance.OnMenuPopUp;
+                @MenuPopUp.canceled += instance.OnMenuPopUp;
             }
         }
     }
@@ -625,5 +664,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnChangeWeaponsControllerRight(InputAction.CallbackContext context);
         void OnChangeWeaponsControllerLeft(InputAction.CallbackContext context);
         void OnAiming(InputAction.CallbackContext context);
+        void OnMenuPopUp(InputAction.CallbackContext context);
     }
 }

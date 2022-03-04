@@ -26,6 +26,7 @@ public class PowerUpScript : MonoBehaviour
         plusJump,
         plusDash,
         plusAmmo,
+        plusHealth,
     }
     public EPowerups PowerUpType;
 

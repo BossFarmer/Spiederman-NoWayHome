@@ -9,7 +9,7 @@
                     "name": "Movement",
                     "type": "PassThrough",
                     "id": "87e22f49-d549-4fb3-a36f-64c44ace0f15",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -90,6 +90,15 @@
                     "name": "Aiming",
                     "type": "PassThrough",
                     "id": "38725da0-0261-463c-9994-dd96e2fc8924",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MenuPopUp",
+                    "type": "Button",
+                    "id": "0a682b66-3522-47e2-915c-65a7fb3d2c2f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -369,6 +378,28 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Aiming",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92f40c60-e3a5-41f1-9dd1-ca17948b4539",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "MenuPopUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d1e65ce-adc3-4966-aa1c-897fcadd324b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "MenuPopUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

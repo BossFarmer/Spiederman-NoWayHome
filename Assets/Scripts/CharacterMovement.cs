@@ -6,18 +6,21 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     public CharacterController Controller;
+    public HUDScript hudScript;
+    public DashScript dashScript;
     public Transform GroundCheck;
     public float GroundCheckRadius = 0.4f;
     public LayerMask GroundMask;
     public GameObject currPowerUp;
     public Vector3 move;
+    public Animator animator;
 
     [SerializeField] private float powerupRespawnTimer;
     [SerializeField] private float dashForce = 20f;
     [SerializeField] private PlayerInput playerInput;
 
     public int maxDash = 1;
-    public int maxJumps = 2;
+    public int maxJumps = 1;
     public int currentJump;
     private Vector2 inputMovement;
     private bool inputJump;
@@ -26,6 +29,9 @@ public class CharacterMovement : MonoBehaviour
     private float jumpHight = 3f;
     private bool isGrounded;
     private Vector3 velocity;
+    public bool spaceInput;
+    public float jumpTimer;
+
 
     private void Awake()
     {
@@ -37,9 +43,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void JumpInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && spaceInput == false)
         {
+            spaceInput = true;
+            animator.SetBool("isJump", true);
             CharacterJump();
+            StartCoroutine("JumpTimer");
         }
         //inputJump = context.ReadValueAsButton();
         //Debug.Log(inputJump);
@@ -66,9 +75,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void CharacterJump()
     {
-        if (currentJump >= 0)
+        if (currentJump > 0)
         {
             velocity.y = Mathf.Sqrt(jumpHight * -2 * gravity); //physicalformular for jumping
+            Debug.Log(velocity.y);
             currentJump--;
         }
     }
@@ -79,9 +89,32 @@ public class CharacterMovement : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
+            spaceInput = false;
             velocity.y = -2f;
-            currentJump = maxJumps;
+            animator.SetBool("isJump", false);
+            if (maxJumps >= 2)
+            {
+                maxJumps = 2;
+                if (currentJump == 0)
+                    maxJumps--;
+                currentJump = maxJumps;
+            }
+            else
+            {
+                currentJump = maxJumps;
+            }
+
         }
+
+        //if (currentJump == 0 && isGrounded)
+        //{
+        //    currentJump = maxJumps;
+        //}
+
+        //if (isGrounded && currentJump == 1)
+        //{
+        //    currentJump++;
+        //}
     }
 
     public void PlayerMove()
@@ -104,21 +137,38 @@ public class CharacterMovement : MonoBehaviour
             {
                 case PowerUpScript.EPowerups.plusJump:
                     maxJumps++;
-                    maxJumps++;
                     //currPowerUp = other.gameObject;
                     //currPowerUp.SetActive(false);
                     //StartCoroutine("RespawnPowerups");
-
                     break;
                 case PowerUpScript.EPowerups.plusDash:
-                    maxDash++;
-                    maxDash++;
+                    DashScript.currentDashCounter++;
                     break;
                 case PowerUpScript.EPowerups.plusAmmo:
                     //full ammo
                     break;
+                case PowerUpScript.EPowerups.plusHealth:
+                    if (this.gameObject.tag == "Player1")
+                    {
+                        HUDScript.CurrPlayer1HP += 50;
+                        if (HUDScript.CurrPlayer1HP < 150)
+                            HUDScript.CurrPlayer1HP = HUDScript.MaxPlayer1HP;
+                    }
+                    if (this.gameObject.tag == "Player2")
+                    {
+                        HUDScript.CurrPlayer2HP += 50;
+                        if (HUDScript.CurrPlayer2HP < 150)
+                            HUDScript.CurrPlayer2HP = HUDScript.MaxPlayer2HP;
+                    }
+                    break;
             }
         }
+    }
+
+    IEnumerator JumpTimer()
+    {
+        yield return new WaitForSeconds(jumpTimer);
+        spaceInput = false;
     }
     //IEnumerator RespawnPowerups()
     //{

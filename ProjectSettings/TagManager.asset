@@ -7,6 +7,8 @@ TagManager:
   - Gun
   - Items
   - PlayerHands
+  - Ground
+  - NextArea
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Weapons
   - Player1
   - Player2
-  - 
+  - Ground
   - 
   - 
   - 

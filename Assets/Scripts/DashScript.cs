@@ -11,7 +11,7 @@ public class DashScript : MonoBehaviour
     [SerializeField] private float dashCooldown = 2f;
     private float currentDashCooldown = 0f;
     private int totalDashCounter = 2;
-    private int currentDashCounter;
+    public static int currentDashCounter;
 
     private void Awake()
     {
