@@ -8,10 +8,11 @@ public class BulletScript : MonoBehaviour
     private GameObject temp;
     private ConnectWeapon cws;
     private WeapoScript ws;
-    private float bulletDamage;
+    private int bulletDamage;
     private float bulletSize;
     private float bulletSpeed;
     private Camera cam;
+    [SerializeField] private LayerMask targetMask; 
     private void Awake()
     {
         temp = GameObject.FindGameObjectWithTag("Gun");
@@ -26,7 +27,6 @@ public class BulletScript : MonoBehaviour
         TransformBulletSize();
         AccelerateBullet();
     }
-
     private void TransformBulletSize()
     {
         Vector3 bulletScale = new Vector3(bulletSize, bulletSize, bulletSize);
@@ -35,8 +35,7 @@ public class BulletScript : MonoBehaviour
 
     public void AccelerateBullet()
     {
-        Debug.Log("Acceleration succesfull");
-        rb.AddForce(cam.transform.forward * bulletSpeed, ForceMode.Impulse);
+        rb.AddForce(cam.transform.forward * bulletSpeed , ForceMode.Impulse);
     }
     private void GetWeaponData()
     {
@@ -51,4 +50,18 @@ public class BulletScript : MonoBehaviour
             Debug.Log("Script nicht gefunden!");
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player2")
+        {
+            PlayerTwoScript target = collision.transform.root.GetComponent<PlayerTwoScript>();
+            if (target != null)
+            {
+                target.TakeDamagePlayer2(bulletDamage);
+            }
+        }
+        Destroy(this.gameObject);
+    }
+
 }

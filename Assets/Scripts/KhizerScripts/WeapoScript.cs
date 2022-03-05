@@ -60,7 +60,7 @@ public class WeapoScript : MonoBehaviour
     }
     void Update()
     {
-        if (secondCam == null)
+        if (secondCam == null && transform.root.gameObject.tag == "Player2")
         {
             secondCam = GameObject.FindGameObjectWithTag("SecondCamera").GetComponent<Camera>();
         }
@@ -69,7 +69,6 @@ public class WeapoScript : MonoBehaviour
             if (temp3)
             {
                 currenMag = cws.WMagazineSize;
-                Debug.Log(currenMag);
                 temp3 = false;
             }
         }
@@ -78,11 +77,9 @@ public class WeapoScript : MonoBehaviour
             if (temp4)
             {
                 currenMagP2 = cwsP2.WMagazineSize;
-                Debug.Log(currenMagP2);
                 temp4 = false;
             }
         }
-
         ShootingSemiP1();
         ShootingAutoP1();
         ShootingAutoP2();
@@ -143,11 +140,10 @@ public class WeapoScript : MonoBehaviour
     }
     public void ShootGunP1()
     {
-        if (currenMag > 0)
+        if (true)
         {
             muzzleFlash.Play();
             GameObject _bullet = Instantiate(bullet, cam.transform.position + cam.transform.forward, Quaternion.identity);
-            //_bullet.GetComponent<Rigidbody>().AddForce(cam.transform.forward * cws.weapon.BulletSpeed, ForceMode.Impulse);
             currenMag--;
             Destroy(_bullet, 5f);
             shootDelay = cws.WShootDelay;
@@ -160,13 +156,12 @@ public class WeapoScript : MonoBehaviour
 
     public void ShootGunP2()
     {
-        if (currenMagP2 > 0)
+        if (true)
         {
             muzzleFlash.Play();
             GameObject _bullet = Instantiate(bullet, secondCam.transform.position + secondCam.transform.forward, Quaternion.identity);
-            //_bullet.GetComponent<Rigidbody>().AddForce(secondCam.transform.forward * cws.weapon.BulletSpeed, ForceMode.Impulse);
             currenMagP2--;
-            Destroy(_bullet, 500f);
+            Destroy(_bullet, 5f);
             shootDelay = cwsP2.WShootDelay;
         }
         else
@@ -215,10 +210,5 @@ public class WeapoScript : MonoBehaviour
             cwsP2 = GetComponent<CWSP2>();
             LoadGunP2();
         }
-    }
-    void ReloadGun()
-    {
-        currenMagP2 = cwsP2.WMagazineSize;
-        currenMag = cws.WMagazineSize;
     }
 }

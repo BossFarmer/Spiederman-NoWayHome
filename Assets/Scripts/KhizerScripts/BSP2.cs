@@ -8,7 +8,7 @@ public class BSP2 : MonoBehaviour
     private GameObject temp;
     private CWSP2 cws;
     private WeapoScript ws;
-    private float bulletDamage;
+    private int bulletDamage;
     private float bulletSize;
     private float bulletSpeed;
     private Camera cam, secondCam;
@@ -62,5 +62,17 @@ public class BSP2 : MonoBehaviour
         {
             Debug.Log("Script nicht gefunden!");
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerOneScript target = collision.transform.root.GetComponent<PlayerOneScript>();
+            if (target != null)
+            {
+                target.TakeDamagePlayer(bulletDamage);
+            }
+        }
+        Destroy(this.gameObject);
     }
 }

@@ -10,6 +10,7 @@ public class ShotgunBulletScript : MonoBehaviour
     private bool temp = true;
     private ConnectWeapon cws;
     private WeapoScript ws;
+    private int bulletDamage;
     void Start()
     {
         GameObject temp = GameObject.FindGameObjectWithTag("Gun");
@@ -19,6 +20,7 @@ public class ShotgunBulletScript : MonoBehaviour
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
         dir = Quaternion.Euler(Random.Range(-3,3), Random.Range(-3,3), 0) * cam.transform.forward;
+        bulletDamage = cws.WDamage;
     }
 
     // Update is called once per frame
@@ -34,5 +36,18 @@ public class ShotgunBulletScript : MonoBehaviour
     private void RandomShots()
     {
         rb.AddForce(dir * cws.WBulletSpeed, ForceMode.Impulse);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player2")
+        {
+            PlayerTwoScript target = collision.transform.root.GetComponent<PlayerTwoScript>();
+            if (target != null)
+            {
+                target.TakeDamagePlayer2(bulletDamage);
+            }
+        }
+        Destroy(this.gameObject);
     }
 }
