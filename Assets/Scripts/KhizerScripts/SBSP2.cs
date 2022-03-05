@@ -10,12 +10,14 @@ public class SBSP2 : MonoBehaviour
     private bool temp = true;
     private CWSP2 cws;
     private WeapoScript ws;
+    private int bulletDamage;
     void Start()
     {
         GameObject temp = GameObject.FindGameObjectWithTag("Gun2");
         cws = temp.GetComponent<CWSP2>();
         ws = temp.GetComponent<WeapoScript>();
         rb = GetComponent<Rigidbody>();
+        bulletDamage = cws.WDamage;
     }
 
     // Update is called once per frame
@@ -36,9 +38,20 @@ public class SBSP2 : MonoBehaviour
             temp = false;
         }
     }
-
     private void RandomShots()
     {
         rb.AddForce(dir2 * cws.WBulletSpeed, ForceMode.Impulse);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerOneScript target = collision.transform.root.GetComponent<PlayerOneScript>();
+            if (target != null)
+            {
+                target.TakeDamagePlayer(bulletDamage);
+            }
+        }
+        Destroy(this.gameObject);
     }
 }

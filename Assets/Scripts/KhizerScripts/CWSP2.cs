@@ -19,7 +19,7 @@ public class CWSP2 : MonoBehaviour
    
     public string WClass;
     public string WName;
-    public float WDamage;
+    public int WDamage;
     public float WBulletSize;
     public float WBulletSpeed;
     public float WShootDelay;
@@ -37,7 +37,7 @@ public class CWSP2 : MonoBehaviour
     {
         WClass = weapon.EWeaponClass.ToString();
         WName = weapon.WeaponName;
-        WDamage = weapon.WeaponDamage;
+        WDamage = weapon.BulletDamage;
         WMagazineSize = weapon.WeaponMagazineSize;
         WBulletSize = weapon.BulletSize;
         WBulletSpeed = weapon.BulletSpeed;

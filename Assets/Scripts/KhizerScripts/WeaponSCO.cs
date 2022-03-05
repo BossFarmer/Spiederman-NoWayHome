@@ -18,7 +18,7 @@ public class WeaponSCO : ScriptableObject
 
     public EweaponClass EWeaponClass;
     public string WeaponName;
-    public float WeaponDamage;
+    public int BulletDamage;
     public int WeaponMagazineSize;
     public float BulletSize;
     public float BulletSpeed;
@@ -36,6 +36,7 @@ public class WeaponSCO : ScriptableObject
                         BulletSpeed = 70f;
                         WeaponMagazineSize = 11;
                         WeaponShootDelay = 0.3f;
+                        BulletDamage = 20;
                     }
                     break;
                 case EweaponClass.Shotgun:
@@ -44,6 +45,7 @@ public class WeaponSCO : ScriptableObject
                         BulletSpeed = 50f;
                         WeaponMagazineSize = 5;
                         WeaponShootDelay = 0.8f;
+                        BulletDamage = 45;
                     }
                     break;
                 case EweaponClass.AssaultRifle:
@@ -52,15 +54,17 @@ public class WeaponSCO : ScriptableObject
                         BulletSpeed = 120f;
                         WeaponMagazineSize = 30;
                         WeaponShootDelay = 0.28f;
+                        BulletDamage = 28;
 
                     }
                     break;
                 case EweaponClass.Sniper:
                     {
                         BulletSize = 0.10f;
-                        BulletSpeed = 300f;
-                        WeaponMagazineSize = 3;
+                        BulletSpeed = 190f;
+                        WeaponMagazineSize = 2;
                         WeaponShootDelay = 1.5f;
+                        BulletDamage = 90;
                     }
                     break;
                 case EweaponClass.Speical:
@@ -69,6 +73,7 @@ public class WeaponSCO : ScriptableObject
                         BulletSpeed = 300f;
                         WeaponMagazineSize = 1;
                         WeaponShootDelay = 1.5f;
+                        BulletDamage = 300;
                     }
                     break;
                 case EweaponClass.AutoShotgun:
@@ -77,6 +82,7 @@ public class WeaponSCO : ScriptableObject
                         BulletSpeed = 50f;
                         WeaponMagazineSize = 5;
                         WeaponShootDelay = 0.4f;
+                        BulletDamage = 30;
                     }
                     break;
                 case EweaponClass.SemiAssaultRifle:
@@ -85,6 +91,7 @@ public class WeaponSCO : ScriptableObject
                         BulletSpeed = 120f;
                         WeaponMagazineSize = 30;
                         WeaponShootDelay = 0.18f;
+                        BulletDamage = 21;
                     }
                     break;
                 default:
