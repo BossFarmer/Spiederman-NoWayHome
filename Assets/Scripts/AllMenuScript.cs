@@ -9,7 +9,7 @@ public class AllMenuScript : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject PauseMenuUI;
     public bool buttonPressed = false;
-    private bool escapeInput;
+    public bool escapeInput;
 
     // Update is called once per frame
 

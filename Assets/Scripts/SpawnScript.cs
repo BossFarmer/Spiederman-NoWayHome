@@ -18,7 +18,12 @@ public class SpawnScript : MonoBehaviour
 
     private void Update()
     {
-        SpawnPlayerOne();
+        //SpawnPlayerOne();
+    }
+
+    private void Start()
+    {
+        
     }
 
     void SpawnPlayerOne()

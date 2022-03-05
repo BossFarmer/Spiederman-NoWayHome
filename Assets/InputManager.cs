@@ -67,7 +67,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""LookingX"",
                     ""type"": ""PassThrough"",
                     ""id"": ""dc44d543-042c-45ce-856d-9d4899095d7d"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -76,7 +76,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""LookingY"",
                     ""type"": ""PassThrough"",
                     ""id"": ""fdbff9ff-5b3a-43c0-9f6b-cdce008ae3e1"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -85,24 +85,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""name"": ""ChangeWeaponsMouse"",
                     ""type"": ""PassThrough"",
                     ""id"": ""461eed65-ae20-46dc-b2aa-0dd0ca77c161"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeWeaponsControllerRight"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""8228d606-0396-4297-bac9-fdbdc3e63586"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeWeaponsControllerLeft"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""502dd720-efa5-4e63-9588-571d17a3be57"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -120,7 +102,7 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""MenuPopUp"",
                     ""type"": ""Button"",
-                    ""id"": ""0a682b66-3522-47e2-915c-65a7fb3d2c2f"",
+                    ""id"": ""35d6af83-7c61-4c58-b489-e029956ed99c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -184,78 +166,12 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""44fdc1ae-b52b-4470-95e9-ac36e04ef20c"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""08f798ee-fd16-477e-83b4-767245c87b33"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""44de1381-871a-4f12-bb4e-6e61ce5ab2ce"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""d0c90fff-0610-41d9-bc95-924330792f52"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""339a2305-3fd5-45a0-9086-92869bf15363"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
                     ""id"": ""ee2749fa-85af-42e8-a31c-fd29af4b5327"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d828b587-e255-4a98-a41f-1a49a1e9682c"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -273,33 +189,11 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""043fe671-e53f-4982-87b4-f18ce3862fa2"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""057337f7-4ee0-451b-9f5b-6bf0852e7e78"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5c4a6224-aed5-458a-bc71-8b6e5d9829f0"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -317,33 +211,11 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bca8eb51-0900-4273-a26a-b196ac5844d2"",
-                    ""path"": ""<Gamepad>/rightStick/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""LookingX"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0e5461ba-a38e-40da-8ae2-e2d2d6edb6c8"",
                     ""path"": ""<Mouse>/delta/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""LookingY"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""854763e3-985b-4e93-94c7-cfc65c7ab9cd"",
-                    ""path"": ""<Gamepad>/rightStick/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
                     ""action"": ""LookingY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -361,39 +233,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e2de701c-f468-4ea4-a96b-2b60a4c8a9e7"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""ChangeWeaponsControllerRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4bca2b28-5eaa-4abf-b14b-cd5b896dfb10"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""ChangeWeaponsControllerLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""677f827d-d01c-450b-99ec-5c1601bf0345"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Aiming"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0bb15391-cd46-4502-b48b-73207d7d987a"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
@@ -405,23 +244,244 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""92f40c60-e3a5-41f1-9dd1-ca17948b4539"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""MenuPopUp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6d1e65ce-adc3-4966-aa1c-897fcadd324b"",
+                    ""id"": ""b3f5aa7f-c00f-4933-8e52-35e0478c8a53"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""MenuPopUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Player2"",
+            ""id"": ""ccb30b7c-0b91-4cab-86e6-53921799c78d"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5f463651-e948-45f3-8aab-7b8a0bd0f0ed"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""1ff6a412-04c7-439f-92e6-89f7a6af4aa7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""c85216c8-7412-4b2f-a09d-17abc576f839"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""209b0272-042f-48c7-8304-72d803bc8767"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookingX"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d4314d18-f662-4e48-ae4b-92ededbad3df"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LookingY"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""93682bbb-a216-45a5-b42d-29c63da22920"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ChangeWeaponsControllerRight"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4c3370cb-5571-4dab-bdfd-b983ee84179c"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeWeaponsControllerLeft"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""18270dea-7dd1-402b-990b-995f293c2e00"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aiming"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""36f0cc7e-6220-4a1e-934a-e43a704a1da5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""54756288-b696-48c3-b3cb-abad360182a1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c443f2ac-efbd-4e1d-bd75-6df2e1f9e6d7"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""70e80d7b-fd42-4908-adad-a4d029c4f8d8"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0a2d8b3c-3ce1-43b4-97c7-10b04995b7b3"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""4f4392c1-742e-4e80-8f1e-836e42a70f88"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c06b9242-f6c3-4092-a4d6-7a2cee27332f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9b7bb50-2ca7-4ad9-ad81-d91b1dc4e5b7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a86471e-6af0-4418-b402-6d9e29f9e69a"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d27177bf-0523-4bea-9dfe-3325c62dd52b"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""LookingX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""251352d2-8577-4f4b-90b2-1fd3028d7243"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""LookingY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b02b5ee-3e75-4ca1-a564-7b2e1b8155ff"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""ChangeWeaponsControllerRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45e5cdc7-1f63-4222-8759-44c2806b9485"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""ChangeWeaponsControllerLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""143658d9-75f3-460a-8710-f15344b8469b"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Aiming"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -462,10 +522,19 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         m_Player_LookingX = m_Player.FindAction("LookingX", throwIfNotFound: true);
         m_Player_LookingY = m_Player.FindAction("LookingY", throwIfNotFound: true);
         m_Player_ChangeWeaponsMouse = m_Player.FindAction("ChangeWeaponsMouse", throwIfNotFound: true);
-        m_Player_ChangeWeaponsControllerRight = m_Player.FindAction("ChangeWeaponsControllerRight", throwIfNotFound: true);
-        m_Player_ChangeWeaponsControllerLeft = m_Player.FindAction("ChangeWeaponsControllerLeft", throwIfNotFound: true);
         m_Player_Aiming = m_Player.FindAction("Aiming", throwIfNotFound: true);
         m_Player_MenuPopUp = m_Player.FindAction("MenuPopUp", throwIfNotFound: true);
+        // Player2
+        m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
+        m_Player2_Movement = m_Player2.FindAction("Movement", throwIfNotFound: true);
+        m_Player2_Jump = m_Player2.FindAction("Jump", throwIfNotFound: true);
+        m_Player2_Dash = m_Player2.FindAction("Dash", throwIfNotFound: true);
+        m_Player2_Shoot = m_Player2.FindAction("Shoot", throwIfNotFound: true);
+        m_Player2_LookingX = m_Player2.FindAction("LookingX", throwIfNotFound: true);
+        m_Player2_LookingY = m_Player2.FindAction("LookingY", throwIfNotFound: true);
+        m_Player2_ChangeWeaponsControllerRight = m_Player2.FindAction("ChangeWeaponsControllerRight", throwIfNotFound: true);
+        m_Player2_ChangeWeaponsControllerLeft = m_Player2.FindAction("ChangeWeaponsControllerLeft", throwIfNotFound: true);
+        m_Player2_Aiming = m_Player2.FindAction("Aiming", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -532,8 +601,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LookingX;
     private readonly InputAction m_Player_LookingY;
     private readonly InputAction m_Player_ChangeWeaponsMouse;
-    private readonly InputAction m_Player_ChangeWeaponsControllerRight;
-    private readonly InputAction m_Player_ChangeWeaponsControllerLeft;
     private readonly InputAction m_Player_Aiming;
     private readonly InputAction m_Player_MenuPopUp;
     public struct PlayerActions
@@ -547,8 +614,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         public InputAction @LookingX => m_Wrapper.m_Player_LookingX;
         public InputAction @LookingY => m_Wrapper.m_Player_LookingY;
         public InputAction @ChangeWeaponsMouse => m_Wrapper.m_Player_ChangeWeaponsMouse;
-        public InputAction @ChangeWeaponsControllerRight => m_Wrapper.m_Player_ChangeWeaponsControllerRight;
-        public InputAction @ChangeWeaponsControllerLeft => m_Wrapper.m_Player_ChangeWeaponsControllerLeft;
         public InputAction @Aiming => m_Wrapper.m_Player_Aiming;
         public InputAction @MenuPopUp => m_Wrapper.m_Player_MenuPopUp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -581,12 +646,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @ChangeWeaponsMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsMouse;
                 @ChangeWeaponsMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsMouse;
                 @ChangeWeaponsMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsMouse;
-                @ChangeWeaponsControllerRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsControllerRight;
-                @ChangeWeaponsControllerRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsControllerRight;
-                @ChangeWeaponsControllerRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsControllerRight;
-                @ChangeWeaponsControllerLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsControllerLeft;
-                @ChangeWeaponsControllerLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsControllerLeft;
-                @ChangeWeaponsControllerLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeWeaponsControllerLeft;
                 @Aiming.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
                 @Aiming.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
                 @Aiming.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAiming;
@@ -618,12 +677,6 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
                 @ChangeWeaponsMouse.started += instance.OnChangeWeaponsMouse;
                 @ChangeWeaponsMouse.performed += instance.OnChangeWeaponsMouse;
                 @ChangeWeaponsMouse.canceled += instance.OnChangeWeaponsMouse;
-                @ChangeWeaponsControllerRight.started += instance.OnChangeWeaponsControllerRight;
-                @ChangeWeaponsControllerRight.performed += instance.OnChangeWeaponsControllerRight;
-                @ChangeWeaponsControllerRight.canceled += instance.OnChangeWeaponsControllerRight;
-                @ChangeWeaponsControllerLeft.started += instance.OnChangeWeaponsControllerLeft;
-                @ChangeWeaponsControllerLeft.performed += instance.OnChangeWeaponsControllerLeft;
-                @ChangeWeaponsControllerLeft.canceled += instance.OnChangeWeaponsControllerLeft;
                 @Aiming.started += instance.OnAiming;
                 @Aiming.performed += instance.OnAiming;
                 @Aiming.canceled += instance.OnAiming;
@@ -634,6 +687,103 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Player2
+    private readonly InputActionMap m_Player2;
+    private IPlayer2Actions m_Player2ActionsCallbackInterface;
+    private readonly InputAction m_Player2_Movement;
+    private readonly InputAction m_Player2_Jump;
+    private readonly InputAction m_Player2_Dash;
+    private readonly InputAction m_Player2_Shoot;
+    private readonly InputAction m_Player2_LookingX;
+    private readonly InputAction m_Player2_LookingY;
+    private readonly InputAction m_Player2_ChangeWeaponsControllerRight;
+    private readonly InputAction m_Player2_ChangeWeaponsControllerLeft;
+    private readonly InputAction m_Player2_Aiming;
+    public struct Player2Actions
+    {
+        private @PlayerInputAction m_Wrapper;
+        public Player2Actions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Player2_Movement;
+        public InputAction @Jump => m_Wrapper.m_Player2_Jump;
+        public InputAction @Dash => m_Wrapper.m_Player2_Dash;
+        public InputAction @Shoot => m_Wrapper.m_Player2_Shoot;
+        public InputAction @LookingX => m_Wrapper.m_Player2_LookingX;
+        public InputAction @LookingY => m_Wrapper.m_Player2_LookingY;
+        public InputAction @ChangeWeaponsControllerRight => m_Wrapper.m_Player2_ChangeWeaponsControllerRight;
+        public InputAction @ChangeWeaponsControllerLeft => m_Wrapper.m_Player2_ChangeWeaponsControllerLeft;
+        public InputAction @Aiming => m_Wrapper.m_Player2_Aiming;
+        public InputActionMap Get() { return m_Wrapper.m_Player2; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player2Actions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer2Actions instance)
+        {
+            if (m_Wrapper.m_Player2ActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMovement;
+                @Jump.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnJump;
+                @Dash.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnDash;
+                @Shoot.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnShoot;
+                @LookingX.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLookingX;
+                @LookingX.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLookingX;
+                @LookingX.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLookingX;
+                @LookingY.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLookingY;
+                @LookingY.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLookingY;
+                @LookingY.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLookingY;
+                @ChangeWeaponsControllerRight.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChangeWeaponsControllerRight;
+                @ChangeWeaponsControllerRight.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChangeWeaponsControllerRight;
+                @ChangeWeaponsControllerRight.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChangeWeaponsControllerRight;
+                @ChangeWeaponsControllerLeft.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChangeWeaponsControllerLeft;
+                @ChangeWeaponsControllerLeft.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChangeWeaponsControllerLeft;
+                @ChangeWeaponsControllerLeft.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnChangeWeaponsControllerLeft;
+                @Aiming.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnAiming;
+                @Aiming.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnAiming;
+                @Aiming.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnAiming;
+            }
+            m_Wrapper.m_Player2ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @LookingX.started += instance.OnLookingX;
+                @LookingX.performed += instance.OnLookingX;
+                @LookingX.canceled += instance.OnLookingX;
+                @LookingY.started += instance.OnLookingY;
+                @LookingY.performed += instance.OnLookingY;
+                @LookingY.canceled += instance.OnLookingY;
+                @ChangeWeaponsControllerRight.started += instance.OnChangeWeaponsControllerRight;
+                @ChangeWeaponsControllerRight.performed += instance.OnChangeWeaponsControllerRight;
+                @ChangeWeaponsControllerRight.canceled += instance.OnChangeWeaponsControllerRight;
+                @ChangeWeaponsControllerLeft.started += instance.OnChangeWeaponsControllerLeft;
+                @ChangeWeaponsControllerLeft.performed += instance.OnChangeWeaponsControllerLeft;
+                @ChangeWeaponsControllerLeft.canceled += instance.OnChangeWeaponsControllerLeft;
+                @Aiming.started += instance.OnAiming;
+                @Aiming.performed += instance.OnAiming;
+                @Aiming.canceled += instance.OnAiming;
+            }
+        }
+    }
+    public Player2Actions @Player2 => new Player2Actions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -661,9 +811,19 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
         void OnLookingX(InputAction.CallbackContext context);
         void OnLookingY(InputAction.CallbackContext context);
         void OnChangeWeaponsMouse(InputAction.CallbackContext context);
+        void OnAiming(InputAction.CallbackContext context);
+        void OnMenuPopUp(InputAction.CallbackContext context);
+    }
+    public interface IPlayer2Actions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnLookingX(InputAction.CallbackContext context);
+        void OnLookingY(InputAction.CallbackContext context);
         void OnChangeWeaponsControllerRight(InputAction.CallbackContext context);
         void OnChangeWeaponsControllerLeft(InputAction.CallbackContext context);
         void OnAiming(InputAction.CallbackContext context);
-        void OnMenuPopUp(InputAction.CallbackContext context);
     }
 }

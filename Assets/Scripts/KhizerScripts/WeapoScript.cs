@@ -11,7 +11,6 @@ public class WeapoScript : MonoBehaviour
     private CWSP2 cwsP2;
     private float damage = 10f;
     private float range = 100f;
-    private int currenMag, currenMagP2;
     private bool temp = true, temp2 = true, temp3 = true, temp4 = true, isShootingSemiP1, isShootingSemiP2, isShootingAutoP1, isShootingAutoP2;
     private int indxTemp;
     private float shootDelay, shootDelayP2, nextShoot = 0f;
@@ -20,6 +19,7 @@ public class WeapoScript : MonoBehaviour
     #region public Variables
     public Transform spawnPoint;
     public bool shootP2, shootP1;
+    public int currenMag, currenMagP2;
     #endregion
 
     private void Awake()

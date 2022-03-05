@@ -79,17 +79,8 @@
                 },
                 {
                     "name": "MenuPopUp",
-                    "type": "PassThrough",
-                    "id": "4bb94987-dd72-40f3-ab4b-f89344634adb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MenuPopUp",
                     "type": "Button",
-                    "id": "0a682b66-3522-47e2-915c-65a7fb3d2c2f",
+                    "id": "35d6af83-7c61-4c58-b489-e029956ed99c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -231,7 +222,7 @@
                 },
                 {
                     "name": "",
-                    "id": "7f0aa4e2-d287-4d25-a1de-09573aeb1e40",
+                    "id": "b3f5aa7f-c00f-4933-8e52-35e0478c8a53",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -322,15 +313,6 @@
                     "name": "Aiming",
                     "type": "PassThrough",
                     "id": "36f0cc7e-6220-4a1e-934a-e43a704a1da5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MenuPopUp",
-                    "type": "PassThrough",
-                    "id": "d1ab9eaa-dbfa-476d-9915-f70e69b14c6c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -478,39 +460,6 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Aiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "744a9ad1-5144-4ac5-af18-8eaa7faff78d",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "MenuPopUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "92f40c60-e3a5-41f1-9dd1-ca17948b4539",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "MenuPopUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6d1e65ce-adc3-4966-aa1c-897fcadd324b",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "MenuPopUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

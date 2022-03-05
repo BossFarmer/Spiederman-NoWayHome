@@ -9,6 +9,11 @@ TagManager:
   - PlayerHands
   - Ground
   - NextArea
+  - Bullet
+  - Gun2
+  - Player2
+  - SecondCamera
+  - Player1
   layers:
   - Default
   - TransparentFX

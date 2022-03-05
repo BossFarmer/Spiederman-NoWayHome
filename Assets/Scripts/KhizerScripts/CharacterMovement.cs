@@ -15,6 +15,8 @@ public class CharacterMovement : MonoBehaviour
     public GameObject currPowerUp;
     public Vector3 move;
     public Animator animator;
+    public GameObject Player1;
+    public GameObject Player2;
 
     [SerializeField] private float powerupRespawnTimer;
     [SerializeField] private float dashForce = 20f;
@@ -44,7 +46,6 @@ public class CharacterMovement : MonoBehaviour
         if (context.performed && spaceInput == false)
         {
             spaceInput = true;
-            animator.SetBool("isJump", true);
             CharacterJump();
             StartCoroutine("JumpTimer");
         }
@@ -85,7 +86,6 @@ public class CharacterMovement : MonoBehaviour
         {
             spaceInput = false;
             velocity.y = -2f;
-            animator.SetBool("isJump", false);
             if (maxJumps >= 2)
             {
                 maxJumps = 2;
@@ -131,7 +131,7 @@ public class CharacterMovement : MonoBehaviour
             action.Player.Enable();
             action.Player.Movement.performed += MovePlayer;
             action.Player.Jump.performed += JumpInput;
-            Debug.Log("is Player One Ready: " );
+            Debug.Log("is Player One Ready: ");
         }
 
         if (this.gameObject.tag == "Player2")
@@ -160,8 +160,17 @@ public class CharacterMovement : MonoBehaviour
                     DashScript.currentDashCounter++;
                     break;
                 case PowerUpScript.EPowerups.plusAmmo:
-                    //full ammo
+                    //if (Player1)
+                    //{
+                    Debug.Log("TestP1Mag:"+hudScript.P1Mag);
+                    Debug.Log("TestCurrMag:"+hudScript.currMagSizeP1);
+                    //hudScript.P1Mag = hudScript.currMagSizeP1;
+                    //}
+                    // if (this.gameObject.tag == "Player2")
+                    //{
+                    //}
                     break;
+                //full ammo
                 case PowerUpScript.EPowerups.plusHealth:
                     if (this.gameObject.tag == "Player1")
                     {
