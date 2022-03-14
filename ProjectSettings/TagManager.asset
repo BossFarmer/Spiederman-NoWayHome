@@ -11,6 +11,9 @@ TagManager:
   - SecondCamera
   - Bullet
   - Gun2
+  - NextArea
+  - GameManager
+  - PlayerHands2
   layers:
   - Default
   - TransparentFX

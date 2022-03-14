@@ -131,7 +131,6 @@ public class CharacterMovement : MonoBehaviour
             action.Player.Enable();
             action.Player.Movement.performed += MovePlayer;
             action.Player.Jump.performed += JumpInput;
-            Debug.Log("is Player One Ready: ");
         }
 
         if (this.gameObject.tag == "Player2")
@@ -139,7 +138,6 @@ public class CharacterMovement : MonoBehaviour
             action.Player2.Enable();
             action.Player2.Movement.performed += MovePlayer;
             action.Player2.Jump.performed += JumpInput;
-            Debug.Log("is Player Two Ready: ");
         }
     }
 
