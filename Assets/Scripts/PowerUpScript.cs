@@ -37,6 +37,12 @@ public class PowerUpScript : MonoBehaviour
             thisPowerup = this.gameObject;
             StartCoroutine("RespawnPowerups");
         }
+
+        if (other.gameObject.tag == "Player2")
+        {
+            thisPowerup = this.gameObject;
+            StartCoroutine("RespawnPowerups");
+        }
     }
 
     IEnumerator RespawnPowerups()

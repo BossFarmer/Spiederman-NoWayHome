@@ -41,6 +41,7 @@ public class HUDScript : MonoBehaviour
         Areas();
         CurrentWeapon();
         Ammunition();
+        Stats();
     }
 
     void CurrentWeapon()
@@ -77,8 +78,8 @@ public class HUDScript : MonoBehaviour
 
     void Stats()
     {
-        HPPlayer1.text = CurrPlayer1HP.ToString();
-        HPPlayer2.text = CurrPlayer2HP.ToString();
+        HPPlayer1.text = PlayerOneScript.currentHealthP1.ToString();
+        HPPlayer2.text = PlayerTwoScript.currentHealthP2.ToString();
     }
 
     void Ammunition()

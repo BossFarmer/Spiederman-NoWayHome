@@ -159,30 +159,25 @@ public class CharacterMovement : MonoBehaviour
                 case PowerUpScript.EPowerups.plusDash:
                     DashScript.currentDashCounter++;
                     break;
-                case PowerUpScript.EPowerups.plusAmmo:
-                    //if (Player1)
-                    //{
-                    Debug.Log("TestP1Mag:"+hudScript.P1Mag);
-                    Debug.Log("TestCurrMag:"+hudScript.currMagSizeP1);
-                    //hudScript.P1Mag = hudScript.currMagSizeP1;
-                    //}
-                    // if (this.gameObject.tag == "Player2")
-                    //{
-                    //}
+                case PowerUpScript.EPowerups.plusAmmo: 
+                    hudScript.Reload();
                     break;
-                //full ammo
                 case PowerUpScript.EPowerups.plusHealth:
-                    if (this.gameObject.tag == "Player1")
+                    if (this.gameObject.tag == "Player")
                     {
-                        HUDScript.CurrPlayer1HP += 50;
-                        if (HUDScript.CurrPlayer1HP < 150)
-                            HUDScript.CurrPlayer1HP = HUDScript.MaxPlayer1HP;
+                        PlayerOneScript.currentHealthP1 += 50;
+                        if (PlayerOneScript.currentHealthP1 >= 151)
+                        {
+                            PlayerOneScript.currentHealthP1 = 150;
+                        }
                     }
                     if (this.gameObject.tag == "Player2")
                     {
-                        HUDScript.CurrPlayer2HP += 50;
-                        if (HUDScript.CurrPlayer2HP < 150)
-                            HUDScript.CurrPlayer2HP = HUDScript.MaxPlayer2HP;
+                        PlayerTwoScript.currentHealthP2 += 50;
+                        if (PlayerTwoScript.currentHealthP2 >= 151)
+                        {
+                            PlayerTwoScript.currentHealthP2 = 150;
+                        }
                     }
                     break;
             }

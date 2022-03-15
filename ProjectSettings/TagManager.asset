@@ -11,6 +11,8 @@ TagManager:
   - SecondCamera
   - Bullet
   - Gun2
+  - NextArea
+  - Weapons
   layers:
   - Default
   - TransparentFX
