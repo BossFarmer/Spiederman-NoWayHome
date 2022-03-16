@@ -21,6 +21,11 @@ public class BarrierScript : MonoBehaviour
     [SerializeField]
     public float BarrierSpawnTimer = 3f;
 
+    private void Awake()
+    {
+        
+    }
+
     private void Start()
     {
         CurrTime = BarrierSpawnTimer;

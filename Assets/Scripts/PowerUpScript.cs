@@ -26,12 +26,19 @@ public class PowerUpScript : MonoBehaviour
         plusJump,
         plusDash,
         plusAmmo,
+        plusHealth,
     }
     public EPowerups PowerUpType;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
+        {
+            thisPowerup = this.gameObject;
+            StartCoroutine("RespawnPowerups");
+        }
+
+        if (other.gameObject.tag == "Player2")
         {
             thisPowerup = this.gameObject;
             StartCoroutine("RespawnPowerups");
