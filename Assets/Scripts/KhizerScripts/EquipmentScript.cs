@@ -70,7 +70,7 @@ public class EquipmentScript : MonoBehaviour
     }
     private void CheckPlayer()
     {
-        PlayerInputAction action = new PlayerInputAction();
+        PlayerInputActions action = new PlayerInputActions();
         if (transform.parent.tag == "MainCamera")
         {
             //Debug.Log("this Player one");

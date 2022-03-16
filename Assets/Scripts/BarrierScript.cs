@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BarrierScript : MonoBehaviour
 {
-    static public int deathCount = 0;
     static public int P2DeathCount = 0;
     //public int killDeathCount2;
     public GameObject Barrier1;//P1Barriere1;

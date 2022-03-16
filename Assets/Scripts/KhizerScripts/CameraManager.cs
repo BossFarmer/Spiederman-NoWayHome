@@ -62,7 +62,7 @@ public class CameraManager : MonoBehaviour
     }
     private void CheckPlayer()
     {
-        PlayerInputAction action = new PlayerInputAction();
+        PlayerInputActions action = new PlayerInputActions();
         if (transform.parent.tag == "Player")
         {
             action.Player.Enable();

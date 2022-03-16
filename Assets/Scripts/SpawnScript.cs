@@ -21,8 +21,6 @@ public class SpawnScript : MonoBehaviour
     private PlayerTwoScript playerTwoScript;
     private void Start()
     {
-        p1Death = BarrierScript.deathCount;
-        p2Death = BarrierScript.P2DeathCount;
         playerOneScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOneScript>();
         playerTwoScript = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerTwoScript>();
         playerOneScript.OnPlayer1DeathSpawn += PlayerNewSpawnDeath;

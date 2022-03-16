@@ -125,7 +125,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void CheckPlayer()
     {
-        PlayerInputAction action = new PlayerInputAction();
+        PlayerInputActions action = new PlayerInputActions();
         if (this.gameObject.tag == "Player")
         {
             action.Player.Enable();
@@ -161,22 +161,22 @@ public class CharacterMovement : MonoBehaviour
                     hudScript.Reload();
                     break;
                 case PowerUpScript.EPowerups.plusHealth:
-                    if (this.gameObject.tag == "Player")
-                    {
-                        PlayerOneScript.currentHealthP1 += 50;
-                        if (PlayerOneScript.currentHealthP1 >= 151)
-                        {
-                            PlayerOneScript.currentHealthP1 = 150;
-                        }
-                    }
-                    if (this.gameObject.tag == "Player2")
-                    {
-                        PlayerTwoScript.currentHealthP2 += 50;
-                        if (PlayerTwoScript.currentHealthP2 >= 151)
-                        {
-                            PlayerTwoScript.currentHealthP2 = 150;
-                        }
-                    }
+                    //if (this.gameObject.tag == "Player")
+                    //{
+                    //    PlayerOneScript.currentHealthP1 += 50;
+                    //    if (PlayerOneScript.currentHealthP1 >= 151)
+                    //    {
+                    //        PlayerOneScript.currentHealthP1 = 150;
+                    //    }
+                    //}
+                    //if (this.gameObject.tag == "Player2")
+                    //{
+                    //    PlayerTwoScript.currentHealthP2 += 50;
+                    //    if (PlayerTwoScript.currentHealthP2 >= 151)
+                    //    {
+                    //        PlayerTwoScript.currentHealthP2 = 150;
+                    //    }
+                    //}
                     break;
             }
         }
