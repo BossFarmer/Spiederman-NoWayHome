@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BarrierScript : MonoBehaviour
 {
-    static public int P2DeathCount = 0;
     //public int killDeathCount2;
     public GameObject Barrier1;//P1Barriere1;
     public GameObject Barrier11;//P2Barriere1;
@@ -26,8 +25,8 @@ public class BarrierScript : MonoBehaviour
     {
         plOneScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOneScript>();
         plTwoScript = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerTwoScript>();
-        plOneScript.OnPlayer1Death += PlayerOneDeathBarrier;
-        plTwoScript.OnPlayer2Death += PlayerTwoDeathBarrier;
+        plOneScript.OnPlayerOneDeathBarrier += PlayerOneDeathBarrier;
+        plTwoScript.OnPlayer2DeathBarrier += PlayerTwoDeathBarrier;
     }
 
     private void PlayerOneDeathBarrier(int obj)
@@ -79,38 +78,23 @@ public class BarrierScript : MonoBehaviour
 
         switch (playerDeathCount)
         {
-
-            case 0:
-                if (playerDeathCount == 0)
-                {
-                    //StartCoroutine("Timer");
-                    Barrier1.SetActive(true);
-                    Barrier11.SetActive(true);
-                }
-                break;
             case 1:
                 if (playerDeathCount == 1)
                 {
                     Barrier1.SetActive(false);
-                    //StartCoroutine("Timer");
-                    Barrier2.SetActive(true);
+
                 }
                 break;
             case 2:
                 if (playerDeathCount == 2)
                 {
                     Barrier2.SetActive(false);
-                    //StartCoroutine("Timer");
-                    Barrier3.SetActive(true);
-                    Barrier1.SetActive(true);
                 }
                 break;
             case 3:
                 if (playerDeathCount == 3)
                 {
                     Barrier3.SetActive(false);
-                    //StartCoroutine("Timer");
-                    Barrier2.SetActive(true);
                 }
                 break;
         }
@@ -126,20 +110,12 @@ public class BarrierScript : MonoBehaviour
                 if (playerDeathCount == 1)
                 {
                     Barrier11.SetActive(false);
-                    //BarrierTimer();
-                    if (CurrTime <= 0)
-                    {
-                        Barrier22.SetActive(true);
-                    }
                 }
                 break;
             case 2:
                 if (playerDeathCount == 2)
                 {
                     Barrier22.SetActive(false);
-                    //BarrierTimer();
-                    Barrier33.SetActive(true);
-                    Barrier1.SetActive(true);
 
                 }
                 break;
@@ -147,7 +123,6 @@ public class BarrierScript : MonoBehaviour
                 if (playerDeathCount == 3)
                 {
                     Barrier33.SetActive(false);
-                    Barrier22.SetActive(true);
                 }
                 break;
         }

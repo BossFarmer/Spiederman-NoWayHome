@@ -7,34 +7,40 @@ public class PlayerTwoScript : MonoBehaviour
 {
     private int healthP2 = 150;
     public int currentHealthP2;
-    private int deathCountPlayer2;
-    private SpawnScript spawnScript;
+    private int deathCountPlayer2Barrier;
+    private int deathCountPlayer2Spawn;
     private bool temp = true;
     private PlayerOneScript plOneScript;
 
-    public event Action<int> OnPlayer2Death;
+    public event Action<int> OnPlayer2DeathBarrier;
     public event Action<int, GameObject> OnPlayer2DeathSpawn;
-    public event Action OnPlayerTwoKilled;
+    public event Action OnPlayer2Killed;
 
     void Awake()
     {
         plOneScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOneScript>();
-        plOneScript.OnPlayerOneKilled += OnPlayerOneKilled;
+        plOneScript.OnPlayerOneKilled += PlayerOneKilled;
 
+    }
+
+    private void PlayerOneKilled()
+    {
+        deathCountPlayer2Spawn--;
+        deathCountPlayer2Barrier--;
+        Debug.Log("spawncount player2 : "+deathCountPlayer2Spawn);
     }
 
     private void OnPlayerOneKilled()
     {
-        deathCountPlayer2--;
-        Debug.Log("Player One was slayed! " + "deathCount of Player 2 "+ deathCountPlayer2);
+        deathCountPlayer2Barrier--;
+        Debug.Log("Player One was slayed! " + "deathCount of Player 2 "+ deathCountPlayer2Barrier);
     }
 
     void Start()
     {
         ResetHealth();
-        deathCountPlayer2 = BarrierScript.P2DeathCount;
-        Debug.Log("PlayerTwo Spawnpoint: "+deathCountPlayer2);
-        spawnScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<SpawnScript>();
+        deathCountPlayer2Barrier = 0;
+        deathCountPlayer2Spawn = 0;
     }
 
     private void Update()
@@ -51,12 +57,13 @@ public class PlayerTwoScript : MonoBehaviour
     {
         if (currentHealthP2 <= 0)
         {
-            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2);
-            deathCountPlayer2++;
-            OnPlayerTwoKilled?.Invoke();
-            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2);
-            OnPlayer2Death?.Invoke(deathCountPlayer2);
-            OnPlayer2DeathSpawn?.Invoke(deathCountPlayer2, this.gameObject);
+            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2Barrier);
+            deathCountPlayer2Barrier++;
+            deathCountPlayer2Spawn++;
+            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2Barrier);
+            OnPlayer2DeathBarrier?.Invoke(deathCountPlayer2Barrier);
+            OnPlayer2DeathSpawn?.Invoke(deathCountPlayer2Spawn, this.gameObject);
+            OnPlayer2Killed?.Invoke();
             Debug.Log("Player 2 was Killed");
             ResetHealth();
         }

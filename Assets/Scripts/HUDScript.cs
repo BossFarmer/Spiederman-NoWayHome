@@ -120,38 +120,38 @@ public class HUDScript : MonoBehaviour
         AmmoP2.text = P2Mag.ToString();
     }
 
-    //void Areas()
-    //{
-    //    switch (BarrierScript.deathCount)
-    //    {
-    //        case 0:
-    //            Area.text = "Area 0";
-    //            break;
-    //        case 1:
-    //            Area.text = "P1 Area 1";
-    //            break;
-    //        case 2:
-    //            Area.text = "P1 Area2";
-    //            break;
-    //        case 3:
-    //            Area.text = "P1 Last Area!";
-    //            break;
-    //    }
+    void Areas()
+    {
+        //switch (BarrierScript.deathCount)
+        //{
+        //    case 0:
+        //        Area.text = "Area 0";
+        //        break;
+        //    case 1:
+        //        Area.text = "P1 Area 1";
+        //        break;
+        //    case 2:
+        //        Area.text = "P1 Area2";
+        //        break;
+        //    case 3:
+        //        Area.text = "P1 Last Area!";
+        //        break;
+        //}
 
-    //    switch (BarrierScript.P2DeathCount)
-    //    {
-    //        case 0:
-    //            Area.text = "Area 0";
-    //            break;
-    //        case 1:
-    //            Area.text = "P2 Area 1";
-    //            break;
-    //        case 2:
-    //            Area.text = "P2 Area2";
-    //            break;
-    //        case 3:
-    //            Area.text = "P2 Last Area!";
-    //            break;
-    //    }
-    //}
+        //switch (BarrierScript.P2DeathCount)
+        //{
+        //    case 0:
+        //        Area.text = "Area 0";
+        //        break;
+        //    case 1:
+        //        Area.text = "P2 Area 1";
+        //        break;
+        //    case 2:
+        //        Area.text = "P2 Area2";
+        //        break;
+        //    case 3:
+        //        Area.text = "P2 Last Area!";
+        //        break;
+        //}
+    }
 }
