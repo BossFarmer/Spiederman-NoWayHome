@@ -60,6 +60,8 @@ public class WeapoScript : MonoBehaviour
     }
     void Update()
     {
+        var Player1 = GameObject.FindGameObjectWithTag("Player");
+        var PLayer2 = GameObject.FindGameObjectWithTag("Player2");
         if (secondCam == null && transform.root.gameObject.tag == "Player2")
         {
             secondCam = GameObject.FindGameObjectWithTag("SecondCamera").GetComponent<Camera>();
@@ -80,10 +82,13 @@ public class WeapoScript : MonoBehaviour
                 temp4 = false;
             }
         }
-        ShootingSemiP1();
-        ShootingAutoP1();
-        ShootingAutoP2();
-        ShootingSemiP2();
+        if (Player1 != null || PLayer2 != null)
+        {
+            ShootingSemiP1();
+            ShootingAutoP1();
+            ShootingAutoP2();
+            ShootingSemiP2();
+        }
     }
     void ShootRayCast()
     {

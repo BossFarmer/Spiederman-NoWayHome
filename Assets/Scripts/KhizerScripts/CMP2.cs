@@ -56,7 +56,6 @@ public class CMP2: MonoBehaviour
         PlayerInputAction action = new PlayerInputAction();
         if (transform.parent.tag == "Player")
         {
-            Debug.Log("this Player one");
             action.Player.Enable();
             action.Player.LookingX.performed += MouseInputX;
             action.Player.LookingY.performed += MouseInputY;
@@ -65,7 +64,6 @@ public class CMP2: MonoBehaviour
 
         if (transform.parent.tag == "Player2")
         {
-            Debug.Log("This Player Two");
             action.Player2.Enable();
             action.Player2.LookingX.performed += MouseInputX;
             action.Player2.LookingY.performed += MouseInputY;
