@@ -30,7 +30,7 @@ public class CWSP2 : MonoBehaviour
     {
         weapon.CheckWeaponClass();
         GetWeaponStats();
-        Debug.Log("Klasse : " +WClass +" Name: " + WName + " Damage: " + WDamage + " BulletSize: " + WBulletSize + " BulletSpeed: " + WBulletSpeed + " Magazine: " + WMagazineSize + " ShootDelay: "+ WShootDelay);
+        //Debug.Log("Klasse : " +WClass +" Name: " + WName + " Damage: " + WDamage + " BulletSize: " + WBulletSize + " BulletSpeed: " + WBulletSpeed + " Magazine: " + WMagazineSize + " ShootDelay: "+ WShootDelay);
     }
 
     void GetWeaponStats()

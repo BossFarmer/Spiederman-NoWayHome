@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
+public partial class PlayerInputActions : IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerInputAction()
+    public PlayerInputActions()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputManager"",
@@ -605,8 +605,8 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MenuPopUp;
     public struct PlayerActions
     {
-        private @PlayerInputAction m_Wrapper;
-        public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        private PlayerInputActions m_Wrapper;
+        public PlayerActions(PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
@@ -702,8 +702,8 @@ public partial class @PlayerInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player2_Aiming;
     public struct Player2Actions
     {
-        private @PlayerInputAction m_Wrapper;
-        public Player2Actions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        private PlayerInputActions m_Wrapper;
+        public Player2Actions(PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player2_Movement;
         public InputAction @Jump => m_Wrapper.m_Player2_Jump;
         public InputAction @Dash => m_Wrapper.m_Player2_Dash;

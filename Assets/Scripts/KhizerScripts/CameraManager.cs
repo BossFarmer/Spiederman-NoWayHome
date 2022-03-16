@@ -62,10 +62,9 @@ public class CameraManager : MonoBehaviour
     }
     private void CheckPlayer()
     {
-        PlayerInputAction action = new PlayerInputAction();
+        PlayerInputActions action = new PlayerInputActions();
         if (transform.parent.tag == "Player")
         {
-            Debug.Log("this Player one");
             action.Player.Enable();
             action.Player.LookingX.performed += MouseInputX;
             action.Player.LookingY.performed += MouseInputY;
@@ -74,7 +73,6 @@ public class CameraManager : MonoBehaviour
 
         if (transform.parent.tag == "Player2")
         {
-            Debug.Log("This Player Two");
             action.Player2.Enable();
             action.Player2.LookingX.performed += ControllerInputX;
             action.Player2.LookingY.performed += ControllerInputY;

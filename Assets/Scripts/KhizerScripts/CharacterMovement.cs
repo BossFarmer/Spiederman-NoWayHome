@@ -125,13 +125,12 @@ public class CharacterMovement : MonoBehaviour
 
     public void CheckPlayer()
     {
-        PlayerInputAction action = new PlayerInputAction();
+        PlayerInputActions action = new PlayerInputActions();
         if (this.gameObject.tag == "Player")
         {
             action.Player.Enable();
             action.Player.Movement.performed += MovePlayer;
             action.Player.Jump.performed += JumpInput;
-            Debug.Log("is Player One Ready: ");
         }
 
         if (this.gameObject.tag == "Player2")
@@ -139,7 +138,6 @@ public class CharacterMovement : MonoBehaviour
             action.Player2.Enable();
             action.Player2.Movement.performed += MovePlayer;
             action.Player2.Jump.performed += JumpInput;
-            Debug.Log("is Player Two Ready: ");
         }
     }
 
@@ -163,22 +161,22 @@ public class CharacterMovement : MonoBehaviour
                     hudScript.Reload();
                     break;
                 case PowerUpScript.EPowerups.plusHealth:
-                    if (this.gameObject.tag == "Player")
-                    {
-                        PlayerOneScript.currentHealthP1 += 50;
-                        if (PlayerOneScript.currentHealthP1 >= 151)
-                        {
-                            PlayerOneScript.currentHealthP1 = 150;
-                        }
-                    }
-                    if (this.gameObject.tag == "Player2")
-                    {
-                        PlayerTwoScript.currentHealthP2 += 50;
-                        if (PlayerTwoScript.currentHealthP2 >= 151)
-                        {
-                            PlayerTwoScript.currentHealthP2 = 150;
-                        }
-                    }
+                    //if (this.gameObject.tag == "Player")
+                    //{
+                    //    PlayerOneScript.currentHealthP1 += 50;
+                    //    if (PlayerOneScript.currentHealthP1 >= 151)
+                    //    {
+                    //        PlayerOneScript.currentHealthP1 = 150;
+                    //    }
+                    //}
+                    //if (this.gameObject.tag == "Player2")
+                    //{
+                    //    PlayerTwoScript.currentHealthP2 += 50;
+                    //    if (PlayerTwoScript.currentHealthP2 >= 151)
+                    //    {
+                    //        PlayerTwoScript.currentHealthP2 = 150;
+                    //    }
+                    //}
                     break;
             }
         }

@@ -117,11 +117,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5448946363926163968}
   - component: {fileID: 5448946363926163975}
-  - component: {fileID: 5448946363926163969}
   - component: {fileID: 5448946364570959097}
-  - component: {fileID: 5448946364570959098}
   - component: {fileID: 2786080165888778040}
-  - component: {fileID: 8364176749118538096}
   m_Layer: 8
   m_Name: OriP1
   m_TagString: Player
@@ -166,39 +163,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5448946363926163969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448946363926163974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fd6e2936a7bb8d4eb4ef7e9e40da60d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Controller: {fileID: 5448946363926163975}
-  hudScript: {fileID: 0}
-  dashScript: {fileID: 0}
-  GroundCheck: {fileID: 5448946364863363271}
-  GroundCheckRadius: 0.4
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  currPowerUp: {fileID: 0}
-  move: {x: 0, y: 0, z: 0}
-  animator: {fileID: 0}
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
-  powerupRespawnTimer: 2
-  dashForce: 20
-  playerInput: {fileID: 0}
-  maxDash: 1
-  maxJumps: 1
-  currentJump: 0
-  spaceInput: 0
-  jumpTimer: 0
 --- !u!95 &5448946364570959097
 Animator:
   serializedVersion: 3
@@ -218,21 +182,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5448946364570959098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448946363926163974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 581a5a72b72b0ea4cb33e1a394a8fe99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveScript: {fileID: 0}
-  dashForce: 1000
-  dashCooldown: 2
 --- !u!114 &2786080165888778040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +209,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5448946363926163969}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
         m_MethodName: PlayerMove
         m_Mode: 1
@@ -331,19 +280,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 5448946364057522311}
---- !u!114 &8364176749118538096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448946363926163974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e4dac443538e24296296f1a3c6d7ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealthP1: 0
 --- !u!1 &5448946364057522309
 GameObject:
   m_ObjectHideFlags: 0

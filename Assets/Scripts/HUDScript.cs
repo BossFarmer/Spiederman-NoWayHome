@@ -17,8 +17,8 @@ public class HUDScript : MonoBehaviour
     //public WeapoScript weapoScript;
     public ConnectWeapon connectWeapon;
     public CWSP2 cwsp2;
-    public GameObject currentWeaponP1;
-    public GameObject currentWeaponP2;
+    public GameObject ph1;
+    public GameObject ph2;
     public GameObject activeWeapon;
     public WeapoScript weapoScript;
     public GameObject ActiveWeaponP2;
@@ -33,12 +33,12 @@ public class HUDScript : MonoBehaviour
         CurrPlayer1HP = MaxPlayer1HP;
         CurrPlayer2HP = MaxPlayer2HP;
         Stats();
-        Areas();
+        //Areas();
     }
 
     void Update()
     {
-        Areas();
+        //Areas();
         CurrentWeapon();
         Ammunition();
         Stats();
@@ -46,28 +46,60 @@ public class HUDScript : MonoBehaviour
 
     void CurrentWeapon()
     {
-        currentWeaponP1 = GameObject.Find("OriP1/Main Camera/PlayerHands/");
-        currentWeaponP2 = GameObject.Find("OriP2/SecondCamera/PlayerHands2/");
-
-        for (int i = 0; i < currentWeaponP2.transform.childCount; i++)
+        GameObject ph1 = null;
+        var Player1 = GameObject.FindGameObjectWithTag("Player");
+        if(Player1 != null)
+        foreach (Transform child in Player1.transform)
         {
-            if (currentWeaponP2.transform.GetChild(i).gameObject.activeSelf == true)
+            if (child.gameObject.tag == "MainCamera")
             {
-                ActiveWeaponP2 = currentWeaponP2.transform.GetChild(i).gameObject;
-                P2Mag = ActiveWeaponP2.GetComponent<WeapoScript>().currenMagP2;
-                currMagSizeP2 = ActiveWeaponP2.GetComponent<CWSP2>().WMagazineSize;
+                var cam = child.gameObject;
+                foreach (Transform child2 in cam.transform)
+                {
+                    if (child2.gameObject.tag == "PlayerHands")
+                    {
+                        ph1 = child2.gameObject;
+                    }
+                }
             }
         }
-
-        for (int i = 0; i < currentWeaponP1.transform.childCount; i++)
+        var Player2 = GameObject.FindGameObjectWithTag("Player2");
+        GameObject ph2 = null;
+        if(Player2 != null)
+        foreach (Transform child in Player2.transform)
         {
-            if (currentWeaponP1.transform.GetChild(i).gameObject.activeSelf == true)
+            if (child.gameObject.tag == "SecondCamera")
             {
-                ActiveWeaponP1 = currentWeaponP1.transform.GetChild(i).gameObject;
-                P1Mag = ActiveWeaponP1.GetComponent<WeapoScript>().currenMag;
-                currMagSizeP1 = ActiveWeaponP1.GetComponent<ConnectWeapon>().WMagazineSize;
+                var cam = child.gameObject;
+                foreach (Transform child2 in cam.transform)
+                {
+                    if (child2.gameObject.tag == "PlayerHands2")
+                    {
+                        ph2 = child2.gameObject;
+                    }
+                }
             }
         }
+        if (ph2 != null)
+            for (int i = 0; i < ph2.transform.childCount; i++)
+            {
+                if (ph2.transform.GetChild(i).gameObject.activeSelf == true)
+                {
+                    ActiveWeaponP2 = ph2.transform.GetChild(i).gameObject;
+                    P2Mag = ActiveWeaponP2.GetComponent<WeapoScript>().currenMagP2;
+                    //currMagSizeP2 = ActiveWeaponP2.GetComponent<CWSP2>().WMagazineSize;
+                }
+            }
+        if (ph1 != null)
+            for (int i = 0; i < ph1.transform.childCount; i++)
+            {
+                if (ph1.transform.GetChild(i).gameObject.activeSelf == true)
+                {
+                    ActiveWeaponP1 = ph1.transform.GetChild(i).gameObject;
+                    P1Mag = ActiveWeaponP1.GetComponent<WeapoScript>().currenMag;
+                    //currMagSizeP1 = ActiveWeaponP1.GetComponent<ConnectWeapon>().WMagazineSize;
+                }
+            }
     }
 
     public void Reload()
@@ -78,8 +110,8 @@ public class HUDScript : MonoBehaviour
 
     void Stats()
     {
-        HPPlayer1.text = PlayerOneScript.currentHealthP1.ToString();
-        HPPlayer2.text = PlayerTwoScript.currentHealthP2.ToString();
+        //HPPlayer1.text = PlayerOneScript.currentHealthP1.ToString();
+        //HPPlayer2.text = PlayerTwoScript.currentHealthP2.ToString();
     }
 
     void Ammunition()
@@ -88,38 +120,38 @@ public class HUDScript : MonoBehaviour
         AmmoP2.text = P2Mag.ToString();
     }
 
-    void Areas()
-    {
-        switch (barrierScript.P1DeathCount)
-        {
-            case 0:
-                Area.text = "Area 0";
-                break;
-            case 1:
-                Area.text = "P1 Area 1";
-                break;
-            case 2:
-                Area.text = "P1 Area2";
-                break;
-            case 3:
-                Area.text = "P1 Last Area!";
-                break;
-        }
+    //void Areas()
+    //{
+    //    switch (BarrierScript.deathCount)
+    //    {
+    //        case 0:
+    //            Area.text = "Area 0";
+    //            break;
+    //        case 1:
+    //            Area.text = "P1 Area 1";
+    //            break;
+    //        case 2:
+    //            Area.text = "P1 Area2";
+    //            break;
+    //        case 3:
+    //            Area.text = "P1 Last Area!";
+    //            break;
+    //    }
 
-        switch (barrierScript.P2DeathCount)
-        {
-            case 0:
-                Area.text = "Area 0";
-                break;
-            case 1:
-                Area.text = "P2 Area 1";
-                break;
-            case 2:
-                Area.text = "P2 Area2";
-                break;
-            case 3:
-                Area.text = "P2 Last Area!";
-                break;
-        }
-    }
+    //    switch (BarrierScript.P2DeathCount)
+    //    {
+    //        case 0:
+    //            Area.text = "Area 0";
+    //            break;
+    //        case 1:
+    //            Area.text = "P2 Area 1";
+    //            break;
+    //        case 2:
+    //            Area.text = "P2 Area2";
+    //            break;
+    //        case 3:
+    //            Area.text = "P2 Last Area!";
+    //            break;
+    //    }
+    //}
 }

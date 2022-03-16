@@ -1,21 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerTwoScript : MonoBehaviour
 {
     private int healthP2 = 150;
-    public static int currentHealthP2;
-    public GameObject DeatScreenP2;
-    [SerializeField]
-    public int deathScreen;
+    public int currentHealthP2;
+    private int deathCountPlayer2;
+    private SpawnScript spawnScript;
+    private bool temp = true;
+    private PlayerOneScript plOneScript;
 
-    public GameObject Sniper2, Pump2, Pistol2, M162, Deagle2, Autopump2, Ak472;
+    public event Action<int> OnPlayer2Death;
+    public event Action<int, GameObject> OnPlayer2DeathSpawn;
+    public event Action OnPlayerTwoKilled;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        plOneScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOneScript>();
+        plOneScript.OnPlayerOneKilled += OnPlayerOneKilled;
+
+    }
+
+    private void OnPlayerOneKilled()
+    {
+        deathCountPlayer2--;
+        Debug.Log("Player One was slayed! " + "deathCount of Player 2 "+ deathCountPlayer2);
+    }
+
     void Start()
     {
-        currentHealthP2 = healthP2;
+        ResetHealth();
+        deathCountPlayer2 = BarrierScript.P2DeathCount;
+        Debug.Log("PlayerTwo Spawnpoint: "+deathCountPlayer2);
+        spawnScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<SpawnScript>();
     }
 
     private void Update()
@@ -32,52 +51,19 @@ public class PlayerTwoScript : MonoBehaviour
     {
         if (currentHealthP2 <= 0)
         {
+            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2);
+            deathCountPlayer2++;
+            OnPlayerTwoKilled?.Invoke();
+            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2);
+            OnPlayer2Death?.Invoke(deathCountPlayer2);
+            OnPlayer2DeathSpawn?.Invoke(deathCountPlayer2, this.gameObject);
             Debug.Log("Player 2 was Killed");
-            Destroy(this.gameObject, 1f);
-            DeatScreenP2.SetActive(true);
-            StartCoroutine("DeathScreenTimer");
-
-        }
-
-    }
-    IEnumerator DeathScreenTimer()
-    {
-        yield return new WaitForSeconds(deathScreen);
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Weapons")
-        {
-            WeaponPickupScript Weapon = other.GetComponent<WeaponPickupScript>();
-            switch (Weapon.WeaponType)
-            {
-                case WeaponPickupScript.EWeapons.Ak47:
-                    Ak472.SetActive(true);
-                    break;
-                case WeaponPickupScript.EWeapons.AutoPump:
-                    Autopump2.SetActive(true);
-                    break;
-                case WeaponPickupScript.EWeapons.Deagle:
-                    Deagle2.SetActive(true);
-                    break;
-                case WeaponPickupScript.EWeapons.M16:
-                    M162.SetActive(true);
-                    break;
-                case WeaponPickupScript.EWeapons.Pistol:
-                    Pistol2.SetActive(true);
-                    break;
-                case WeaponPickupScript.EWeapons.Pump:
-                    Pump2.SetActive(true);
-                    break;
-                case WeaponPickupScript.EWeapons.Sniper:
-                    Sniper2.SetActive(true);
-                    break;
-                default:
-                    break;
-            }
+            ResetHealth();
         }
     }
 
+    public void ResetHealth()
+    {
+        currentHealthP2 = healthP2;
+    }
 }
