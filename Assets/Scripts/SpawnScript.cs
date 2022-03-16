@@ -13,16 +13,11 @@ public class SpawnScript : MonoBehaviour
     [SerializeField]
     Transform[] spawnPointsPlayer2Area0, spawnPointsPlayer2Area1, spawnPointsPlayer2Area2, spawnPointsPlayer2Area3;
 
-    public GameObject Player1;
-    public GameObject Player2;
-    private int p1Death;
-    private int p2Death;
     private PlayerOneScript playerOneScript;
     private PlayerTwoScript playerTwoScript;
+
     private void Start()
     {
-        p1Death = BarrierScript.deathCount;
-        p2Death = BarrierScript.P2DeathCount;
         playerOneScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOneScript>();
         playerTwoScript = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerTwoScript>();
         playerOneScript.OnPlayer1DeathSpawn += PlayerNewSpawnDeath;
@@ -39,12 +34,6 @@ public class SpawnScript : MonoBehaviour
         Debug.Log("SpawnScript: DeathCOuntPlayerOne: " + obj);
         SpawnPlayerTwo(obj,player);
     }
-
-    private void Update()
-    {
-        
-    }
-
 
     public void SpawnPlayerOne(int deathCount, GameObject player)
     {
