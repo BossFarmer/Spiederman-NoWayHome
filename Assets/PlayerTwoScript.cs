@@ -11,10 +11,24 @@ public class PlayerTwoScript : MonoBehaviour
     private int deathCountPlayer2Spawn;
     private bool temp = true;
     private PlayerOneScript plOneScript;
-
+    public WeaponPickupScript weaponPickupScript;
     public event Action<int> OnPlayer2DeathBarrier;
     public event Action<int, GameObject> OnPlayer2DeathSpawn;
     public event Action OnPlayer2Killed;
+    public int sizeOfList;
+    public List<GameObject> Inventar;
+    public GameObject PrimaryWeapon;
+    public GameObject SekundaryWeapon;
+
+    #region Waffenliste
+    public GameObject Pistol;
+    public GameObject Ak47;
+    public GameObject Autopump;
+    public GameObject Deagle;
+    public GameObject M16;
+    public GameObject Pump;
+    public GameObject Sniper;
+    #endregion
 
     void Awake()
     {
@@ -27,6 +41,8 @@ public class PlayerTwoScript : MonoBehaviour
         deathCountPlayer2Spawn--;
         deathCountPlayer2Barrier--;
         Debug.Log("spawncount player2 : " + deathCountPlayer2Spawn);
+        Inventar = new List<GameObject>(1);
+
     }
 
     private void OnPlayerOneKilled()
@@ -68,8 +84,92 @@ public class PlayerTwoScript : MonoBehaviour
         }
     }
 
+    
     public void ResetHealth()
     {
         currentHealthP2 = healthP2;
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Weapons")
+        {
+            weaponPickupScript = other.GetComponent<WeaponPickupScript>();
+            switch (weaponPickupScript.WeaponType)
+            {
+                case WeaponPickupScript.EWeapons.Ak47:
+                    if(Inventar.Count == 0)
+                    {
+                        PrimaryWeapon = Ak47;
+                    }
+                    else
+                    {
+                        SekundaryWeapon = Ak47;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.AutoPump:
+                    if (Inventar.Count == 0)
+                    {
+                        PrimaryWeapon = Autopump;
+                    }
+                    else
+                    {
+                        SekundaryWeapon = Autopump;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Deagle:
+                    if (Inventar.Count == 0)
+                    {
+                        PrimaryWeapon = Deagle;
+                    }
+                    else
+                    {
+                        SekundaryWeapon = Deagle;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.M16:
+                    if (Inventar.Count == 0)
+                    {
+                        PrimaryWeapon = M16;
+                    }
+                    else
+                    {
+                        SekundaryWeapon = M16;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Pistol:
+                    if (Inventar.Count == 0)
+                    {
+                        PrimaryWeapon = Pistol;
+                    }
+                    else
+                    {
+                        SekundaryWeapon = Pistol;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Pump:
+                    if (Inventar.Count == 0)
+                    {
+                        PrimaryWeapon = Pump;
+                    }
+                    else
+                    {
+                        SekundaryWeapon = Pump;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Sniper:
+                    if (Inventar.Count == 0)
+                    {
+                        PrimaryWeapon = Sniper;
+                    }
+                    else
+                    {
+                        SekundaryWeapon = Sniper;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        }
     }
 }
