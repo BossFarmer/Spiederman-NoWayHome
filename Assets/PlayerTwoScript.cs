@@ -7,8 +7,8 @@ public class PlayerTwoScript : MonoBehaviour
 {
     private int healthP2 = 150;
     public int currentHealthP2;
-    private int deathCountPlayer2Barrier;
-    private int deathCountPlayer2Spawn;
+    [SerializeField] private int deathCountPlayer2Barrier;
+    [SerializeField] private int deathCountPlayer2Spawn;
     private bool temp = true;
     private PlayerOneScript plOneScript;
     public WeaponPickupScript weaponPickupScript;
@@ -39,7 +39,19 @@ public class PlayerTwoScript : MonoBehaviour
     private void PlayerOneKilled()
     {
         deathCountPlayer2Spawn--;
+        if (deathCountPlayer2Spawn < -2)
+        {
+            deathCountPlayer2Spawn = -2;
+        }
+
         deathCountPlayer2Barrier--;
+
+        if (deathCountPlayer2Barrier < -2)
+        {
+            deathCountPlayer2Barrier = -2;
+        }
+
+
         Debug.Log("spawncount player2 : " + deathCountPlayer2Spawn);
         Inventar = new List<GameObject>(1);
 
