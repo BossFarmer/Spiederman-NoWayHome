@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour
     public Animator animator;
     public GameObject Player1;
     public GameObject Player2;
+    public WeaponPickupScript weaponPickupScript;
 
     [SerializeField] private float powerupRespawnTimer;
     [SerializeField] private float dashForce = 20f;
@@ -180,6 +181,7 @@ public class CharacterMovement : MonoBehaviour
                     break;
             }
         }
+        
     }
 
     IEnumerator JumpTimer()
