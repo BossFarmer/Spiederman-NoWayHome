@@ -7,13 +7,13 @@ public class PlayerOneScript : MonoBehaviour
 {
     private int healthP1 = 150;
     public int currentHealthP1;
-    private int deathCountPlayer1Spawn;
-    private int deathCountPlayer1Barrierr;
+    [SerializeField] private int deathCountPlayer1Spawn;
+    [SerializeField] private int deathCountPlayer1Barrierr;
     private PlayerTwoScript plTwoScript;
     // Start is called before the first frame update
 
     public event Action<int> OnPlayerOneDeathBarrier;
-    public event Action<int, GameObject > OnPlayer1DeathSpawn;
+    public event Action<int, GameObject> OnPlayer1DeathSpawn;
     public event Action OnPlayerOneKilled;
 
     void Awake()
@@ -25,8 +25,18 @@ public class PlayerOneScript : MonoBehaviour
     private void PlayerTwoKilled()
     {
         deathCountPlayer1Spawn--;
+        if (deathCountPlayer1Spawn < -2)
+        {
+            deathCountPlayer1Spawn = -2;
+        }
+
         deathCountPlayer1Barrierr--;
-        Debug.Log("spawncount player one: "+ deathCountPlayer1Spawn);
+
+        if (deathCountPlayer1Barrierr < -2)
+        {
+            deathCountPlayer1Barrierr = -2;
+        }
+        Debug.Log("spawncount player one: " + deathCountPlayer1Spawn);
     }
 
     void Start()
