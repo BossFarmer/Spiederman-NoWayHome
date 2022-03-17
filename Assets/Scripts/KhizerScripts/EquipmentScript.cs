@@ -13,8 +13,10 @@ public class EquipmentScript : MonoBehaviour
     private PlayerOneScript Pl1Script;
     [SerializeField]
     private PlayerTwoScript Pl2Script;
-    private ConnectWeapon connectWeapon1, connectWeapon2;
+    private WeapoScript weapoScript1, weapoScript2;
     private int magSize1, magSize2, magSize3, magSize4;
+    public GameObject currWeapon;
+    private bool primaryWeapon, sekundaryWeapon;
     
 
     private void Awake()
@@ -57,8 +59,8 @@ public class EquipmentScript : MonoBehaviour
     private void Update()
     {
         ChangeWeapon();
-        CheckWeapon();
-        Debug.Log("Magazin Größe"+ magSize1);
+        Debug.Log("Magazin Größe"+ HUDScript.P1Mag);
+
     }
 
     void ChoseWeapon()
@@ -78,12 +80,29 @@ public class EquipmentScript : MonoBehaviour
         }
     }
 
-    private void CheckWeapon()
+    public void CheckWeapon()
     {
-        //if (magSize1 >= 0)
-        //{
-        //    Pl1Script.Inventar.RemoveAt(1);
-        //}
+
+        if (primaryWeapon)
+        {
+            Pl1Script.Inventar.Remove(Pl1Script.PrimaryWeapon);
+            Pl1Script.PrimaryWeapon.SetActive(false);
+            Pl1Script.PrimaryWeapon = Pl1Script.SekundaryWeapon;
+            Pl1Script.SekundaryWeapon = null;
+            Pl2Script.Inventar.Remove(Pl2Script.PrimaryWeapon);
+            Pl2Script.PrimaryWeapon.SetActive(false);
+            Pl2Script.PrimaryWeapon = null;
+        }
+
+        if (sekundaryWeapon)
+        {
+            Pl1Script.Inventar.Remove(Pl1Script.SekundaryWeapon);
+            Pl1Script.SekundaryWeapon.SetActive(false);
+            Pl1Script.SekundaryWeapon = null;
+            Pl2Script.Inventar.Remove(Pl2Script.SekundaryWeapon);
+            Pl2Script.SekundaryWeapon.SetActive(false);
+            Pl2Script.SekundaryWeapon = null;
+        }
         //if (magSize2 >= 0)
         //{
         //    Pl2Script.Inventar.RemoveAt(1);
@@ -120,15 +139,6 @@ public class EquipmentScript : MonoBehaviour
     }
     public void WaffenZuweisung()
     {
-        connectWeapon1 = Pl1Script.PrimaryWeapon.gameObject.GetComponent<ConnectWeapon>();
-        connectWeapon2 = Pl2Script.PrimaryWeapon.gameObject.GetComponent<ConnectWeapon>();
-        connectWeapon1 = Pl1Script.SekundaryWeapon.gameObject.GetComponent<ConnectWeapon>();
-        connectWeapon2 = Pl2Script.SekundaryWeapon.gameObject.GetComponent<ConnectWeapon>();
-        magSize1 = connectWeapon1.WMagazineSize;
-        magSize2 = connectWeapon2.WMagazineSize;
-        magSize3 = connectWeapon1.WMagazineSize;
-        magSize4 = connectWeapon2.WMagazineSize;
-
     }
 
     void ChangeWeapon()
@@ -136,17 +146,9 @@ public class EquipmentScript : MonoBehaviour
         nextWeapon = currentWeapon;
         if (mouseInput > 0 || controllerInput > 0)
         {
-            //controllerInput = 0;
-            //if (currentWeapon >= transform.childCount - 1)
-            //{
-            //    currentWeapon = 0;
-            //}
-            //else
-            //{
-            //    currentWeapon++;
-            //}
-            
-            
+            primaryWeapon = true;
+            sekundaryWeapon = false;
+            currWeapon = Pl1Script.PrimaryWeapon;
             Pl1Script.PrimaryWeapon.SetActive(true);
             Pl1Script.SekundaryWeapon.SetActive(false);
             Pl2Script.PrimaryWeapon.SetActive(true);
@@ -154,16 +156,9 @@ public class EquipmentScript : MonoBehaviour
         }
         if (mouseInput < 0 || controllerInput < 0)
         {
-            //controllerInput = 0;
-            //if (currentWeapon <= 0)
-            //{
-            //    currentWeapon = transform.childCount - 1;
-            //}
-            //else
-            //{
-            //    currentWeapon--;
-            //}
-            
+            primaryWeapon = false;
+            sekundaryWeapon = true;
+            currWeapon = Pl1Script.SekundaryWeapon;
             Pl1Script.PrimaryWeapon.SetActive(false);
             Pl1Script.SekundaryWeapon.SetActive(true);
             Pl2Script.PrimaryWeapon.SetActive(false);

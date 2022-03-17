@@ -7,6 +7,8 @@ public class WeapoScript : MonoBehaviour
     [SerializeField] private Camera cam, secondCam;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private GameObject bullet;
+    public EquipmentScript equipmentScriptp1;
+    public EquipmentScript equipmentScriptp2;
     private ConnectWeapon cws;
     private CWSP2 cwsP2;
     private float damage = 10f;
@@ -56,7 +58,8 @@ public class WeapoScript : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-
+        equipmentScriptp1 = this.GetComponentInParent<EquipmentScript>();
+        equipmentScriptp2 = this.GetComponentInParent<EquipmentScript>();
     }
     void Update()
     {
@@ -66,7 +69,7 @@ public class WeapoScript : MonoBehaviour
         {
             secondCam = GameObject.FindGameObjectWithTag("SecondCamera").GetComponent<Camera>();
         }
-        if (transform.root.gameObject.tag=="Player")
+        if (transform.root.gameObject.tag == "Player")
         {
             if (temp3)
             {
@@ -74,7 +77,7 @@ public class WeapoScript : MonoBehaviour
                 temp3 = false;
             }
         }
-        if (transform.root.gameObject.tag =="Player2")
+        if (transform.root.gameObject.tag == "Player2")
         {
             if (temp4)
             {
@@ -152,11 +155,25 @@ public class WeapoScript : MonoBehaviour
             currenMag--;
             Destroy(_bullet, 5f);
             shootDelay = cws.WShootDelay;
+            if (currenMag == 0)
+            {
+                ReloadP1();
+                equipmentScriptp1.CheckWeapon();
+            }
         }
         else
         {
             Debug.Log("Mag is empty!");
         }
+    }
+
+    public void ReloadP1()
+    {
+        currenMag = cws.WMagazineSize;
+    }
+    public void ReloadP2()
+    {
+        currenMagP2 = cwsP2.WMagazineSize;
     }
 
     public void ShootGunP2()
@@ -166,8 +183,10 @@ public class WeapoScript : MonoBehaviour
             muzzleFlash.Play();
             GameObject _bullet = Instantiate(bullet, secondCam.transform.position + secondCam.transform.forward, Quaternion.identity);
             currenMagP2--;
+            equipmentScriptp2.CheckWeapon();
             Destroy(_bullet, 5f);
             shootDelay = cwsP2.WShootDelay;
+
         }
         else
         {

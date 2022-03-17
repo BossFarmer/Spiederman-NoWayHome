@@ -23,8 +23,8 @@ public class HUDScript : MonoBehaviour
     public WeapoScript weapoScript;
     public GameObject ActiveWeaponP2;
     public GameObject ActiveWeaponP1;
-    public int P1Mag;
-    public int P2Mag;
+    public static int P1Mag;
+    public static int P2Mag;
     public int currMagSizeP1;
     public int currMagSizeP2;
     // Start is called before the first frame update
