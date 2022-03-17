@@ -155,6 +155,7 @@ public class EquipmentScript : MonoBehaviour
         }
         if (mouseInput < 0 || controllerInput < 0)
         {
+
             primaryWeapon = false;
             sekundaryWeapon = true;
             currWeapon = Pl1Script.SekundaryWeapon;
