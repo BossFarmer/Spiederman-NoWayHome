@@ -7,8 +7,8 @@ public class PlayerOneScript : MonoBehaviour
 {
     private int healthP1 = 150;
     public int currentHealthP1;
-    private int deathCountPlayer1Spawn;
-    private int deathCountPlayer1Barrierr;
+    public int deathCountPlayer1Spawn;
+    public int deathCountPlayer1Barrierr;
     private PlayerTwoScript plTwoScript;
     public WeaponPickupScript weaponPickupScript;
     public event Action<int> OnPlayerOneDeathBarrier;

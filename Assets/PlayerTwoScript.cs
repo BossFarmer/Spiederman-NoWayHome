@@ -7,8 +7,8 @@ public class PlayerTwoScript : MonoBehaviour
 {
     private int healthP2 = 150;
     public int currentHealthP2;
-    [SerializeField] private int deathCountPlayer2Barrier;
-    [SerializeField] private int deathCountPlayer2Spawn;
+    public int deathCountPlayer2Barrier;
+    public int deathCountPlayer2Spawn;
     private bool temp = true;
     private PlayerOneScript plOneScript;
     public WeaponPickupScript weaponPickupScript;
