@@ -10,15 +10,21 @@ public class PlayerOneScript : MonoBehaviour
     public int deathCountPlayer1Spawn;
     public int deathCountPlayer1Barrierr;
     private PlayerTwoScript plTwoScript;
+    private Transform animationBody;
+    private Animator bodyAnimator;
     public WeaponPickupScript weaponPickupScript;
+
     public event Action<int> OnPlayerOneDeathBarrier;
     public event Action<int, GameObject> OnPlayer1DeathSpawn;
     public event Action OnPlayerOneKilled;
+    public event Action<bool> OnDeathTurnOffFPS;
+
     public List<GameObject> Inventar;
     public int sizeOfList;
     public GameObject PrimaryWeapon;
     public GameObject SekundaryWeapon;
     public EquipmentScript equipmentScript;
+    private PlayerDeathScript plDeathScript;
 
     #region Waffenliste
     public GameObject Pistol;
@@ -34,8 +40,17 @@ public class PlayerOneScript : MonoBehaviour
 
     void Awake()
     {
+        GetAnimationBody();
+        bodyAnimator = animationBody.GetComponent<Animator>();
+        plDeathScript = animationBody.GetComponent<PlayerDeathScript>();
+        plDeathScript.OnDeath += OnPlayerOneDeath;
         plTwoScript = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerTwoScript>();
         plTwoScript.OnPlayer2Killed += PlayerTwoKilled;
+    }
+
+    private void OnPlayerOneDeath()
+    {
+        OnDeathAnimation();
     }
 
     private void PlayerTwoKilled()
@@ -47,6 +62,7 @@ public class PlayerOneScript : MonoBehaviour
 
     void Start()
     {
+
         ResetHealth();
         deathCountPlayer1Barrierr = 0;
         deathCountPlayer1Spawn = 0;
@@ -58,6 +74,10 @@ public class PlayerOneScript : MonoBehaviour
     {
         IsPlayerDead();
         WaffenInventar();
+    }
+    private void GetAnimationBody()
+    {
+        animationBody = transform.GetChild(0);
     }
 
     public void TakeDamagePlayer(int Damage)
@@ -75,14 +95,21 @@ public class PlayerOneScript : MonoBehaviour
             deathCountPlayer1Barrierr++;
             deathCountPlayer1Spawn++;
             Debug.Log("PlayerOne Spawnpoint: " + deathCountPlayer1Barrierr);
-            OnPlayerOneDeathBarrier?.Invoke(deathCountPlayer1Barrierr);
-            OnPlayer1DeathSpawn?.Invoke(deathCountPlayer1Spawn, this.gameObject);
-            OnPlayerOneKilled?.Invoke();
+            bodyAnimator.SetTrigger("triggerDeath");
+            OnDeathTurnOffFPS.Invoke(true);
             ResetHealth();
 
         }
     }
 
+    public void OnDeathAnimation()
+    {
+        OnPlayerOneDeathBarrier?.Invoke(deathCountPlayer1Barrierr);
+        OnPlayer1DeathSpawn?.Invoke(deathCountPlayer1Spawn, this.gameObject);
+        OnPlayerOneKilled?.Invoke();
+        OnDeathTurnOffFPS?.Invoke(false);
+        bodyAnimator.SetBool("isDeath", false);
+    }
     public void WaffenInventar()
     {
 
