@@ -99,7 +99,7 @@ public class PlayerOneScript : MonoBehaviour
         if (Inventar.Count <= 2)
         {
             Debug.Log("Moin");
-            if(other.gameObject.name! == SekundaryWeapon.name && other.gameObject.name! == PrimaryWeapon.name)
+            if (PrimaryWeapon == null || SekundaryWeapon == null ||  other.gameObject.name != SekundaryWeapon.name && other.gameObject.name != PrimaryWeapon.name) 
             {
                 Debug.Log("Servus");
                 currentWeapon = other.gameObject;

@@ -70,7 +70,7 @@ public class EquipmentScript : MonoBehaviour
             if (index == currentWeapon)
             {
                 weapon.gameObject.SetActive(true);
-            }
+            }   
             else
             {
                 weapon.gameObject.SetActive(false);
