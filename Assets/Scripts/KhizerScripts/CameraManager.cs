@@ -14,21 +14,46 @@ public class CameraManager : MonoBehaviour
     private float mouseInputY;
     private float xRotation = 0f;
     public bool isPlayerOne, isPlayerTwo;
+    private PlayerOneScript ploS;
+    private bool isCameraFreze;
 
 
 
     private void Awake()
     {
+        isCameraFreze = false;
         CheckPlayer();
+        ploS.OnDeathTurnOffFPS += TurnOffFPSCamera;
     }
+
+    private void TurnOffFPSCamera(bool obj)
+    {
+        isCameraFreze = obj;
+    }
+
     private void MouseInputY(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        mouseInputY = obj.ReadValue<float>();
+        if (!isCameraFreze)
+        {
+            mouseInputY = obj.ReadValue<float>();
+        }
+        else
+        {
+            mouseInputY = 0;
+        }
     }
 
     private void MouseInputX(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        mouseInputX = obj.ReadValue<float>();
+        if (!isCameraFreze)
+        {
+            mouseInputX = obj.ReadValue<float>();
+        }
+        else
+        {
+            mouseInputX= 0;
+        }
+
     }
 
     private void ControllerInputY(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -56,7 +81,7 @@ public class CameraManager : MonoBehaviour
     void MoveCamera()
     {
         playerBody.Rotate(Vector3.up * xDirection);
-        xRotation -= yDirection ;
+        xRotation -= yDirection;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
@@ -68,7 +93,8 @@ public class CameraManager : MonoBehaviour
             action.Player.Enable();
             action.Player.LookingX.performed += MouseInputX;
             action.Player.LookingY.performed += MouseInputY;
-            isPlayerOne = true; 
+            ploS = transform.root.GetComponent<PlayerOneScript>();
+            isPlayerOne = true;
         }
 
         if (transform.parent.tag == "Player2")

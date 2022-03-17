@@ -14,7 +14,7 @@ public class CharacterMovement : MonoBehaviour
     public LayerMask GroundMask;
     public GameObject currPowerUp;
     public Vector3 move;
-    public Animator animator;
+    public Animator bodyAnimator;
     public GameObject Player1;
     public GameObject Player2;
     public WeaponPickupScript weaponPickupScript;
@@ -33,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
     private float jumpHight = 3f;
     private bool isGrounded;
     private Vector3 velocity;
+    private Transform animationBody;
     public bool spaceInput;
     public float jumpTimer;
 
@@ -40,6 +41,9 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         CheckPlayer();
+        GetAnimationBody();
+        bodyAnimator = animationBody.GetComponent<Animator>();
+
     }
 
     private void JumpInput(InputAction.CallbackContext context)
@@ -48,6 +52,7 @@ public class CharacterMovement : MonoBehaviour
         {
             spaceInput = true;
             CharacterJump();
+            bodyAnimator.SetBool("isJumping", spaceInput);
             StartCoroutine("JumpTimer");
         }
     }
@@ -55,6 +60,16 @@ public class CharacterMovement : MonoBehaviour
     private void MovePlayer(InputAction.CallbackContext context)
     {
         inputMovement = context.ReadValue<Vector2>();
+        float x = inputMovement.x;
+        float y = inputMovement.y;
+        if (y > 0 || y < 0 || x < 0 || x > 0)
+        {
+            bodyAnimator.SetBool("isRunning", true);
+        }
+        else
+        {
+            bodyAnimator.SetBool("isRunning", false);
+        }
     }
 
     private void Start()
@@ -67,6 +82,11 @@ public class CharacterMovement : MonoBehaviour
     {
         PlayerMove();
         GroundChecked();
+    }
+
+    private void GetAnimationBody()
+    {
+        animationBody = transform.GetChild(0);
     }
 
     private void CharacterJump()
@@ -82,10 +102,10 @@ public class CharacterMovement : MonoBehaviour
     private void GroundChecked() //Simple Check if player is on the ground and resetting the gravitation
     {
         isGrounded = Physics.CheckSphere(GroundCheck.position, GroundCheckRadius, GroundMask);
-
         if (isGrounded && velocity.y < 0)
         {
             spaceInput = false;
+            bodyAnimator.SetBool("isJumping", spaceInput);
             velocity.y = -2f;
             if (maxJumps >= 2)
             {
@@ -158,7 +178,7 @@ public class CharacterMovement : MonoBehaviour
                 case PowerUpScript.EPowerups.plusDash:
                     DashScript.currentDashCounter++;
                     break;
-                case PowerUpScript.EPowerups.plusAmmo: 
+                case PowerUpScript.EPowerups.plusAmmo:
                     hudScript.Reload();
                     break;
                 case PowerUpScript.EPowerups.plusHealth:
@@ -181,7 +201,7 @@ public class CharacterMovement : MonoBehaviour
                     break;
             }
         }
-        
+
     }
 
     IEnumerator JumpTimer()
