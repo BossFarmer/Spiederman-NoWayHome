@@ -59,7 +59,6 @@ public class EquipmentScript : MonoBehaviour
     private void Update()
     {
         ChangeWeapon();
-        Debug.Log("Magazin Größe"+ HUDScript.P1Mag);
 
     }
 

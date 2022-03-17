@@ -181,7 +181,6 @@ public class PlayerTwoScript : MonoBehaviour
                 default:
                     break;
             }
-
         }
     }
 }

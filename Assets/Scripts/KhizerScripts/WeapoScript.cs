@@ -155,7 +155,7 @@ public class WeapoScript : MonoBehaviour
             currenMag--;
             Destroy(_bullet, 5f);
             shootDelay = cws.WShootDelay;
-            if (currenMag == 0)
+            if (currenMag == -1)
             {
                 ReloadP1();
                 equipmentScriptp1.CheckWeapon();
@@ -191,6 +191,7 @@ public class WeapoScript : MonoBehaviour
         else
         {
             Debug.Log("Mag2 is empty!");
+
         }
     }
 
