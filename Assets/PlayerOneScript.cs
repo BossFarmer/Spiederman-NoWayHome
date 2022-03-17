@@ -18,6 +18,7 @@ public class PlayerOneScript : MonoBehaviour
     public event Action<int, GameObject> OnPlayer1DeathSpawn;
     public event Action OnPlayerOneKilled;
     public event Action<bool> OnDeathTurnOffFPS;
+    public GameObject currentWeapon;
 
     public List<GameObject> Inventar;
     public int sizeOfList;
@@ -121,117 +122,129 @@ public class PlayerOneScript : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (Inventar.Count <=2)
+        if (Inventar.Count <= 2)
         {
-
-            if (other.gameObject.tag == "Weapons")
+            Debug.Log("Moin");
+            if (PrimaryWeapon == null)
             {
-                weaponPickupScript = other.GetComponent<WeaponPickupScript>();
-                switch (weaponPickupScript.WeaponType)
-                {
-                    case WeaponPickupScript.EWeapons.Ak47:
-                        if (Inventar.Count == 0)
-                        {
+                currentWeapon = other.gameObject;
+                AttachWeapon();
+                Debug.Log(other.gameObject.name);
+            }
+            Debug.Log(PrimaryWeapon.name + other.gameObject.name);
+            if (SekundaryWeapon == null && PrimaryWeapon.name != other.gameObject.name)
+            {
+                currentWeapon = other.gameObject;
+                AttachWeapon();
+                //Debug.Log(other.gameObject.name);
+            }
+
+        }
+    }
+
+    private void AttachWeapon()
+    {
+        if (currentWeapon.gameObject.tag == "Weapons")
+        {
+            weaponPickupScript = currentWeapon.GetComponent<WeaponPickupScript>();
+            switch (weaponPickupScript.WeaponType)
+            {
+                case WeaponPickupScript.EWeapons.Ak47:
+
+                    switch (Inventar.Count)
+                    {
+                        case 0:
                             PrimaryWeapon = Ak47;
                             Inventar.Add(PrimaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        else
-                        {
+                            break;
+                        case 1:
                             SekundaryWeapon = Ak47;
                             Inventar.Add(SekundaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        break;
-                    case WeaponPickupScript.EWeapons.AutoPump:
-                        if (Inventar.Count == 0)
-                        {
+                            break;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.AutoPump:
+                    switch (Inventar.Count)
+                    {
+                        case 0:
                             PrimaryWeapon = Autopump;
                             Inventar.Add(PrimaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        else
-                        {
+                            break;
+                        case 1:
                             SekundaryWeapon = Autopump;
                             Inventar.Add(SekundaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        break;
-                    case WeaponPickupScript.EWeapons.Deagle:
-                        if (Inventar.Count == 0)
-                        {
+                            break;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Deagle:
+                    switch (Inventar.Count)
+                    {
+                        case 0:
                             PrimaryWeapon = Deagle;
                             Inventar.Add(PrimaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        else
-                        {
+                            break;
+                        case 1:
                             SekundaryWeapon = Deagle;
                             Inventar.Add(SekundaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        break;
-                    case WeaponPickupScript.EWeapons.M16:
-                        if (Inventar.Count == 0)
-                        {
+                            break;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.M16:
+                    switch (Inventar.Count)
+                    {
+                        case 0:
                             PrimaryWeapon = M16;
                             Inventar.Add(PrimaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        else
-                        {
+                            break;
+                        case 1:
                             SekundaryWeapon = M16;
                             Inventar.Add(SekundaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        break;
-                    case WeaponPickupScript.EWeapons.Pistol:
-                        if (Inventar.Count == 0)
-                        {
+                            break;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Pistol:
+                    switch (Inventar.Count)
+                    {
+                        case 0:
                             PrimaryWeapon = Pistol;
                             Inventar.Add(PrimaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        else
-                        {
+                            break;
+                        case 1:
                             SekundaryWeapon = Pistol;
                             Inventar.Add(SekundaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        break;
-                    case WeaponPickupScript.EWeapons.Pump:
-                        if (Inventar.Count == 0)
-                        {
+                            break;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Pump:
+                    switch (Inventar.Count)
+                    {
+                        case 0:
                             PrimaryWeapon = Pump;
                             Inventar.Add(PrimaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        else
-                        {
+                            break;
+                        case 1:
                             SekundaryWeapon = Pump;
                             Inventar.Add(SekundaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        break;
-                    case WeaponPickupScript.EWeapons.Sniper:
-                        if (Inventar.Count == 0)
-                        {
+                            break;
+                    }
+                    break;
+                case WeaponPickupScript.EWeapons.Sniper:
+                    switch (Inventar.Count)
+                    {
+                        case 0:
                             PrimaryWeapon = Sniper;
                             Inventar.Add(PrimaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        else
-                        {
+                            break;
+                        case 1:
                             SekundaryWeapon = Sniper;
                             Inventar.Add(SekundaryWeapon);
-                            equipmentScript.WaffenZuweisung();
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
+                            break;
+                    }
+                    break;
+                default:
+                    break;
             }
+
         }
     }
 }
