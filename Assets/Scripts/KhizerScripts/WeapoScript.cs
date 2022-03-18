@@ -160,6 +160,27 @@ public class WeapoScript : MonoBehaviour
                 ReloadP1();
                 equipmentScriptp1.CheckWeapon();
             }
+            switch (this.gameObject.name)
+            {
+                case "Pistol":
+                    FindObjectOfType<AudioManager>().Play("Pistol");
+                    break;
+                case "AK47":
+                    FindObjectOfType<AudioManager>().Play("Ak47");
+                    break;
+                case "AutPump":
+                    FindObjectOfType<AudioManager>().Play("AutPump");
+                    break;
+                case "Deagle":
+                    FindObjectOfType<AudioManager>().Play("Deagle");
+                    break;
+                case "M16":
+                    FindObjectOfType<AudioManager>().Play("M16");
+                    break;
+                case "PumpShotgun":
+                    FindObjectOfType<AudioManager>().Play("PumpShotgun");
+                    break;
+            }
         }
         else
         {
@@ -188,10 +209,36 @@ public class WeapoScript : MonoBehaviour
             shootDelay = cwsP2.WShootDelay;
 
         }
+        if (currenMagP2 == -1)
+        {
+            ReloadP2();
+            equipmentScriptp2.CheckWeapon();
+        }
         else
         {
             Debug.Log("Mag2 is empty!");
 
+        }
+        switch (this.gameObject.name)
+        {
+            case "Pistol":
+                FindObjectOfType<AudioManager>().Play("Pistol");
+                break;
+            case "AK47":
+                FindObjectOfType<AudioManager>().Play("Ak47");
+                break;
+            case "AutPump":
+                FindObjectOfType<AudioManager>().Play("AutPump");
+                break;
+            case "Deagle":
+                FindObjectOfType<AudioManager>().Play("Deagle");
+                break;
+            case "M16":
+                FindObjectOfType<AudioManager>().Play("M16");
+                break;
+            case "PumpShotgun":
+                FindObjectOfType<AudioManager>().Play("PumpShotgun");
+                break;
         }
     }
 
