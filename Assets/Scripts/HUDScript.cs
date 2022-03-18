@@ -23,6 +23,8 @@ public class HUDScript : MonoBehaviour
     public WeapoScript weapoScript;
     public GameObject ActiveWeaponP2;
     public GameObject ActiveWeaponP1;
+    public PlayerOneScript playerOneScript;
+    public PlayerTwoScript playerTwoScript;
     public static int P1Mag;
     public static int P2Mag;
     public int currMagSizeP1;
@@ -109,9 +111,9 @@ public class HUDScript : MonoBehaviour
     }
 
     void Stats()
-    {
-        //HPPlayer1.text = PlayerOneScript.currentHealthP1.ToString();
-        //HPPlayer2.text = PlayerTwoScript.currentHealthP2.ToString();
+    {   
+        HPPlayer1.text = playerOneScript.currentHealthP1.ToString();
+        HPPlayer2.text = playerTwoScript.currentHealthP2.ToString();
     }
 
     void Ammunition()
