@@ -125,10 +125,8 @@ public class PlayerTwoScript : MonoBehaviour
             if (Inventar.Count <= 2)
             {
                 Debug.Log("Moin");
-                if (PrimaryWeapon == null || PrimaryWeapon == null && SekundaryWeapon.name != other.gameObject.name)
+                if (PrimaryWeapon == null)
                 {
-                    
-                    Debug.Log("Servus");
                     currentWeapon = other.gameObject;
                     AttachWeapon(currentWeapon);
                 }
@@ -139,7 +137,6 @@ public class PlayerTwoScript : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void AttachWeapon(GameObject currWea)

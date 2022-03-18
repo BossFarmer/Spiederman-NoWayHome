@@ -147,18 +147,13 @@ public class PlayerOneScript : MonoBehaviour
                 {
                     currentWeapon = other.gameObject;
                     AttachWeapon();
-                    Debug.Log(other.gameObject.name);
                 }
-                Debug.Log(PrimaryWeapon.name + other.gameObject.name);
                 if (SekundaryWeapon == null && PrimaryWeapon.name != other.gameObject.name)
                 {
                     currentWeapon = other.gameObject;
                     AttachWeapon();
-                    //Debug.Log(other.gameObject.name);
                 }
-
             }
-
         }
     }
 
