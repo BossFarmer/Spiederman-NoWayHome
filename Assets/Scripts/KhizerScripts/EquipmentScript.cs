@@ -8,7 +8,7 @@ public class EquipmentScript : MonoBehaviour
     private int currentWeapon = 0;
     private int nextWeapon;
     private float mouseInput;
-    private float controllerInputLeft = 0f, controllerInputRight = 0;
+    private float controllerInputLeft = 0f, controllerInputRight = 0f;
     [SerializeField]
     private PlayerOneScript Pl1Script;
     [SerializeField]
@@ -30,16 +30,17 @@ public class EquipmentScript : MonoBehaviour
         var button = controll as ButtonControl;
         if (button.wasPressedThisFrame)
         {
-            controllerInputLeft -= obj.ReadValue<float>();
-            if (controllerInputLeft < 1)
+            controllerInputLeft = obj.ReadValue<float>();
+            if (controllerInputLeft <= 1)
             {
                 controllerInputLeft = -1;
             }
-
-            ChangeWeaponPlayer2(controllerInputLeft);
+            if (Pl2Script.SekundaryWeapon != null)
+            {
+                ChangeWeaponPlayer2(controllerInputLeft);
+            }
 
         }
-        Debug.Log("left schoulder was pressed: " + controllerInputLeft);
     }
 
     private void ControllerInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -54,8 +55,10 @@ public class EquipmentScript : MonoBehaviour
                 controllerInputRight = 1;
             }
 
-            ChangeWeaponPlayer2(controllerInputLeft);
-
+            if (Pl2Script.PrimaryWeapon != null)
+            {
+                ChangeWeaponPlayer2(controllerInputRight);
+            }
         }
         Debug.Log("right schoulder was pressed: " + controllerInputRight);
 
@@ -180,6 +183,7 @@ public class EquipmentScript : MonoBehaviour
         nextWeapon = currentWeapon;
         if (controllerInput > -1)
         {
+            Debug.Log("Primary active");
             primaryWeapon = true;
             sekundaryWeapon = false;
             currWeapon2 = Pl2Script.PrimaryWeapon;
@@ -188,6 +192,7 @@ public class EquipmentScript : MonoBehaviour
         }
         if (controllerInput < 1)
         {
+            Debug.Log("Secondayr active");
             primaryWeapon = false;
             sekundaryWeapon = true;
             currWeapon2 = Pl2Script.SekundaryWeapon;
