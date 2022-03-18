@@ -31,6 +31,10 @@ public class EquipmentScript : MonoBehaviour
         if (button.wasPressedThisFrame)
         {
             controllerInput -= obj.ReadValue<float>();
+            if (controllerInput < 1)
+            {
+                controllerInput = -1;
+            }
         }
         Debug.Log( "left schoulder was pressed: "+controllerInput);
     }
@@ -42,6 +46,10 @@ public class EquipmentScript : MonoBehaviour
         if (button.wasPressedThisFrame)
         {
             controllerInput = obj.ReadValue<float>();
+            if (controllerInput > -1)
+            {
+                controllerInput = 1;
+            }
         }
         Debug.Log("right schoulder was pressed: " + controllerInput);
 
