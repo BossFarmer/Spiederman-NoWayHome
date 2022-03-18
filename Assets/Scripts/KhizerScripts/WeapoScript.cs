@@ -166,6 +166,7 @@ public class WeapoScript : MonoBehaviour
                     FindObjectOfType<AudioManager>().Play("Pistol");
                     break;
                 case "AK47":
+                    Debug.Log("Sound toll");
                     FindObjectOfType<AudioManager>().Play("Ak47");
                     break;
                 case "AutPump":
@@ -223,9 +224,10 @@ public class WeapoScript : MonoBehaviour
         {
             case "Pistol":
                 FindObjectOfType<AudioManager>().Play("Pistol");
-                break;
+                break;  
             case "AK47":
-                FindObjectOfType<AudioManager>().Play("Ak47");
+            Debug.Log("Sound toll");
+        FindObjectOfType<AudioManager>().Play("Ak47");
                 break;
             case "AutPump":
                 FindObjectOfType<AudioManager>().Play("AutPump");
