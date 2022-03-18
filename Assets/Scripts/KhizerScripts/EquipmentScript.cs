@@ -15,7 +15,7 @@ public class EquipmentScript : MonoBehaviour
     private PlayerTwoScript Pl2Script;
     private WeapoScript weapoScript1, weapoScript2;
     private int magSize1, magSize2, magSize3, magSize4;
-    public GameObject currWeapon;
+    public GameObject currWeapon, currWeapon2;
     private bool primaryWeapon, sekundaryWeapon;
     
 
@@ -136,17 +136,16 @@ public class EquipmentScript : MonoBehaviour
             Pl2Script = transform.root.gameObject.GetComponent<PlayerTwoScript>();
         }
     }
-    public void WaffenZuweisung()
-    {
-    }
-
     void ChangeWeapon()
     {
         nextWeapon = currentWeapon;
         if (mouseInput > 0 || controllerInput > 0)
         {
+            Debug.Log("Mouse input:" + mouseInput);
+            Debug.Log("Controller input:" + controllerInput);
             primaryWeapon = true;
             sekundaryWeapon = false;
+            currWeapon2 = Pl2Script.PrimaryWeapon;
             currWeapon = Pl1Script.PrimaryWeapon;
             Pl1Script.PrimaryWeapon.SetActive(true);
             Pl1Script.SekundaryWeapon.SetActive(false);
@@ -155,11 +154,13 @@ public class EquipmentScript : MonoBehaviour
         }
         if (mouseInput < 0 || controllerInput < 0)
         {
-
+            Debug.Log("Mouse input:" + mouseInput);
+            Debug.Log("Cobntroller input:" + controllerInput);
             primaryWeapon = false;
             sekundaryWeapon = true;
             currWeapon = Pl1Script.SekundaryWeapon;
             Pl1Script.PrimaryWeapon.SetActive(false);
+            currWeapon2 = Pl2Script.SekundaryWeapon;
             Pl1Script.SekundaryWeapon.SetActive(true);
             Pl2Script.PrimaryWeapon.SetActive(false);   
             Pl2Script.SekundaryWeapon.SetActive(true);

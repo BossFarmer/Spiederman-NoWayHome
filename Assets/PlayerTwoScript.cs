@@ -19,6 +19,7 @@ public class PlayerTwoScript : MonoBehaviour
     public List<GameObject> Inventar;
     public GameObject PrimaryWeapon;
     public GameObject SekundaryWeapon;
+    public GameObject currentWeapon;
 
     #region Waffenliste
     public GameObject Pistol;
@@ -96,7 +97,7 @@ public class PlayerTwoScript : MonoBehaviour
     public void TakeDamagePlayer2(int Damage)
     {
         currentHealthP2 -= Damage;
-        Debug.Log("Player Two health: "+currentHealthP2);
+        Debug.Log("Player Two health: " + currentHealthP2);
     }
 
     public void IsPlayer2Dead()
@@ -112,7 +113,7 @@ public class PlayerTwoScript : MonoBehaviour
         }
     }
 
-    
+
     public void ResetHealth()
     {
         currentHealthP2 = healthP2;
@@ -121,82 +122,143 @@ public class PlayerTwoScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Weapons")
         {
-            weaponPickupScript = other.GetComponent<WeaponPickupScript>();
-            switch (weaponPickupScript.WeaponType)
+            if (Inventar.Count <= 2)
             {
-                case WeaponPickupScript.EWeapons.Ak47:
-                    if(Inventar.Count == 0)
-                    {
-                        PrimaryWeapon = Ak47;
-                    }
-                    else
-                    {
-                        SekundaryWeapon = Ak47;
-                    }
-                    break;
-                case WeaponPickupScript.EWeapons.AutoPump:
-                    if (Inventar.Count == 0)
-                    {
-                        PrimaryWeapon = Autopump;
-                    }
-                    else
-                    {
-                        SekundaryWeapon = Autopump;
-                    }
-                    break;
-                case WeaponPickupScript.EWeapons.Deagle:
-                    if (Inventar.Count == 0)
-                    {
-                        PrimaryWeapon = Deagle;
-                    }
-                    else
-                    {
-                        SekundaryWeapon = Deagle;
-                    }
-                    break;
-                case WeaponPickupScript.EWeapons.M16:
-                    if (Inventar.Count == 0)
-                    {
-                        PrimaryWeapon = M16;
-                    }
-                    else
-                    {
-                        SekundaryWeapon = M16;
-                    }
-                    break;
-                case WeaponPickupScript.EWeapons.Pistol:
-                    if (Inventar.Count == 0)
-                    {
-                        PrimaryWeapon = Pistol;
-                    }
-                    else
-                    {
-                        SekundaryWeapon = Pistol;
-                    }
-                    break;
-                case WeaponPickupScript.EWeapons.Pump:
-                    if (Inventar.Count == 0)
-                    {
-                        PrimaryWeapon = Pump;
-                    }
-                    else
-                    {
-                        SekundaryWeapon = Pump;
-                    }
-                    break;
-                case WeaponPickupScript.EWeapons.Sniper:
-                    if (Inventar.Count == 0)
-                    {
-                        PrimaryWeapon = Sniper;
-                    }
-                    else
-                    {
-                        SekundaryWeapon = Sniper;
-                    }
-                    break;
-                default:
-                    break;
+                Debug.Log("Moin");
+                if (PrimaryWeapon == null || PrimaryWeapon == null && SekundaryWeapon.name != other.gameObject.name)
+                {
+                    
+                    Debug.Log("Servus");
+                    currentWeapon = other.gameObject;
+                    AttachWeapon(currentWeapon);
+                }
+                if (SekundaryWeapon == null && PrimaryWeapon.name != other.gameObject.name)
+                {
+                    currentWeapon = other.gameObject;
+                    AttachWeapon(currentWeapon);
+                }
             }
         }
+
+    }
+
+    private void AttachWeapon(GameObject currWea)
+    {
+
+
+        weaponPickupScript = currWea.GetComponent<WeaponPickupScript>();
+        switch (weaponPickupScript.WeaponType)
+        {
+            case WeaponPickupScript.EWeapons.Ak47:
+
+                switch (Inventar.Count)
+                {
+                    case 0:
+                        PrimaryWeapon = Ak47;
+                        Inventar.Add(PrimaryWeapon);
+                        break;
+                    case 1:
+                        SekundaryWeapon = Ak47;
+                        Inventar.Add(SekundaryWeapon);
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            case WeaponPickupScript.EWeapons.AutoPump:
+                switch (Inventar.Count)
+                {
+                    case 0:
+                        PrimaryWeapon = Autopump;
+                        Inventar.Add(PrimaryWeapon);
+                        break;
+                    case 1:
+                        SekundaryWeapon = Autopump;
+                        Inventar.Add(SekundaryWeapon);
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            case WeaponPickupScript.EWeapons.Deagle:
+                switch (Inventar.Count)
+                {
+                    case 0:
+                        PrimaryWeapon = Deagle;
+                        Inventar.Add(PrimaryWeapon);
+                        break;
+                    case 1:
+                        SekundaryWeapon = Deagle;
+                        Inventar.Add(SekundaryWeapon);
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            case WeaponPickupScript.EWeapons.M16:
+                switch (Inventar.Count)
+                {
+                    case 0:
+                        PrimaryWeapon = M16;
+                        Inventar.Add(PrimaryWeapon);
+                        break;
+                    case 1:
+                        SekundaryWeapon = M16;
+                        Inventar.Add(SekundaryWeapon);
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            case WeaponPickupScript.EWeapons.Pistol:
+                switch (Inventar.Count)
+                {
+                    case 0:
+                        PrimaryWeapon = Pistol;
+                        Inventar.Add(PrimaryWeapon);
+                        break;
+                    case 1:
+                        SekundaryWeapon = Pistol;
+                        Inventar.Add(SekundaryWeapon);
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            case WeaponPickupScript.EWeapons.Pump:
+                switch (Inventar.Count)
+                {
+                    case 0:
+                        PrimaryWeapon = Pump;
+                        Inventar.Add(PrimaryWeapon);
+                        break;
+                    case 1:
+                        SekundaryWeapon = Pump;
+                        Inventar.Add(SekundaryWeapon);
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            case WeaponPickupScript.EWeapons.Sniper:
+                switch (Inventar.Count)
+                {
+                    case 0:
+                        PrimaryWeapon = Sniper;
+                        Inventar.Add(PrimaryWeapon);
+                        break;
+                    case 1:
+                        SekundaryWeapon = Sniper;
+                        Inventar.Add(SekundaryWeapon);
+                        break;
+                    case 2:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+
+
     }
 }
