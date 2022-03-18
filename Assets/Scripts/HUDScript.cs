@@ -50,38 +50,39 @@ public class HUDScript : MonoBehaviour
     {
         GameObject ph1 = null;
         var Player1 = GameObject.FindGameObjectWithTag("Player");
-        if(Player1 != null)
-        foreach (Transform child in Player1.transform)
-        {
-            if (child.gameObject.tag == "MainCamera")
+        if (Player1 != null)
+            foreach (Transform child in Player1.transform)
             {
-                var cam = child.gameObject;
-                foreach (Transform child2 in cam.transform)
+                if (child.gameObject.tag == "MainCamera")
                 {
-                    if (child2.gameObject.tag == "PlayerHands")
+                    var cam = child.gameObject;
+                    foreach (Transform child2 in cam.transform)
                     {
-                        ph1 = child2.gameObject;
+                        if (child2.gameObject.tag == "PlayerHands")
+                        {
+                            ph1 = child2.gameObject;
+                        }
                     }
                 }
             }
-        }
         var Player2 = GameObject.FindGameObjectWithTag("Player2");
         GameObject ph2 = null;
-        if(Player2 != null)
-        foreach (Transform child in Player2.transform)
-        {
-            if (child.gameObject.tag == "SecondCamera")
+        if (Player2 != null)
+            foreach (Transform child in Player2.transform)
             {
-                var cam = child.gameObject;
-                foreach (Transform child2 in cam.transform)
+                if (child.gameObject.tag == "SecondCamera")
                 {
-                    if (child2.gameObject.tag == "PlayerHands2")
+                    var cam = child.gameObject;
+                    foreach (Transform child2 in cam.transform)
                     {
-                        ph2 = child2.gameObject;
+                        if (child2.gameObject.tag == "PlayerHands")
+                        {
+                            ph2 = child2.gameObject;
+                            Debug.Log("ph2: "+ph2);
+                        }
                     }
                 }
             }
-        }
         if (ph2 != null)
             for (int i = 0; i < ph2.transform.childCount; i++)
             {
@@ -111,7 +112,7 @@ public class HUDScript : MonoBehaviour
     }
 
     void Stats()
-    {   
+    {
         HPPlayer1.text = playerOneScript.currentHealthP1.ToString();
         HPPlayer2.text = playerTwoScript.currentHealthP2.ToString();
     }

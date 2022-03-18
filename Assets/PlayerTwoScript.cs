@@ -10,12 +10,20 @@ public class PlayerTwoScript : MonoBehaviour
     public int deathCountPlayer2Barrier;
     public int deathCountPlayer2Spawn;
     private bool temp = true;
+    public int sizeOfList;
+
+
     private PlayerOneScript plOneScript;
     public WeaponPickupScript weaponPickupScript;
+    private Animator bodyAnimator;
+    private Transform animationBody;
+    private PlayerDeathScript plDeathScript;
+
     public event Action<int> OnPlayer2DeathBarrier;
     public event Action<int, GameObject> OnPlayer2DeathSpawn;
     public event Action OnPlayer2Killed;
-    public int sizeOfList;
+    public event Action <bool> OnDeathTurnOffCamera;
+
     public List<GameObject> Inventar;
     public GameObject PrimaryWeapon;
     public GameObject SekundaryWeapon;
@@ -33,8 +41,17 @@ public class PlayerTwoScript : MonoBehaviour
 
     void Awake()
     {
+        animationBody = transform.GetChild(0);
+        bodyAnimator = animationBody.GetComponent<Animator>();
+        plDeathScript = animationBody.GetComponent<PlayerDeathScript>();
         plOneScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerOneScript>();
         plOneScript.OnPlayerOneKilled += PlayerOneKilled;
+        plDeathScript.OnDeath += PlayerDeath;
+    }
+
+    private void PlayerDeath()
+    {
+        OnDeathAnimation();
     }
 
     private void PlayerOneKilled()
@@ -44,18 +61,20 @@ public class PlayerTwoScript : MonoBehaviour
         {
             deathCountPlayer2Spawn = -2;
         }
+        else if (deathCountPlayer2Spawn > 3)
+        {
+            deathCountPlayer2Spawn = 3;
+        }
 
         deathCountPlayer2Barrier--;
-
         if (deathCountPlayer2Barrier < -2)
         {
             deathCountPlayer2Barrier = -2;
         }
-
-
-        Debug.Log("spawncount player2 : " + deathCountPlayer2Spawn);
-        Inventar = new List<GameObject>(1);
-
+        else if (deathCountPlayer2Barrier > 3)
+        {
+            deathCountPlayer2Barrier = 3;
+        }
     }
 
     private void OnPlayerOneKilled()
@@ -68,26 +87,8 @@ public class PlayerTwoScript : MonoBehaviour
     {
         ResetHealth();
         deathCountPlayer2Barrier = 0;
-
-        if (deathCountPlayer2Barrier < -2)
-        {
-            deathCountPlayer2Barrier = -2;
-        }
-        else if (deathCountPlayer2Barrier > 3)
-        {
-            deathCountPlayer2Barrier = 3;
-        }
-
         deathCountPlayer2Spawn = 0;
-
-        if (deathCountPlayer2Spawn < -2)
-        {
-            deathCountPlayer2Spawn = -2;
-        }
-        else if (deathCountPlayer2Spawn > 3)
-        {
-            deathCountPlayer2Spawn = 3;
-        }
+        Inventar = new List<GameObject>(2);
     }
 
     private void Update()
@@ -106,13 +107,17 @@ public class PlayerTwoScript : MonoBehaviour
         {
             deathCountPlayer2Barrier++;
             deathCountPlayer2Spawn++;
-            OnPlayer2DeathBarrier?.Invoke(deathCountPlayer2Barrier);
-            OnPlayer2DeathSpawn?.Invoke(deathCountPlayer2Spawn, this.gameObject);
-            OnPlayer2Killed?.Invoke();
+            bodyAnimator.SetTrigger("triggerDeath2");
+            OnDeathTurnOffCamera?.Invoke(true);
             ResetHealth();
         }
     }
-
+     void OnDeathAnimation()
+    {
+        OnPlayer2DeathBarrier?.Invoke(deathCountPlayer2Barrier);
+        OnPlayer2DeathSpawn?.Invoke(deathCountPlayer2Spawn, this.gameObject);
+        OnPlayer2Killed?.Invoke();
+    }
 
     public void ResetHealth()
     {
@@ -124,7 +129,6 @@ public class PlayerTwoScript : MonoBehaviour
         {
             if (Inventar.Count <= 2)
             {
-                Debug.Log("Moin");
                 if (PrimaryWeapon == null)
                 {
                     currentWeapon = other.gameObject;
@@ -141,8 +145,6 @@ public class PlayerTwoScript : MonoBehaviour
 
     private void AttachWeapon(GameObject currWea)
     {
-
-
         weaponPickupScript = currWea.GetComponent<WeaponPickupScript>();
         switch (weaponPickupScript.WeaponType)
         {
@@ -157,8 +159,6 @@ public class PlayerTwoScript : MonoBehaviour
                     case 1:
                         SekundaryWeapon = Ak47;
                         Inventar.Add(SekundaryWeapon);
-                        break;
-                    case 2:
                         break;
                 }
                 break;

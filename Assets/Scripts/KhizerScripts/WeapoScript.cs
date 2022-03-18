@@ -31,9 +31,10 @@ public class WeapoScript : MonoBehaviour
     }
     private void ShootingAutoInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (transform.root.tag == "Player" &&  cws.weapon.name == "AK47")
+        if (transform.root.tag == "Player" && cws.weapon.name == "AK47")
         {
             isShootingAutoP1 = obj.ReadValueAsButton();
+            Debug.Log(cws.weapon.name);
         }
         else if (transform.root.tag == "Player2" && cwsP2.weapon.name == "AK47")
         {
@@ -57,9 +58,8 @@ public class WeapoScript : MonoBehaviour
     }
     private void Start()
     {
-        cam = Camera.main;
         equipmentScriptp1 = this.GetComponentInParent<EquipmentScript>();
-        equipmentScriptp2 = this.GetComponentInParent<EquipmentScript>();
+        cam = Camera.main;
     }
     void Update()
     {
@@ -155,10 +155,10 @@ public class WeapoScript : MonoBehaviour
             currenMag--;
             Destroy(_bullet, 5f);
             shootDelay = cws.WShootDelay;
-            if (currenMag == -1)
+            if (currenMag <= 0)
             {
                 ReloadP1();
-                equipmentScriptp1.CheckWeapon();
+                equipmentScriptp1.CheckWeaponPlayer1();
             }
             switch (this.gameObject.name)
             {
@@ -183,10 +183,6 @@ public class WeapoScript : MonoBehaviour
                     break;
             }
         }
-        else
-        {
-            Debug.Log("Mag is empty!");
-        }
     }
 
     public void ReloadP1()
@@ -205,42 +201,36 @@ public class WeapoScript : MonoBehaviour
             muzzleFlash.Play();
             GameObject _bullet = Instantiate(bullet, secondCam.transform.position + secondCam.transform.forward, Quaternion.identity);
             currenMagP2--;
-            equipmentScriptp2.CheckWeapon();
             Destroy(_bullet, 5f);
             shootDelay = cwsP2.WShootDelay;
-
-        }
-        if (currenMagP2 == -1)
-        {
-            ReloadP2();
-            equipmentScriptp2.CheckWeapon();
-        }
-        else
-        {
-            Debug.Log("Mag2 is empty!");
-
-        }
-        switch (this.gameObject.name)
-        {
-            case "Pistol":
-                FindObjectOfType<AudioManager>().Play("Pistol");
-                break;  
-            case "AK47":
-            Debug.Log("Sound toll");
-        FindObjectOfType<AudioManager>().Play("Ak47");
-                break;
-            case "AutPump":
-                FindObjectOfType<AudioManager>().Play("AutPump");
-                break;
-            case "Deagle":
-                FindObjectOfType<AudioManager>().Play("Deagle");
-                break;
-            case "M16":
-                FindObjectOfType<AudioManager>().Play("M16");
-                break;
-            case "PumpShotgun":
-                FindObjectOfType<AudioManager>().Play("PumpShotgun");
-                break;
+            if (currenMagP2 <= 0)
+            {
+                Debug.Log("Reload wird ausgeführt");
+                ReloadP2();
+                equipmentScriptp1.CheckWeaponPlayer2();
+            }
+            switch (this.gameObject.name)
+            {
+                case "Pistol":
+                    FindObjectOfType<AudioManager>().Play("Pistol");
+                    break;
+                case "AK47":
+                    Debug.Log("Sound toll");
+                    FindObjectOfType<AudioManager>().Play("Ak47");
+                    break;
+                case "AutPump":
+                    FindObjectOfType<AudioManager>().Play("AutPump");
+                    break;
+                case "Deagle":
+                    FindObjectOfType<AudioManager>().Play("Deagle");
+                    break;
+                case "M16":
+                    FindObjectOfType<AudioManager>().Play("M16");
+                    break;
+                case "PumpShotgun":
+                    FindObjectOfType<AudioManager>().Play("PumpShotgun");
+                    break;
+            }
         }
     }
 
@@ -285,4 +275,5 @@ public class WeapoScript : MonoBehaviour
             LoadGunP2();
         }
     }
+
 }

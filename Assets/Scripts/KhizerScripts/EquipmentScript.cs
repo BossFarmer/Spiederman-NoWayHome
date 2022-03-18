@@ -18,7 +18,6 @@ public class EquipmentScript : MonoBehaviour
     public GameObject currWeapon, currWeapon2;
     private bool primaryWeapon, sekundaryWeapon;
 
-
     private void Awake()
     {
         CheckPlayer();
@@ -26,42 +25,14 @@ public class EquipmentScript : MonoBehaviour
 
     private void ControllerInputLeft(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        var controll = obj.control;
-        var button = controll as ButtonControl;
-        if (button.wasPressedThisFrame)
-        {
-            controllerInputLeft = obj.ReadValue<float>();
-            if (controllerInputLeft <= 1)
-            {
-                controllerInputLeft = -1;
-            }
-            if (Pl2Script.SekundaryWeapon != null)
-            {
-                ChangeWeaponPlayer2(controllerInputLeft);
-            }
-
-        }
+        controllerInputLeft = -1;
+        ChangeWeaponPlayer2(controllerInputLeft);
     }
 
-    private void ControllerInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void ControllerInputRight(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        var controll = obj.control;
-        var button = controll as ButtonControl;
-        if (button.wasPressedThisFrame)
-        {
-            controllerInputRight = obj.ReadValue<float>();
-            if (controllerInputRight > -1)
-            {
-                controllerInputRight = 1;
-            }
-
-            if (Pl2Script.PrimaryWeapon != null)
-            {
-                ChangeWeaponPlayer2(controllerInputRight);
-            }
-        }
-        Debug.Log("right schoulder was pressed: " + controllerInputRight);
-
+        controllerInputRight = 1;
+        ChangeWeaponPlayer2(controllerInputRight);
     }
 
     private void MouseInputScroll(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -77,7 +48,7 @@ public class EquipmentScript : MonoBehaviour
 
     private void Start()
     {
-        ChoseWeapon();
+        //ChoseWeapon();
     }
 
     void ChoseWeapon()
@@ -97,41 +68,44 @@ public class EquipmentScript : MonoBehaviour
         }
     }
 
-    public void CheckWeapon()
+    public void CheckWeaponPlayer1()
     {
-        if (primaryWeapon)
+        if (Pl1Script.PrimaryWeapon != null)
         {
             Pl1Script.Inventar.Remove(Pl1Script.PrimaryWeapon);
             Pl1Script.PrimaryWeapon.SetActive(false);
             Pl1Script.PrimaryWeapon = Pl1Script.SekundaryWeapon;
             Pl1Script.SekundaryWeapon = null;
-            Pl2Script.Inventar.Remove(Pl2Script.PrimaryWeapon);
-            Pl2Script.PrimaryWeapon.SetActive(false);
-            Pl2Script.PrimaryWeapon = null;
         }
 
-        if (sekundaryWeapon)
+        if (Pl1Script.SekundaryWeapon != null)
         {
             Pl1Script.Inventar.Remove(Pl1Script.SekundaryWeapon);
             Pl1Script.SekundaryWeapon.SetActive(false);
             Pl1Script.SekundaryWeapon = null;
+        }
+    }
+
+    public void CheckWeaponPlayer2()
+    {
+        if (Pl2Script.PrimaryWeapon != null)
+        {
+            Pl2Script.Inventar.Remove(Pl2Script.PrimaryWeapon);
+            Pl2Script.PrimaryWeapon.SetActive(false);
+            Pl2Script.PrimaryWeapon = Pl2Script.SekundaryWeapon;
+            Pl2Script.SekundaryWeapon = null;
+        }
+
+        if (Pl2Script.SekundaryWeapon != null)
+        {
             Pl2Script.Inventar.Remove(Pl2Script.SekundaryWeapon);
             Pl2Script.SekundaryWeapon.SetActive(false);
             Pl2Script.SekundaryWeapon = null;
         }
-        //if (magSize2 >= 0)
-        //{
-        //    Pl2Script.Inventar.RemoveAt(1);
-        //}
-        //if (magSize3 >= 0)
-        //{
-        //    Pl1Script.Inventar.RemoveAt(2);
-        //}
-        //if (magSize4 >= 0)
-        //{
-        //    Pl2Script.Inventar.RemoveAt(2);
-        //}
     }
+
+
+
 
     private void CheckPlayer()
     {
@@ -148,7 +122,7 @@ public class EquipmentScript : MonoBehaviour
         {
             //Debug.Log("This Player Two");
             action.Player2.Enable();
-            action.Player2.ChangeWeaponsControllerRight.performed += ControllerInput;
+            action.Player2.ChangeWeaponsControllerRight.performed += ControllerInputRight;
             action.Player2.ChangeWeaponsControllerLeft.performed += ControllerInputLeft;
             Pl2Script = transform.root.gameObject.GetComponent<PlayerTwoScript>();
         }
@@ -158,19 +132,33 @@ public class EquipmentScript : MonoBehaviour
         nextWeapon = currentWeapon;
         if (mouseInput > 0)
         {
-            primaryWeapon = true;
-            sekundaryWeapon = false;
-            currWeapon = Pl1Script.PrimaryWeapon;
-            Pl1Script.PrimaryWeapon.SetActive(true);
-            Pl1Script.SekundaryWeapon.SetActive(false);
+            if (Pl1Script.PrimaryWeapon != null)
+            {
+                primaryWeapon = true;
+                sekundaryWeapon = false;
+                currWeapon = Pl1Script.PrimaryWeapon;
+                Pl1Script.PrimaryWeapon.SetActive(true);
+                if (Pl1Script.SekundaryWeapon != null)
+                {
+                    Pl1Script.SekundaryWeapon.SetActive(false);
+                }
+            }
         }
         if (mouseInput < 0)
         {
-            primaryWeapon = false;
-            sekundaryWeapon = true;
-            currWeapon = Pl1Script.SekundaryWeapon;
-            Pl1Script.PrimaryWeapon.SetActive(false);
-            Pl1Script.SekundaryWeapon.SetActive(true);
+            if (Pl1Script.SekundaryWeapon != null)
+            {
+                primaryWeapon = false;
+                sekundaryWeapon = true;
+                currWeapon = Pl1Script.SekundaryWeapon;
+                Pl1Script.SekundaryWeapon.SetActive(true);
+                if (Pl1Script.PrimaryWeapon != null)
+                {
+                    Pl1Script.PrimaryWeapon.SetActive(false);
+
+                }
+
+            }
         }
         if (nextWeapon != currentWeapon)
         {
@@ -181,23 +169,33 @@ public class EquipmentScript : MonoBehaviour
     void ChangeWeaponPlayer2(float controllerInput)
     {
         nextWeapon = currentWeapon;
-        if (controllerInput > -1)
+        if (controllerInput >= 0)
         {
-            Debug.Log("Primary active");
-            primaryWeapon = true;
-            sekundaryWeapon = false;
-            currWeapon2 = Pl2Script.PrimaryWeapon;
-            Pl2Script.PrimaryWeapon.SetActive(true);
-            Pl2Script.SekundaryWeapon.SetActive(false);
+            if (Pl2Script.PrimaryWeapon != null)
+            {
+                primaryWeapon = true;
+                sekundaryWeapon = false;
+                currWeapon2 = Pl2Script.PrimaryWeapon;
+                Pl2Script.PrimaryWeapon.SetActive(true);
+                if (Pl2Script.SekundaryWeapon != null)
+                {
+                    Pl2Script.SekundaryWeapon.SetActive(false);
+                }
+            }
         }
-        if (controllerInput < 1)
+        if (controllerInput <= 0)
         {
-            Debug.Log("Secondayr active");
-            primaryWeapon = false;
-            sekundaryWeapon = true;
-            currWeapon2 = Pl2Script.SekundaryWeapon;
-            Pl2Script.PrimaryWeapon.SetActive(false);
-            Pl2Script.SekundaryWeapon.SetActive(true);
+            if (Pl2Script.SekundaryWeapon != null)
+            {
+                primaryWeapon = false;
+                sekundaryWeapon = true;
+                currWeapon2 = Pl2Script.SekundaryWeapon;
+                Pl2Script.SekundaryWeapon.SetActive(true);
+                if (Pl2Script.PrimaryWeapon != null)
+                {
+                    Pl2Script.PrimaryWeapon.SetActive(false);
+                }
+            }
         }
         if (nextWeapon != currentWeapon)
         {

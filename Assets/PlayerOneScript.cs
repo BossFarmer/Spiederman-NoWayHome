@@ -18,13 +18,12 @@ public class PlayerOneScript : MonoBehaviour
     public event Action<int, GameObject> OnPlayer1DeathSpawn;
     public event Action OnPlayerOneKilled;
     public event Action<bool> OnDeathTurnOffFPS;
-    public GameObject currentWeapon;
 
+    public GameObject currentWeapon;
     public List<GameObject> Inventar;
     public int sizeOfList;
     public GameObject PrimaryWeapon;
     public GameObject SekundaryWeapon;
-    public EquipmentScript equipmentScript;
     private PlayerDeathScript plDeathScript;
 
     #region Waffenliste
@@ -84,13 +83,11 @@ public class PlayerOneScript : MonoBehaviour
         deathCountPlayer1Barrierr = 0;
         deathCountPlayer1Spawn = 0;
         Inventar = new List<GameObject>(2);
-
     }
 
     void Update()
     {
         IsPlayerDead();
-        WaffenInventar();
     }
     private void GetAnimationBody()
     {
@@ -127,11 +124,6 @@ public class PlayerOneScript : MonoBehaviour
         OnDeathTurnOffFPS?.Invoke(false);
         bodyAnimator.SetBool("isDeath", false);
     }
-    public void WaffenInventar()
-    {
-
-    }
-
     public void ResetHealth()
     {
         currentHealthP1 = healthP1;

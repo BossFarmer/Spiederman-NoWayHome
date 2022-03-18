@@ -41,7 +41,6 @@ public class CharacterMovement : MonoBehaviour
     private void Awake()
     {
         CheckPlayer();
-        GetAnimationBody();
         bodyAnimator = animationBody.GetComponent<Animator>();
 
     }
@@ -53,6 +52,7 @@ public class CharacterMovement : MonoBehaviour
             spaceInput = true;
             CharacterJump();
             bodyAnimator.SetBool("isJumping", spaceInput);
+            bodyAnimator.SetBool("isJumping2", spaceInput);
             StartCoroutine("JumpTimer");
         }
     }
@@ -65,10 +65,12 @@ public class CharacterMovement : MonoBehaviour
         if (y > 0 || y < 0 || x < 0 || x > 0)
         {
             bodyAnimator.SetBool("isRunning", true);
+            bodyAnimator.SetBool("isRunning2", true);
         }
         else
         {
             bodyAnimator.SetBool("isRunning", false);
+            bodyAnimator.SetBool("isRunning2", false);
         }
     }
 
@@ -84,10 +86,7 @@ public class CharacterMovement : MonoBehaviour
         GroundChecked();
     }
 
-    private void GetAnimationBody()
-    {
-        animationBody = transform.GetChild(0);
-    }
+
 
     private void CharacterJump()
     {
@@ -106,6 +105,7 @@ public class CharacterMovement : MonoBehaviour
         {
             spaceInput = false;
             bodyAnimator.SetBool("isJumping", spaceInput);
+            bodyAnimator.SetBool("isJumping2", spaceInput);
             velocity.y = -2f;
             if (maxJumps >= 2)
             {
@@ -152,6 +152,7 @@ public class CharacterMovement : MonoBehaviour
             action.Player.Enable();
             action.Player.Movement.performed += MovePlayer;
             action.Player.Jump.performed += JumpInput;
+            animationBody = transform.GetChild(0);
         }
 
         if (this.gameObject.tag == "Player2")
@@ -159,6 +160,7 @@ public class CharacterMovement : MonoBehaviour
             action.Player2.Enable();
             action.Player2.Movement.performed += MovePlayer;
             action.Player2.Jump.performed += JumpInput;
+            animationBody = transform.GetChild(0);
         }
     }
 

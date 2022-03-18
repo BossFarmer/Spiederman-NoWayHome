@@ -15,6 +15,7 @@ public class CameraManager : MonoBehaviour
     private float xRotation = 0f;
     public bool isPlayerOne, isPlayerTwo;
     private PlayerOneScript ploS;
+    private PlayerTwoScript pltS;
     private bool isCameraFreze;
 
 
@@ -23,12 +24,15 @@ public class CameraManager : MonoBehaviour
     {
         isCameraFreze = false;
         CheckPlayer();
-        ploS.OnDeathTurnOffFPS += TurnOffFPSCamera;
     }
 
     private void TurnOffFPSCamera(bool obj)
     {
         isCameraFreze = obj;
+    }
+    private void TurnOffCameraController(bool cameraOn)
+    {
+        isCameraFreze = cameraOn;
     }
 
     private void MouseInputY(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -94,6 +98,7 @@ public class CameraManager : MonoBehaviour
             action.Player.LookingX.performed += MouseInputX;
             action.Player.LookingY.performed += MouseInputY;
             ploS = transform.root.GetComponent<PlayerOneScript>();
+            ploS.OnDeathTurnOffFPS += TurnOffFPSCamera;
             isPlayerOne = true;
         }
 
@@ -102,6 +107,9 @@ public class CameraManager : MonoBehaviour
             action.Player2.Enable();
             action.Player2.LookingX.performed += ControllerInputX;
             action.Player2.LookingY.performed += ControllerInputY;
+            pltS = transform.root.GetComponent<PlayerTwoScript>();
+            pltS.OnDeathTurnOffCamera += TurnOffCameraController;
+
             isPlayerTwo = true;
         }
     }
