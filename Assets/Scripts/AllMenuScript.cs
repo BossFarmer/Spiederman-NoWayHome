@@ -49,7 +49,7 @@ public class AllMenuScript : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
-
+      
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
