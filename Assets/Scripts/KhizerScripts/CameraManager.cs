@@ -15,29 +15,30 @@ public class CameraManager : MonoBehaviour
     private float xRotation = 0f;
     public bool isPlayerOne, isPlayerTwo;
     private PlayerOneScript ploS;
-    private PlayerTwoScript pltS;
-    private bool isCameraFreze;
+    private bool isCameraFrezeMouse, isCameraFrezeController;
 
 
 
     private void Awake()
     {
-        isCameraFreze = false;
+        isCameraFrezeMouse = false;
+        isCameraFrezeController = false;
         CheckPlayer();
     }
 
     private void TurnOffFPSCamera(bool obj)
     {
-        isCameraFreze = obj;
+        isCameraFrezeMouse = obj;
     }
     private void TurnOffCameraController(bool cameraOn)
     {
-        isCameraFreze = cameraOn;
+        Debug.Log("camerafrezzecontroller:"+cameraOn);
+        isCameraFrezeController = cameraOn;
     }
 
     private void MouseInputY(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!isCameraFreze)
+        if (!isCameraFrezeMouse)
         {
             mouseInputY = obj.ReadValue<float>();
         }
@@ -49,25 +50,39 @@ public class CameraManager : MonoBehaviour
 
     private void MouseInputX(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!isCameraFreze)
+        if (!isCameraFrezeMouse)
         {
             mouseInputX = obj.ReadValue<float>();
         }
         else
         {
-            mouseInputX= 0;
+            mouseInputX = 0;
         }
 
     }
 
     private void ControllerInputY(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        mouseInputY = obj.ReadValue<float>();
+        if (!isCameraFrezeController)
+        {
+            mouseInputY = obj.ReadValue<float>();
+        }
+        else
+        {
+            mouseInputY = 0;
+        }
     }
 
     private void ControllerInputX(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        mouseInputX = obj.ReadValue<float>();
+        if (!isCameraFrezeController)
+        {
+            mouseInputX = obj.ReadValue<float>();
+        }
+        else
+        {
+            mouseInputX = 0;
+        }
     }
 
     void Update()
@@ -97,8 +112,9 @@ public class CameraManager : MonoBehaviour
             action.Player.Enable();
             action.Player.LookingX.performed += MouseInputX;
             action.Player.LookingY.performed += MouseInputY;
-            ploS = transform.root.GetComponent<PlayerOneScript>();
+            ploS = transform.parent.GetComponent<PlayerOneScript>();
             ploS.OnDeathTurnOffFPS += TurnOffFPSCamera;
+            ploS.OnDeathTurnOffFPSController += TurnOffCameraController;
             isPlayerOne = true;
         }
 
@@ -107,9 +123,6 @@ public class CameraManager : MonoBehaviour
             action.Player2.Enable();
             action.Player2.LookingX.performed += ControllerInputX;
             action.Player2.LookingY.performed += ControllerInputY;
-            pltS = transform.root.GetComponent<PlayerTwoScript>();
-            pltS.OnDeathTurnOffCamera += TurnOffCameraController;
-
             isPlayerTwo = true;
         }
     }

@@ -18,6 +18,7 @@ public class PlayerOneScript : MonoBehaviour
     public event Action<int, GameObject> OnPlayer1DeathSpawn;
     public event Action OnPlayerOneKilled;
     public event Action<bool> OnDeathTurnOffFPS;
+    public event Action<bool> OnDeathTurnOffFPSController;
 
     public GameObject currentWeapon;
     public List<GameObject> Inventar;
@@ -46,6 +47,12 @@ public class PlayerOneScript : MonoBehaviour
         plDeathScript.OnDeath += OnPlayerOneDeath;
         plTwoScript = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerTwoScript>();
         plTwoScript.OnPlayer2Killed += PlayerTwoKilled;
+        plTwoScript.OnMessagePlayerTwo += MessageFromPlayerTwo;
+    }
+
+    private void MessageFromPlayerTwo(bool obj)
+    {
+        OnDeathTurnOffFPSController?.Invoke(obj);
     }
 
     private void OnPlayerOneDeath()
@@ -75,6 +82,7 @@ public class PlayerOneScript : MonoBehaviour
         {
             deathCountPlayer1Barrierr = 3;
         }
+        OnDeathTurnOffFPSController?.Invoke(true);
     }
 
     void Start()
@@ -109,8 +117,8 @@ public class PlayerOneScript : MonoBehaviour
             deathCountPlayer1Barrierr++;
             deathCountPlayer1Spawn++;
             Debug.Log("PlayerOne Spawnpoint: " + deathCountPlayer1Barrierr);
-            bodyAnimator.SetTrigger("triggerDeath");
             OnDeathTurnOffFPS.Invoke(true);
+            bodyAnimator.SetTrigger("triggerDeath");
             ResetHealth();
 
         }

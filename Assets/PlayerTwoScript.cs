@@ -22,7 +22,7 @@ public class PlayerTwoScript : MonoBehaviour
     public event Action<int> OnPlayer2DeathBarrier;
     public event Action<int, GameObject> OnPlayer2DeathSpawn;
     public event Action OnPlayer2Killed;
-    public event Action <bool> OnDeathTurnOffCamera;
+    public event Action<bool> OnMessagePlayerTwo;
 
     public List<GameObject> Inventar;
     public GameObject PrimaryWeapon;
@@ -108,7 +108,6 @@ public class PlayerTwoScript : MonoBehaviour
             deathCountPlayer2Barrier++;
             deathCountPlayer2Spawn++;
             bodyAnimator.SetTrigger("triggerDeath2");
-            OnDeathTurnOffCamera?.Invoke(true);
             ResetHealth();
         }
     }
@@ -117,6 +116,7 @@ public class PlayerTwoScript : MonoBehaviour
         OnPlayer2DeathBarrier?.Invoke(deathCountPlayer2Barrier);
         OnPlayer2DeathSpawn?.Invoke(deathCountPlayer2Spawn, this.gameObject);
         OnPlayer2Killed?.Invoke();
+        OnMessagePlayerTwo?.Invoke(false);
     }
 
     public void ResetHealth()
