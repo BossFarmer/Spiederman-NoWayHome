@@ -96,13 +96,13 @@ public class BarrierScript : MonoBehaviour
         }
     }
 
-    private void RespawnBarrierPlayerOne(bool obj, int dcp, GameObject that)
+    private void RespawnBarrierPlayerOne(bool obj, int dcb, GameObject that)
     {
         Debug.Log("the Barrier "+that.name);
-        switch (dcp)
+        switch (dcb)
         {
             case 2:
-                if (dcp == 2)
+                if (dcb == 2)
                 {
                     //wenn player erst die nextArea verlassen hat;
                     if (obj)
@@ -113,7 +113,7 @@ public class BarrierScript : MonoBehaviour
                 }
                 break;
             case 1:
-                if (dcp == 1)
+                if (dcb == 1)
                 {
                     if (obj)
                     {
@@ -123,7 +123,7 @@ public class BarrierScript : MonoBehaviour
                 }
                 break;
             case 0:
-                if (dcp == 0)
+                if (dcb == 0)
                 {
                     if (obj)
                     {
@@ -133,7 +133,7 @@ public class BarrierScript : MonoBehaviour
                 }
                 break;
             case -1:
-                if (dcp == -1)
+                if (dcb == -1)
                 {
                     if (obj)
                     {
@@ -142,16 +142,16 @@ public class BarrierScript : MonoBehaviour
 
                 }
                 break;
-            //case -2:
-            //    if (dcp == -2)
-            //    {
-            //        if (obj)
-            //        {
-            //            Barrier22.SetActive(true);
-            //        }
+            case -2:
+                if (dcb == -2)
+                {
+                    if (obj)
+                    {
+                        Barrier22.SetActive(true);
+                    }
 
-            //    }
-            //    break;
+                }
+                break;
             default:
                 break;
         }
@@ -206,6 +206,20 @@ public class BarrierScript : MonoBehaviour
 
         switch (playerDeathCountBarrier)
         {
+            case -1:
+                if (playerDeathCountBarrier == -1)
+                {
+                    Barrier22.SetActive(false);
+
+                }
+                break;
+            case 0:
+                if (playerDeathCountBarrier == 0)
+                {
+                    Barrier11.SetActive(false);
+
+                }
+                break;
             case 1:
                 if (playerDeathCountBarrier == 1)
                 {
@@ -229,11 +243,24 @@ public class BarrierScript : MonoBehaviour
     }
     IEnumerator SwitchBarrierPlayerOne(int playerDeathCount)
     {
-        Debug.Log(CurrTime);
         yield return new WaitForSeconds(CurrTime);
 
         switch (playerDeathCount)
         {
+            case -1:
+                if (playerDeathCount == -1)
+                {
+                    Barrier2.SetActive(false);
+
+                }
+                break;
+            case 0:
+                if (playerDeathCount == 0)
+                {
+                    Barrier1.SetActive(false);
+
+                }
+                break;
             case 1:
                 if (playerDeathCount == 1)
                 {

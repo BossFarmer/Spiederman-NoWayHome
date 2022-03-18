@@ -59,15 +59,34 @@ public class PlayerTwoScript : MonoBehaviour
 
     private void OnPlayerOneKilled()
     {
+        deathCountPlayer2Spawn--;
         deathCountPlayer2Barrier--;
-        Debug.Log("Player One was slayed! " + "deathCount of Player 2 "+ deathCountPlayer2Barrier);
     }
 
     void Start()
     {
         ResetHealth();
         deathCountPlayer2Barrier = 0;
+
+        if (deathCountPlayer2Barrier < -2)
+        {
+            deathCountPlayer2Barrier = -2;
+        }
+        else if (deathCountPlayer2Barrier > 3)
+        {
+            deathCountPlayer2Barrier = 3;
+        }
+
         deathCountPlayer2Spawn = 0;
+
+        if (deathCountPlayer2Spawn < -2)
+        {
+            deathCountPlayer2Spawn = -2;
+        }
+        else if (deathCountPlayer2Spawn > 3)
+        {
+            deathCountPlayer2Spawn = 3;
+        }
     }
 
     private void Update()
@@ -84,14 +103,11 @@ public class PlayerTwoScript : MonoBehaviour
     {
         if (currentHealthP2 <= 0)
         {
-            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2Barrier);
             deathCountPlayer2Barrier++;
             deathCountPlayer2Spawn++;
-            Debug.Log("PlayerTwo Spawnpoint: " + deathCountPlayer2Barrier);
             OnPlayer2DeathBarrier?.Invoke(deathCountPlayer2Barrier);
             OnPlayer2DeathSpawn?.Invoke(deathCountPlayer2Spawn, this.gameObject);
             OnPlayer2Killed?.Invoke();
-            Debug.Log("Player 2 was Killed");
             ResetHealth();
         }
     }

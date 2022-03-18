@@ -161,7 +161,7 @@ public class EquipmentScript : MonoBehaviour
             currWeapon = Pl1Script.SekundaryWeapon;
             Pl1Script.PrimaryWeapon.SetActive(false);
             Pl1Script.SekundaryWeapon.SetActive(true);
-            Pl2Script.PrimaryWeapon.SetActive(false);
+            Pl2Script.PrimaryWeapon.SetActive(false);   
             Pl2Script.SekundaryWeapon.SetActive(true);
         }
         if (nextWeapon != currentWeapon)

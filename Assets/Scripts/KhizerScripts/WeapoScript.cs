@@ -31,11 +31,11 @@ public class WeapoScript : MonoBehaviour
     }
     private void ShootingAutoInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (transform.root.tag == "Player")
+        if (transform.root.tag == "Player" &&  cws.weapon.name == "AK47")
         {
             isShootingAutoP1 = obj.ReadValueAsButton();
         }
-        else if (transform.root.tag == "Player2")
+        else if (transform.root.tag == "Player2" && cwsP2.weapon.name == "AK47")
         {
             isShootingAutoP2 = obj.ReadValueAsButton();
         }

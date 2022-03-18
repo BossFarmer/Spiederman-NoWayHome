@@ -57,13 +57,29 @@ public class PlayerOneScript : MonoBehaviour
     private void PlayerTwoKilled()
     {
         deathCountPlayer1Spawn--;
+
+        if (deathCountPlayer1Spawn < -2)
+        {
+            deathCountPlayer1Spawn = -2;
+        }else if(deathCountPlayer1Spawn > 3)
+        {
+            deathCountPlayer1Spawn = 3;
+        }
+
         deathCountPlayer1Barrierr--;
-        Debug.Log("spawncount player one: " + deathCountPlayer1Spawn);
+
+        if (deathCountPlayer1Barrierr < -2)
+        {
+            deathCountPlayer1Barrierr = -2;
+        }
+        else if (deathCountPlayer1Barrierr > 3)
+        {
+            deathCountPlayer1Barrierr = 3;
+        }
     }
 
     void Start()
     {
-
         ResetHealth();
         deathCountPlayer1Barrierr = 0;
         deathCountPlayer1Spawn = 0;
@@ -122,21 +138,25 @@ public class PlayerOneScript : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (Inventar.Count <= 2)
+        if (other.gameObject.tag == "Weapons")
         {
-            Debug.Log("Moin");
-            if (PrimaryWeapon == null)
+            if (Inventar.Count <= 2)
             {
-                currentWeapon = other.gameObject;
-                AttachWeapon();
-                Debug.Log(other.gameObject.name);
-            }
-            Debug.Log(PrimaryWeapon.name + other.gameObject.name);
-            if (SekundaryWeapon == null && PrimaryWeapon.name != other.gameObject.name)
-            {
-                currentWeapon = other.gameObject;
-                AttachWeapon();
-                //Debug.Log(other.gameObject.name);
+                Debug.Log("Moin");
+                if (PrimaryWeapon == null)
+                {
+                    currentWeapon = other.gameObject;
+                    AttachWeapon();
+                    Debug.Log(other.gameObject.name);
+                }
+                Debug.Log(PrimaryWeapon.name + other.gameObject.name);
+                if (SekundaryWeapon == null && PrimaryWeapon.name != other.gameObject.name)
+                {
+                    currentWeapon = other.gameObject;
+                    AttachWeapon();
+                    //Debug.Log(other.gameObject.name);
+                }
+
             }
 
         }

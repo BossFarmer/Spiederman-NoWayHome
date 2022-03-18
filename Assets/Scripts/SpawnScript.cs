@@ -26,12 +26,10 @@ public class SpawnScript : MonoBehaviour
     }
     private void PlayerNewSpawnDeath(int obj, GameObject player)
     {
-        Debug.Log("SpawnScript: DeathCOuntPlayerOne: " + obj);
         SpawnPlayerOne(obj,player);
     }
     private void PlayerNewSpawnDeath2(int obj, GameObject player)
     {
-        Debug.Log("SpawnScript: DeathCOuntPlayerOne: " + obj);
         SpawnPlayerTwo(obj,player);
     }
 
@@ -93,14 +91,14 @@ public class SpawnScript : MonoBehaviour
         {
             case -2:
                 randomSpawnPointPlayer2 = Random.Range(0, spawnPointsPlayer2EnemyArea2.Length);
-                tempDir = spawnPointsPlayer1EnemyArea2[randomSpawnPointPlayer2].position;
+                tempDir = spawnPointsPlayer2EnemyArea2[randomSpawnPointPlayer2].position;
                 player.GetComponent<CharacterController>().enabled = false;
                 player.transform.position = tempDir;
                 player.GetComponent<CharacterController>().enabled = true;
                 break;
             case -1:
                 randomSpawnPointPlayer2 = Random.Range(0, spawnPointsPlayer2EnemyArea1.Length);
-                tempDir = spawnPointsPlayer1EnemyArea1[randomSpawnPointPlayer2].position;
+                tempDir = spawnPointsPlayer2EnemyArea1[randomSpawnPointPlayer2].position;
                 player.GetComponent<CharacterController>().enabled = false;
                 player.transform.position = tempDir;
                 player.GetComponent<CharacterController>().enabled = true;
