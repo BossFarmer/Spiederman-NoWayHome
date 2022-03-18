@@ -8,7 +8,7 @@ public class EquipmentScript : MonoBehaviour
     private int currentWeapon = 0;
     private int nextWeapon;
     private float mouseInput;
-    private float controllerInput = 0f;
+    private float controllerInputLeft = 0f, controllerInputRight = 0;
     [SerializeField]
     private PlayerOneScript Pl1Script;
     [SerializeField]
@@ -17,7 +17,7 @@ public class EquipmentScript : MonoBehaviour
     private int magSize1, magSize2, magSize3, magSize4;
     public GameObject currWeapon, currWeapon2;
     private bool primaryWeapon, sekundaryWeapon;
-    
+
 
     private void Awake()
     {
@@ -30,13 +30,16 @@ public class EquipmentScript : MonoBehaviour
         var button = controll as ButtonControl;
         if (button.wasPressedThisFrame)
         {
-            controllerInput -= obj.ReadValue<float>();
-            if (controllerInput < 1)
+            controllerInputLeft -= obj.ReadValue<float>();
+            if (controllerInputLeft < 1)
             {
-                controllerInput = -1;
+                controllerInputLeft = -1;
             }
+
+            ChangeWeaponPlayer2(controllerInputLeft);
+
         }
-        Debug.Log( "left schoulder was pressed: "+controllerInput);
+        Debug.Log("left schoulder was pressed: " + controllerInputLeft);
     }
 
     private void ControllerInput(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -45,29 +48,33 @@ public class EquipmentScript : MonoBehaviour
         var button = controll as ButtonControl;
         if (button.wasPressedThisFrame)
         {
-            controllerInput = obj.ReadValue<float>();
-            if (controllerInput > -1)
+            controllerInputRight = obj.ReadValue<float>();
+            if (controllerInputRight > -1)
             {
-                controllerInput = 1;
+                controllerInputRight = 1;
             }
+
+            ChangeWeaponPlayer2(controllerInputLeft);
+
         }
-        Debug.Log("right schoulder was pressed: " + controllerInput);
+        Debug.Log("right schoulder was pressed: " + controllerInputRight);
 
     }
 
     private void MouseInputScroll(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         mouseInput = obj.ReadValue<float>();
+
+        if (Pl1Script.PrimaryWeapon != null)
+        {
+            ChangeWeaponPlayer1(mouseInput);
+        }
+
     }
 
     private void Start()
     {
         ChoseWeapon();
-    }
-    private void Update()
-    {
-        ChangeWeapon();
-
     }
 
     void ChoseWeapon()
@@ -78,7 +85,7 @@ public class EquipmentScript : MonoBehaviour
             if (index == currentWeapon)
             {
                 weapon.gameObject.SetActive(true);
-            }   
+            }
             else
             {
                 weapon.gameObject.SetActive(false);
@@ -89,7 +96,6 @@ public class EquipmentScript : MonoBehaviour
 
     public void CheckWeapon()
     {
-
         if (primaryWeapon)
         {
             Pl1Script.Inventar.Remove(Pl1Script.PrimaryWeapon);
@@ -144,33 +150,48 @@ public class EquipmentScript : MonoBehaviour
             Pl2Script = transform.root.gameObject.GetComponent<PlayerTwoScript>();
         }
     }
-    void ChangeWeapon()
+    void ChangeWeaponPlayer1(float mouseInput)
     {
         nextWeapon = currentWeapon;
-        if (mouseInput > 0 || controllerInput > 0)
+        if (mouseInput > 0)
         {
-            Debug.Log("Mouse input:" + mouseInput);
-            Debug.Log("Controller input:" + controllerInput);
             primaryWeapon = true;
             sekundaryWeapon = false;
-            currWeapon2 = Pl2Script.PrimaryWeapon;
             currWeapon = Pl1Script.PrimaryWeapon;
             Pl1Script.PrimaryWeapon.SetActive(true);
             Pl1Script.SekundaryWeapon.SetActive(false);
-            Pl2Script.PrimaryWeapon.SetActive(true);
-            Pl2Script.SekundaryWeapon.SetActive(false);
         }
-        if (mouseInput < 0 || controllerInput < 0)
+        if (mouseInput < 0)
         {
-            Debug.Log("Mouse input:" + mouseInput);
-            Debug.Log("Cobntroller input:" + controllerInput);
             primaryWeapon = false;
             sekundaryWeapon = true;
             currWeapon = Pl1Script.SekundaryWeapon;
             Pl1Script.PrimaryWeapon.SetActive(false);
-            currWeapon2 = Pl2Script.SekundaryWeapon;
             Pl1Script.SekundaryWeapon.SetActive(true);
-            Pl2Script.PrimaryWeapon.SetActive(false);   
+        }
+        if (nextWeapon != currentWeapon)
+        {
+            ChoseWeapon();
+        }
+    }
+
+    void ChangeWeaponPlayer2(float controllerInput)
+    {
+        nextWeapon = currentWeapon;
+        if (controllerInput > -1)
+        {
+            primaryWeapon = true;
+            sekundaryWeapon = false;
+            currWeapon2 = Pl2Script.PrimaryWeapon;
+            Pl2Script.PrimaryWeapon.SetActive(true);
+            Pl2Script.SekundaryWeapon.SetActive(false);
+        }
+        if (controllerInput < 1)
+        {
+            primaryWeapon = false;
+            sekundaryWeapon = true;
+            currWeapon2 = Pl2Script.SekundaryWeapon;
+            Pl2Script.PrimaryWeapon.SetActive(false);
             Pl2Script.SekundaryWeapon.SetActive(true);
         }
         if (nextWeapon != currentWeapon)
