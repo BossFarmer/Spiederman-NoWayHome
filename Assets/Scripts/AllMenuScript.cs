@@ -16,7 +16,7 @@ public class AllMenuScript : MonoBehaviour
 
     private void Awake()
     {
-        PlayerInputActions action = new PlayerInputActions();
+        PlayerInputAction action = new PlayerInputAction();
         action.Enable();
         action.Player.MenuPopUp.performed += MenuPopUpInput;
     }

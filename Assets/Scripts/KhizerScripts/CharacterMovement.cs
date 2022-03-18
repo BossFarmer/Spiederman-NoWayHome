@@ -146,7 +146,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void CheckPlayer()
     {
-        PlayerInputActions action = new PlayerInputActions();
+        PlayerInputAction action = new PlayerInputAction();
         if (this.gameObject.tag == "Player")
         {
             action.Player.Enable();

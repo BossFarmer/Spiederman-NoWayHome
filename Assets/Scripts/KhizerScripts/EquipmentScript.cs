@@ -118,7 +118,7 @@ public class EquipmentScript : MonoBehaviour
 
     private void CheckPlayer()
     {
-        PlayerInputActions action = new PlayerInputActions();
+        PlayerInputAction action = new PlayerInputAction();
         if (transform.parent.tag == "MainCamera")
         {
             //Debug.Log("this Player one");

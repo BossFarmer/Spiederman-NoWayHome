@@ -53,7 +53,7 @@ public class DashScript : MonoBehaviour
 
     private void CheckPlayer()
     {
-        PlayerInputActions action = new PlayerInputActions();
+        PlayerInputAction action = new PlayerInputAction();
         if (this.gameObject.tag == "Player")
         {
             action.Player.Enable();

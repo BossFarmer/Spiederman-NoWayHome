@@ -217,7 +217,7 @@ public class WeapoScript : MonoBehaviour
 
     public void CheckPlayer()
     {
-        PlayerInputActions action = new PlayerInputActions();
+        PlayerInputAction action = new PlayerInputAction();
         if (transform.root.gameObject.tag == "Player")
         {
             action.Player.Enable();
